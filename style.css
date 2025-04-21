@@ -10,7 +10,8 @@
 }
 
 .text-primary {
-  color: #0d6efd !important; /* Gardez une couleur de texte plus foncée pour la lisibilité */
+  color: #0d6efd !important;
+  /* Gardez une couleur de texte plus foncée pour la lisibilité */
 }
 
 /* Utilisation de la police Nunito */
@@ -76,11 +77,16 @@ section {
   position: relative;
   padding: 0.5rem 0;
   margin: 0 1rem;
-  color: rgba(255, 255, 255, 0.9) !important; /* Liens plus clairs */
-  font-weight: 600 !important; /* Police plus épaisse */
-  letter-spacing: 0.5px; /* Espacement des lettres */
-  text-transform: uppercase; /* Texte en majuscules */
-  font-size: 0.9rem; /* Taille légèrement réduite */
+  color: rgba(255, 255, 255, 0.9) !important;
+  /* Liens plus clairs */
+  font-weight: 600 !important;
+  /* Police plus épaisse */
+  letter-spacing: 0.5px;
+  /* Espacement des lettres */
+  text-transform: uppercase;
+  /* Texte en majuscules */
+  font-size: 0.9rem;
+  /* Taille légèrement réduite */
 }
 
 .nav-link::after {
@@ -95,7 +101,8 @@ section {
 }
 
 .nav-link:hover {
-  color: white !important; /* Blanc pur au survol */
+  color: white !important;
+  /* Blanc pur au survol */
 }
 
 .nav-link:hover::after {
@@ -112,9 +119,21 @@ section {
   width: 100%;
 }
 
+.team-image {
+  max-height: 500px; /* Ajustez cette valeur selon la hauteur souhaitée */
+  width: auto;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
 
 /* Styles spécifiques pour la police Nunito */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
 }
 
@@ -160,19 +179,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Animation du formulaire */
-#contactForm input, 
+#contactForm input,
 #contactForm textarea {
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-#contactForm input:focus, 
+#contactForm input:focus,
 #contactForm textarea:focus {
   border-color: #0d6efd;
   box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
 }
 
 /* Styles pour la section contact */
-.contact-info-card, .contact-form-card {
+.contact-info-card,
+.contact-form-card {
   background-color: white;
   border-radius: var(--radius-m);
   padding: var(--space-xl);
@@ -181,7 +201,8 @@ h1, h2, h3, h4, h5, h6 {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.contact-info-card:hover, .contact-form-card:hover {
+.contact-info-card:hover,
+.contact-form-card:hover {
   box-shadow: var(--shadow-200);
 }
 
@@ -257,14 +278,16 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0;
 }
 
-.form-control, .form-select {
+.form-control,
+.form-select {
   border: 1px solid var(--neutral-100);
   border-radius: var(--radius-s);
   padding: var(--space-m);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.form-control:focus, .form-select:focus {
+.form-control:focus,
+.form-select:focus {
   border-color: var(--primary-500);
   box-shadow: 0 0 0 0.25rem rgba(0, 170, 255, 0.25);
 }
@@ -297,19 +320,22 @@ h1, h2, h3, h4, h5, h6 {
 /* Correction pour les bordures de formulaire */
 .form-floating .form-control,
 .form-floating .form-select {
-  border: 1px solid #ced4da; /* Couleur de bordure standard Bootstrap */
+  border: 1px solid #ced4da;
+  /* Couleur de bordure standard Bootstrap */
   border-radius: var(--radius-s);
-  height: calc(3.5rem + 2px); /* Hauteur standard pour les champs flottants */
+  height: calc(3.5rem + 2px);
+  /* Hauteur standard pour les champs flottants */
   line-height: 1.25;
   padding: 1rem 0.75rem;
 }
 
 .form-floating textarea.form-control {
-  height: 150px; /* Hauteur fixe pour le textarea */
+  height: 150px;
+  /* Hauteur fixe pour le textarea */
   min-height: 150px;
 }
 
-.form-floating > label {
+.form-floating>label {
   padding: 1rem 0.75rem;
 }
 
@@ -320,19 +346,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Assurer que les bordures sont visibles même en mode sombre */
-.form-control, .form-select {
+.form-control,
+.form-select {
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #ced4da !important; /* Force l'affichage des bordures */
+  border: 1px solid #ced4da !important;
+  /* Force l'affichage des bordures */
 }
 
 /* Amélioration de la visibilité des labels */
-.form-floating > label {
+.form-floating>label {
   color: #6c757d;
 }
 
 /* Assurer que le focus est bien visible */
-.form-control:focus, 
+.form-control:focus,
 .form-select:focus {
   color: #212529;
   background-color: #fff;
@@ -346,8 +374,10 @@ h1, h2, h3, h4, h5, h6 {
 footer {
   position: relative;
   z-index: 10;
-  min-height: auto !important; /* Annule le min-height des sections */
-  display: block !important; /* Annule le display flex des sections */
+  min-height: auto !important;
+  /* Annule le min-height des sections */
+  display: block !important;
+  /* Annule le display flex des sections */
 }
 
 footer .row {
@@ -383,7 +413,8 @@ footer .bi:hover {
 
 /* Faire en sorte que les sections prennent presque toute la hauteur de l'écran */
 section {
-  min-height: 90vh; /* 90% de la hauteur de la fenêtre */
+  min-height: 90vh;
+  /* 90% de la hauteur de la fenêtre */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -420,12 +451,19 @@ section {
 
 /* Animation de rebond pour les flèches */
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
     transform: translateX(-50%) translateY(0);
   }
+
   40% {
     transform: translateX(-50%) translateY(-10px);
   }
+
   60% {
     transform: translateX(-50%) translateY(-5px);
   }
@@ -539,10 +577,12 @@ section:last-of-type {
     transform: scale(0, 0);
     opacity: 0.5;
   }
+
   20% {
     transform: scale(25, 25);
     opacity: 0.3;
   }
+
   100% {
     opacity: 0;
     transform: scale(40, 40);
@@ -590,7 +630,8 @@ section:last-of-type {
   margin: 0 var(--space-m) var(--space-m) 0;
   padding: var(--space-l);
   min-height: 320px;
-  background-color: #f0f5ff; /* Fond gris/bleu très léger */
+  background-color: #f0f5ff;
+  /* Fond gris/bleu très léger */
   border-radius: var(--radius-m);
   text-align: right;
   font-family: 'Nunito', sans-serif;
@@ -605,7 +646,8 @@ section:last-of-type {
 .service-card:hover {
   transform: translateY(-10px);
   box-shadow: var(--shadow-200);
-  background-color: #e6eeff; /* Légèrement plus foncé au survol */
+  background-color: #e6eeff;
+  /* Légèrement plus foncé au survol */
 }
 
 .service-card::before {
@@ -672,7 +714,8 @@ section:last-of-type {
 /* Style pour la grille de services - 2 rangées de 3 cartes */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Exactement 3 colonnes */
+  grid-template-columns: repeat(3, 1fr);
+  /* Exactement 3 colonnes */
   gap: var(--space-l);
   margin-top: var(--space-xl);
 }
@@ -680,14 +723,16 @@ section:last-of-type {
 /* Responsive pour tablettes */
 @media (max-width: 992px) {
   .services-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur tablette */
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 colonnes sur tablette */
   }
 }
 
 /* Responsive pour mobiles */
 @media (max-width: 576px) {
   .services-grid {
-    grid-template-columns: 1fr; /* 1 colonne sur mobile */
+    grid-template-columns: 1fr;
+    /* 1 colonne sur mobile */
   }
 }
 
@@ -705,14 +750,16 @@ ul {
 }
 
 .text-primary {
-  color: #0d6efd !important; /* Gardez une couleur de texte plus foncée pour la lisibilité */
+  color: #0d6efd !important;
+  /* Gardez une couleur de texte plus foncée pour la lisibilité */
 }
 
 /* Ajustez les éléments avec la couleur principale */
 .btn-primary {
   background-color: #dae9ff !important;
   border-color: #c5dbff !important;
-  color: #333 !important; /* Texte foncé pour meilleure lisibilité sur fond clair */
+  color: #333 !important;
+  /* Texte foncé pour meilleure lisibilité sur fond clair */
 }
 
 .btn-primary:hover {
@@ -745,7 +792,7 @@ ul {
   background-color: #dae9ff !important;
 }
 
-.navbar-dark .navbar-nav .nav-link, 
+.navbar-dark .navbar-nav .nav-link,
 .navbar-dark .navbar-brand {
   color: #333 !important;
 }
@@ -768,7 +815,8 @@ ul {
   text-decoration: none;
 }
 
-.footer-links li, .footer-contact li {
+.footer-links li,
+.footer-contact li {
   margin-bottom: 10px;
 }
 
@@ -797,5 +845,3 @@ footer hr {
 .list-inline-item:not(:last-child) {
   margin-right: 1rem;
 }
-
-
