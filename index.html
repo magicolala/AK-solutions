@@ -29,11 +29,18 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-primary sticky-top">
     <div class="container">
       <a class="navbar-brand fw-bold" href="#" data-aos="fade-right">AK Solutions</a>
+      
+      <!-- Numéro de téléphone pour les écrans moyens et grands -->
+      <div class="d-none d-lg-flex align-items-center me-auto ms-4">
+        <i class="bi bi-telephone-fill me-2"></i>
+        <a href="tel:0764352198" class="text-dark text-decoration-none fw-bold">07 64 35 21 98</a>
+      </div>
+      
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
+        <ul class="navbar-nav ms-auto align-items-center">
           <li class="nav-item" data-aos="fade-down" data-aos-delay="100">
             <a class="nav-link" href="#about">Qui sommes-nous ?</a>
           </li>
@@ -46,22 +53,31 @@
           <li class="nav-item" data-aos="fade-down" data-aos-delay="400">
             <a class="nav-link" href="#testimonials">Témoignages</a>
           </li>
-          <li class="nav-item" data-aos="fade-down" data-aos-delay="500">
-            <a class="nav-link" href="#contact">Contact</a>
+          <!-- Lien Contact mis en valeur -->
+          <li class="nav-item ms-lg-3" data-aos="fade-down" data-aos-delay="500">
+            <a class="btn btn-dark rounded-pill px-4 nav-contact-btn" href="#contact">
+              <i class="bi bi-chat-dots me-1"></i> Contact
+            </a>
+          </li>
+          <!-- Numéro de téléphone pour les petits écrans -->
+          <li class="nav-item d-lg-none mt-3" data-aos="fade-down" data-aos-delay="600">
+            <a class="nav-link" href="tel:0764352198">
+              <i class="bi bi-telephone-fill me-2"></i>07 64 35 21 98
+            </a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+   
 
   <section class="hero bg-primary text-dark text-center py-5 position-relative hero-custom">
     <div class="container">
       <h1 class="display-4 fw-bold mb-4" data-aos="zoom-in">
-        Votre expert en maintenance technique multi-services
+        Technicien multi-compétences à votre écoute
       </h1>
       <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">
-        Plomberie, électricité, chauffage, climatisation... Solutions professionnelles pour particuliers et entreprises
-        en Île-de-France.
+        Plomberie, électricité, chauffage, climatisation... Des solutions rapides et fiables pour votre confort et votre sécurité en Île-de-France.
       </p>
       <div class="d-flex justify-content-center gap-3">
         <a href="#contact" class="btn-modern btn-modern-icon" data-aos="fade-up" data-aos-delay="200">
@@ -76,7 +92,7 @@
     <div class="scroll-arrow" data-target="#about">
       <i class="bi bi-chevron-down"></i>
     </div>
-  </section>
+  </section>  
 
   <section id="about" class="py-5">
     <div class="container">
