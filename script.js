@@ -60,37 +60,94 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Validation du formulaire de contact
+  // Validation du formulaire de contact avec Web3Forms
   const contactForm = document.getElementById("contactForm");
   if (contactForm) {
+    // Ajouter le champ caché pour l'access key de Web3Forms
+    if (!contactForm.querySelector('input[name="access_key"]')) {
+      const accessKeyInput = document.createElement('input');
+      accessKeyInput.type = 'hidden';
+      accessKeyInput.name = 'access_key';
+      accessKeyInput.value = 'a05cfc85-ef1b-4b2a-8f99-cc7c88673290';
+      contactForm.appendChild(accessKeyInput);
+    }
+    
+    // Ajouter le champ caché pour la vérification anti-bot
+    if (!contactForm.querySelector('input[name="botcheck"]')) {
+      const botcheckInput = document.createElement('input');
+      botcheckInput.type = 'checkbox';
+      botcheckInput.name = 'botcheck';
+      botcheckInput.className = 'hidden';
+      botcheckInput.style.display = 'none';
+      contactForm.appendChild(botcheckInput);
+    }
+    
+    // Créer un élément pour afficher le résultat si nécessaire
+    let resultElement = contactForm.querySelector('#result');
+    if (!resultElement) {
+      resultElement = document.createElement('div');
+      resultElement.id = 'result';
+      contactForm.appendChild(resultElement);
+    }
+
     contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      // Simulation d'envoi de formulaire
       const submitBtn = this.querySelector('button[type="submit"]');
       const originalText = submitBtn.innerText;
 
       submitBtn.disabled = true;
       submitBtn.innerHTML =
         '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Envoi en cours...';
+      
+      // Préparation des données pour Web3Forms
+      const formData = new FormData(contactForm);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+      
+      resultElement.innerHTML = "Veuillez patienter...";
 
-      setTimeout(() => {
-        submitBtn.innerHTML =
-          '<i class="bi bi-check-circle"></i> Message envoyé!';
+      // Envoi des données à Web3Forms
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: json
+      })
+      .then(async (response) => {
+        let json = await response.json();
+        if (response.status == 200) {
+          submitBtn.innerHTML = '<i class="bi bi-check-circle"></i> Message envoyé!';
+          submitBtn.classList.remove("btn-primary");
+          submitBtn.classList.add("btn-success");
+          resultElement.innerHTML = "Formulaire envoyé avec succès";
+        } else {
+          console.log(response);
+          submitBtn.innerHTML = '<i class="bi bi-x-circle"></i> Erreur!';
+          submitBtn.classList.remove("btn-primary");
+          submitBtn.classList.add("btn-danger");
+          resultElement.innerHTML = json.message || "Une erreur s'est produite";
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        submitBtn.innerHTML = '<i class="bi bi-x-circle"></i> Erreur!';
         submitBtn.classList.remove("btn-primary");
-        submitBtn.classList.add("btn-success");
-
-        // Réinitialisation du formulaire
-        this.reset();
-
-        // Retour à l'état initial après 3 secondes
+        submitBtn.classList.add("btn-danger");
+        resultElement.innerHTML = "Une erreur s'est produite!";
+      })
+      .finally(() => {
+        // Réinitialisation du formulaire et du bouton après 3 secondes
         setTimeout(() => {
           submitBtn.innerText = originalText;
           submitBtn.disabled = false;
-          submitBtn.classList.remove("btn-success");
+          submitBtn.classList.remove("btn-success", "btn-danger");
           submitBtn.classList.add("btn-primary");
+          resultElement.style.display = "none";
         }, 3000);
-      }, 1500);
+      });
     });
   }
 
