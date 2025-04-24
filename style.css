@@ -909,3 +909,19 @@ footer hr {
     column-count: 3;
   }
 }
+
+/* Style pour le bouton de retour en haut de page */
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: none; /* Caché par défaut */
+  z-index: 99;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.back-to-top:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+}

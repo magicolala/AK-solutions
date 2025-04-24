@@ -50,6 +50,27 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // Gestion du bouton de retour en haut de page
+  const backToTopButton = document.getElementById("back-to-top");
+
+  // Afficher le bouton quand l'utilisateur descend de 300px
+  window.addEventListener("scroll", function () {
+    if (window.scrollY > 300) {
+      backToTopButton.style.display = "block";
+    } else {
+      backToTopButton.style.display = "none";
+    }
+  });
+
+  // Faire défiler vers le haut lorsque le bouton est cliqué
+  backToTopButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+
   AOS.init({
     duration: 800,
     easing: "ease-in-out",
@@ -201,6 +222,16 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
 
       const targetId = this.getAttribute("href");
+
+      // Si le href est juste "#", ne rien faire ou remonter en haut de page
+      if (targetId === "#") {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+        return;
+      }
+
       const targetElement = document.querySelector(targetId);
 
       if (targetElement) {
@@ -211,7 +242,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-
   // Marquer le lien actif dans la navigation
   const sections = document.querySelectorAll("section[id]");
   const navLinks = document.querySelectorAll(".nav-link");
