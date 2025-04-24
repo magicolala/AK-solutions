@@ -1,5 +1,47 @@
 // Initialisation des animations AOS
 document.addEventListener("DOMContentLoaded", function () {
+  // Initialisation de la galerie masonry
+  function initMasonryGallery() {
+    // Attendre que toutes les images soient chargées pour un meilleur rendu masonry
+    const galleryImages = document.querySelectorAll(".masonry-item img");
+    let imagesLoaded = 0;
+
+    galleryImages.forEach((img) => {
+      img.onload = () => {
+        imagesLoaded++;
+        if (imagesLoaded === galleryImages.length) {
+          // Toutes les images sont chargées, on peut appliquer des animations supplémentaires si nécessaire
+          document
+            .querySelector(".masonry-gallery")
+            .classList.add("images-loaded");
+        }
+      };
+
+      // Pour les images déjà en cache
+      if (img.complete) {
+        img.onload();
+      }
+    });
+
+    // Animation au survol des cartes
+    const masonryItems = document.querySelectorAll(".masonry-item");
+    masonryItems.forEach((item) => {
+      item.addEventListener("mouseenter", function () {
+        this.querySelector(".card").style.transform = "translateY(-10px)";
+        this.querySelector(".card").style.boxShadow =
+          "0 10px 20px rgba(0, 0, 0, 0.1)";
+      });
+
+      item.addEventListener("mouseleave", function () {
+        this.querySelector(".card").style.transform = "translateY(0)";
+        this.querySelector(".card").style.boxShadow =
+          "0 4px 6px rgba(0, 0, 0, 0.1)";
+      });
+    });
+  }
+
+  // Appeler cette fonction dans le DOMContentLoaded
+  initMasonryGallery();
   // Exclure le footer des animations AOS
   const footerElements = document.querySelectorAll("footer *");
   footerElements.forEach((el) => {
@@ -65,28 +107,28 @@ document.addEventListener("DOMContentLoaded", function () {
   if (contactForm) {
     // Ajouter le champ caché pour l'access key de Web3Forms
     if (!contactForm.querySelector('input[name="access_key"]')) {
-      const accessKeyInput = document.createElement('input');
-      accessKeyInput.type = 'hidden';
-      accessKeyInput.name = 'access_key';
-      accessKeyInput.value = 'a05cfc85-ef1b-4b2a-8f99-cc7c88673290';
+      const accessKeyInput = document.createElement("input");
+      accessKeyInput.type = "hidden";
+      accessKeyInput.name = "access_key";
+      accessKeyInput.value = "a05cfc85-ef1b-4b2a-8f99-cc7c88673290";
       contactForm.appendChild(accessKeyInput);
     }
-    
+
     // Ajouter le champ caché pour la vérification anti-bot
     if (!contactForm.querySelector('input[name="botcheck"]')) {
-      const botcheckInput = document.createElement('input');
-      botcheckInput.type = 'checkbox';
-      botcheckInput.name = 'botcheck';
-      botcheckInput.className = 'hidden';
-      botcheckInput.style.display = 'none';
+      const botcheckInput = document.createElement("input");
+      botcheckInput.type = "checkbox";
+      botcheckInput.name = "botcheck";
+      botcheckInput.className = "hidden";
+      botcheckInput.style.display = "none";
       contactForm.appendChild(botcheckInput);
     }
-    
+
     // Créer un élément pour afficher le résultat si nécessaire
-    let resultElement = contactForm.querySelector('#result');
+    let resultElement = contactForm.querySelector("#result");
     if (!resultElement) {
-      resultElement = document.createElement('div');
-      resultElement.id = 'result';
+      resultElement = document.createElement("div");
+      resultElement.id = "result";
       contactForm.appendChild(resultElement);
     }
 
@@ -99,55 +141,57 @@ document.addEventListener("DOMContentLoaded", function () {
       submitBtn.disabled = true;
       submitBtn.innerHTML =
         '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Envoi en cours...';
-      
+
       // Préparation des données pour Web3Forms
       const formData = new FormData(contactForm);
       const object = Object.fromEntries(formData);
       const json = JSON.stringify(object);
-      
+
       resultElement.innerHTML = "Veuillez patienter...";
 
       // Envoi des données à Web3Forms
-      fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
-        body: json
+        body: json,
       })
-      .then(async (response) => {
-        let json = await response.json();
-        if (response.status == 200) {
-          submitBtn.innerHTML = '<i class="bi bi-check-circle"></i> Message envoyé!';
-          submitBtn.classList.remove("btn-primary");
-          submitBtn.classList.add("btn-success");
-          resultElement.innerHTML = "Formulaire envoyé avec succès";
-        } else {
-          console.log(response);
+        .then(async (response) => {
+          let json = await response.json();
+          if (response.status == 200) {
+            submitBtn.innerHTML =
+              '<i class="bi bi-check-circle"></i> Message envoyé!';
+            submitBtn.classList.remove("btn-primary");
+            submitBtn.classList.add("btn-success");
+            resultElement.innerHTML = "Formulaire envoyé avec succès";
+          } else {
+            console.log(response);
+            submitBtn.innerHTML = '<i class="bi bi-x-circle"></i> Erreur!';
+            submitBtn.classList.remove("btn-primary");
+            submitBtn.classList.add("btn-danger");
+            resultElement.innerHTML =
+              json.message || "Une erreur s'est produite";
+          }
+        })
+        .catch((error) => {
+          console.log(error);
           submitBtn.innerHTML = '<i class="bi bi-x-circle"></i> Erreur!';
           submitBtn.classList.remove("btn-primary");
           submitBtn.classList.add("btn-danger");
-          resultElement.innerHTML = json.message || "Une erreur s'est produite";
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        submitBtn.innerHTML = '<i class="bi bi-x-circle"></i> Erreur!';
-        submitBtn.classList.remove("btn-primary");
-        submitBtn.classList.add("btn-danger");
-        resultElement.innerHTML = "Une erreur s'est produite!";
-      })
-      .finally(() => {
-        // Réinitialisation du formulaire et du bouton après 3 secondes
-        setTimeout(() => {
-          submitBtn.innerText = originalText;
-          submitBtn.disabled = false;
-          submitBtn.classList.remove("btn-success", "btn-danger");
-          submitBtn.classList.add("btn-primary");
-          resultElement.style.display = "none";
-        }, 3000);
-      });
+          resultElement.innerHTML = "Une erreur s'est produite!";
+        })
+        .finally(() => {
+          // Réinitialisation du formulaire et du bouton après 3 secondes
+          setTimeout(() => {
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+            submitBtn.classList.remove("btn-success", "btn-danger");
+            submitBtn.classList.add("btn-primary");
+            resultElement.style.display = "none";
+          }, 3000);
+        });
     });
   }
 

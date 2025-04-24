@@ -265,8 +265,11 @@
   <section id="gallery" class="py-5">
     <div class="container">
       <h2 class="text-center fw-bold mb-5" data-aos="fade-up">Quelques-unes de nos réalisations</h2>
-      <div class="row g-4">
-        <div class="col-md-4" data-aos="zoom-in">
+      
+      <!-- Masonry gallery container -->
+      <div class="masonry-gallery" data-aos="fade-up">
+        <!-- Réalisations existantes -->
+        <div class="masonry-item">
           <div class="card shadow-sm">
             <img src="./img/plomberie.png" class="card-img-top" alt="Installation plomberie">
             <div class="card-body">
@@ -275,7 +278,8 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+        
+        <div class="masonry-item">
           <div class="card shadow-sm">
             <img src="./img/clim.png" class="card-img-top" alt="Entretien climatisation">
             <div class="card-body">
@@ -284,7 +288,8 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+        
+        <div class="masonry-item">
           <div class="card shadow-sm">
             <img src="./img/elec.png" class="card-img-top" alt="Mise aux normes électrique">
             <div class="card-body">
@@ -293,12 +298,81 @@
             </div>
           </div>
         </div>
+        
+        <!-- Nouvelles réalisations -->
+        <div class="masonry-item">
+          <div class="card shadow-sm">
+            <img src="./img/chaufferie.png" class="card-img-top" alt="Rénovation chaufferie">
+            <div class="card-body">
+              <h5>Rénovation de chaufferie collective</h5>
+              <p>Modernisation complète d'une chaufferie pour une copropriété de 40 logements.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="masonry-item">
+          <div class="card shadow-sm">
+            <img src="./img/brasage.png" class="card-img-top" alt="Travaux de brasage">
+            <div class="card-body">
+              <h5>Soudo-brasure de précision</h5>
+              <p>Intervention technique sur un réseau de distribution d'eau chaude sanitaire.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="masonry-item">
+          <div class="card shadow-sm">
+            <img src="./img/alarme.png" class="card-img-top" alt="Installation système d'alarme">
+            <div class="card-body">
+              <h5>Système de sécurité</h5>
+              <p>Installation d'un système d'alarme et vidéosurveillance pour un local commercial.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="masonry-item">
+          <div class="card shadow-sm">
+            <img src="./img/depannage.png" class="card-img-top" alt="Dépannage d'urgence">
+            <div class="card-body">
+              <h5>Dépannage d'urgence</h5>
+              <p>Intervention rapide suite à une fuite d'eau dans un restaurant parisien.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="masonry-item">
+          <div class="card shadow-sm">
+            <img src="./img/schema.png" class="card-img-top" alt="Schéma technique">
+            <div class="card-body">
+              <h5>Réalisation de schémas techniques</h5>
+              <p>Conception et mise à jour de plans électriques pour un bâtiment industriel.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="masonry-item">
+          <div class="card shadow-sm">
+            <img src="./img/maintenance.png" class="card-img-top" alt="Maintenance préventive">
+            <div class="card-body">
+              <h5>Maintenance préventive</h5>
+              <p>Contrat de maintenance multi-technique pour une résidence hôtelière.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Bouton pour voir plus de réalisations -->
+      <div class="text-center mt-5" data-aos="fade-up">
+        <a href="#contact" class="btn-modern btn-modern-icon">
+          <i class="bi bi-images"></i> Demander notre portfolio complet
+        </a>
       </div>
     </div>
     <div class="scroll-arrow" data-target="#testimonials">
       <i class="bi bi-chevron-down"></i>
     </div>
   </section>
+  
 
   <section id="testimonials" class="py-5 bg-light">
     <div class="container">

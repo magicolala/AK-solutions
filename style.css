@@ -412,7 +412,7 @@ footer h5 {
 
 footer .bi {
   font-size: 1.5rem;
-  margin-right: 0.5rem;
+  /* margin-right: 0.5rem; */
 }
 
 footer .bi:hover {
@@ -866,4 +866,46 @@ footer hr {
 
 .list-inline-item:not(:last-child) {
   margin-right: 1rem;
+}
+
+/* Masonry Gallery Styles */
+.masonry-gallery {
+  column-count: 1;
+  column-gap: 1.5rem;
+}
+
+.masonry-item {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  break-inside: avoid;
+}
+
+.masonry-item .card {
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.masonry-item .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.masonry-item .card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Responsive columns */
+@media (min-width: 576px) {
+  .masonry-gallery {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 992px) {
+  .masonry-gallery {
+    column-count: 3;
+  }
 }
