@@ -4,7 +4,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AK Solutions - Maintenance Technique</title>
+
+  <!-- Balises meta SEO améliorées -->
+  <title>AK Solutions - Maintenance Technique & Dépannage en Île-de-France</title>
+  <meta name="description"
+    content="Entreprise de maintenance technique à Saint-Maurice. Plomberie, électricité, chauffage, climatisation. Interventions rapides sur Paris et toute l'Île-de-France.">
+  <meta name="keywords"
+    content="maintenance technique, plomberie, électricité, chauffage, climatisation, dépannage, Île-de-France, Paris, Saint-Maurice">
+  <meta name="author" content="AK Solutions">
+
+  <!-- Open Graph pour les réseaux sociaux -->
+  <meta property="og:title" content="AK Solutions - Maintenance Technique & Dépannage en Île-de-France">
+  <meta property="og:description"
+    content="Entreprise de maintenance technique à Saint-Maurice. Plomberie, électricité, chauffage, climatisation. Interventions rapides sur Paris et toute l'Île-de-France.">
+  <meta property="og:image" content="https://www.ak-solutions.fr/img/logo.png">
+  <meta property="og:url" content="https://www.ak-solutions.fr">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AK Solutions - Maintenance Technique & Dépannage en Île-de-France">
+  <meta name="twitter:description"
+    content="Entreprise de maintenance technique à Saint-Maurice. Plomberie, électricité, chauffage, climatisation. Interventions rapides sur Paris et toute l'Île-de-France.">
+  <meta name="twitter:image" content="https://www.ak-solutions.fr/img/logo.png">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://www.ak-solutions.fr">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
   <!-- Google Fonts - Nunito -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,529 +53,662 @@
   <!-- AOS Animation JS -->
   <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script defer src="script.js"></script>
+
+  <!-- Structured Data / Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "AK Solutions",
+    "image": "https://www.ak-solutions.fr/img/logo.png",
+    "url": "https://www.ak-solutions.fr",
+    "telephone": "+33764352198",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "85bis rue du Maréchal Leclerc",
+      "addressLocality": "Saint-Maurice",
+      "postalCode": "94410",
+      "addressCountry": "FR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "48.8174",
+      "longitude": "2.4244"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "19:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    ],
+    "sameAs": [
+      "https://www.facebook.com/aksolutions",
+      "https://www.instagram.com/aksolutions",
+      "https://www.linkedin.com/company/aksolutions"
+    ],
+    "priceRange": "€€",
+    "servesCuisine": "Maintenance technique, Plomberie, Électricité, Chauffage, Climatisation"
+  }
+  </script>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-primary sticky-top">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="#" data-aos="fade-right">AK Solutions</a>
-
-      <!-- Numéro de téléphone pour les écrans moyens et grands -->
-      <div class="d-none d-lg-flex align-items-center me-auto ms-4">
-        <i class="bi bi-telephone-fill me-2"></i>
-        <a href="tel:0764352198" class="text-dark text-decoration-none fw-bold">07 64 35 21 98</a>
-      </div>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto align-items-center">
-          <li class="nav-item" data-aos="fade-down" data-aos-delay="100">
-            <a class="nav-link" href="#about">Qui sommes-nous ?</a>
-          </li>
-          <li class="nav-item" data-aos="fade-down" data-aos-delay="200">
-            <a class="nav-link" href="#services">Nos Services</a>
-          </li>
-          <li class="nav-item" data-aos="fade-down" data-aos-delay="300">
-            <a class="nav-link" href="#gallery">Réalisations</a>
-          </li>
-          <li class="nav-item" data-aos="fade-down" data-aos-delay="400">
-            <a class="nav-link" href="#testimonials">Témoignages</a>
-          </li>
-          <!-- Lien Contact mis en valeur -->
-          <li class="nav-item ms-lg-3" data-aos="fade-down" data-aos-delay="500">
-            <a class="btn btn-dark rounded-pill px-4 nav-contact-btn" href="#contact">
-              <i class="bi bi-chat-dots me-1"></i> Contact
-            </a>
-          </li>
-          <!-- Numéro de téléphone pour les petits écrans -->
-          <li class="nav-item d-lg-none mt-3" data-aos="fade-down" data-aos-delay="600">
-            <a class="nav-link" href="tel:0764352198">
-              <i class="bi bi-telephone-fill me-2"></i>07 64 35 21 98
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-
-  <section class="hero bg-primary text-dark text-center py-5 position-relative hero-custom">
-    <div class="container">
-      <h1 class="display-4 fw-bold mb-4" data-aos="zoom-in">
-        Technicien multi-compétences à votre écoute
-      </h1>
-      <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">
-        Plomberie, électricité, chauffage, climatisation... Des solutions rapides et fiables pour votre confort et votre
-        sécurité en Île-de-France.
-      </p>
-      <div class="d-flex justify-content-center gap-3">
-        <a href="#contact" class="btn-modern btn-modern-icon" data-aos="fade-up" data-aos-delay="200">
-          <i class="bi bi-chat-dots"></i> Demander un devis gratuit
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#" data-aos="fade-right">
+          <!-- <img src="./img/logo.png" alt="Logo AK Solutions" width="40" height="40"
+            class="d-inline-block align-text-top me-2"> -->
+          AK Solutions
         </a>
-        <a href="#services" class="btn-modern btn-modern-outline" data-aos="fade-up" data-aos-delay="300">
-          Découvrir nos prestations
-        </a>
-      </div>
-    </div>
-    <div class="shape-wrap"></div>
-    <div class="scroll-arrow" data-target="#about">
-      <i class="bi bi-chevron-down"></i>
-    </div>
-  </section>
 
-  <section id="about" class="py-5">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-8" data-aos="fade-right">
-          <h2 class="fw-bold">À propos de nous</h2>
-          <p class="lead">
-            Spécialisés en maintenance depuis plus de 3 ans, nous intervenons en plomberie, électricité, chauffage,
-            climatisation et dépannage technique sur Paris et toute l'Île-de-France.
-          </p>
-          <ul>
-            <li>✔️ Techniciens qualifiés</li>
-            <li>✔️ Interventions rapides et efficaces</li>
-            <li>✔️ Garantie d'un service professionnel</li>
+        <!-- Numéro de téléphone pour les écrans moyens et grands -->
+        <div class="d-none d-lg-flex align-items-center me-auto ms-4">
+          <i class="bi bi-telephone-fill me-2"></i>
+          <a href="tel:0764352198" class="text-dark text-decoration-none fw-bold">07 64 35 21 98</a>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item" data-aos="fade-down" data-aos-delay="100">
+              <a class="nav-link" href="#about">Qui sommes-nous ?</a>
+            </li>
+            <li class="nav-item" data-aos="fade-down" data-aos-delay="200">
+              <a class="nav-link" href="#services">Nos Services</a>
+            </li>
+            <li class="nav-item" data-aos="fade-down" data-aos-delay="300">
+              <a class="nav-link" href="#gallery">Réalisations</a>
+            </li>
+            <li class="nav-item" data-aos="fade-down" data-aos-delay="400">
+              <a class="nav-link" href="#testimonials">Témoignages</a>
+            </li>
+            <!-- Lien Contact mis en valeur -->
+            <li class="nav-item ms-lg-3" data-aos="fade-down" data-aos-delay="500">
+              <a class="btn btn-dark rounded-pill px-4 nav-contact-btn" href="#contact">
+                <i class="bi bi-chat-dots me-1"></i> Contact
+              </a>
+            </li>
+            <!-- Numéro de téléphone pour les petits écrans -->
+            <li class="nav-item d-lg-none mt-3" data-aos="fade-down" data-aos-delay="600">
+              <a class="nav-link" href="tel:0764352198">
+                <i class="bi bi-telephone-fill me-2"></i>07 64 35 21 98
+              </a>
+            </li>
           </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-          <!-- Bouton de téléchargement d'habilitation -->
-          <div class="mt-4" data-aos="fade-up">
-            <a href="./docs/habilitation_technique.pdf" download class="btn-modern btn-modern-icon">
-              <i class="bi bi-file-earmark-pdf"></i> Télécharger notre habilitation technique
-            </a>
-            <p class="small text-muted mt-2">Format PDF - Nos certifications et habilitations officielles</p>
-          </div>
+  <main>
+    <section class="hero bg-primary text-dark text-center py-5 position-relative hero-custom">
+      <div class="container">
+        <h1 class="display-4 fw-bold mb-4" data-aos="zoom-in">
+          Technicien multi-compétences à votre écoute en Île-de-France
+        </h1>
+        <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">
+          Plomberie, électricité, chauffage, climatisation... Des solutions rapides et fiables pour votre confort et
+          votre
+          sécurité à Paris et en Île-de-France.
+        </p>
+        <div class="d-flex justify-content-center gap-3">
+          <a href="#contact" class="btn-modern btn-modern-icon" data-aos="fade-up" data-aos-delay="200">
+            <i class="bi bi-chat-dots"></i> Demander un devis gratuit
+          </a>
+          <a href="#services" class="btn-modern btn-modern-outline" data-aos="fade-up" data-aos-delay="300">
+            Découvrir nos prestations
+          </a>
+        </div>
+      </div>
+      <div class="shape-wrap"></div>
+      <div class="scroll-arrow" data-target="#about">
+        <i class="bi bi-chevron-down"></i>
+      </div>
+    </section>
 
-          <!-- Nouvelle section "Pourquoi nous choisir ?" -->
-          <div class="mt-4" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="fw-bold">Pourquoi nous choisir ?</h3>
-            <div class="row mt-3">
-              <div class="col-md-6 mb-3">
-                <div class="d-flex align-items-start">
-                  <div class="feature-icon me-3">
-                    <i class="bi bi-clock-history text-primary fs-4"></i>
-                  </div>
-                  <div>
-                    <h5 class="mb-1">Réactivité</h5>
-                    <p class="mb-0">Intervention sous 24h pour tous vos besoins urgents</p>
+    <section id="about" class="py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-8" data-aos="fade-right">
+            <h2 class="fw-bold">À propos de AK Solutions</h2>
+            <p class="lead">
+              Spécialisés en maintenance technique depuis plus de 3 ans, nous intervenons en plomberie, électricité,
+              chauffage,
+              climatisation et dépannage technique sur Paris et toute l'Île-de-France.
+            </p>
+            <ul>
+              <li>✔️ Techniciens qualifiés et certifiés</li>
+              <li>✔️ Interventions rapides sous 24h</li>
+              <li>✔️ Garantie d'un service professionnel</li>
+            </ul>
+
+            <!-- Bouton de téléchargement d'habilitation -->
+            <div class="mt-4" data-aos="fade-up">
+              <a href="./docs/habilitation_technique.pdf" download class="btn-modern btn-modern-icon">
+                <i class="bi bi-file-earmark-pdf"></i> Télécharger notre habilitation technique
+              </a>
+              <p class="small text-muted mt-2">Format PDF - Nos certifications et habilitations officielles</p>
+            </div>
+
+            <!-- Nouvelle section "Pourquoi nous choisir ?" -->
+            <div class="mt-4" data-aos="fade-up" data-aos-delay="100">
+              <h3 class="fw-bold">Pourquoi choisir AK Solutions ?</h3>
+              <div class="row mt-3">
+                <div class="col-md-6 mb-3">
+                  <div class="d-flex align-items-start">
+                    <div class="feature-icon me-3">
+                      <i class="bi bi-clock-history text-primary fs-4"></i>
+                    </div>
+                    <div>
+                      <h5 class="mb-1">Réactivité</h5>
+                      <p class="mb-0">Intervention sous 24h pour tous vos besoins urgents</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <div class="d-flex align-items-start">
-                  <div class="feature-icon me-3">
-                    <i class="bi bi-shield-check text-primary fs-4"></i>
-                  </div>
-                  <div>
-                    <h5 class="mb-1">Garantie</h5>
-                    <p class="mb-0">Tous nos travaux sont garantis pour votre tranquillité</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <div class="d-flex align-items-start">
-                  <div class="feature-icon me-3">
-                    <i class="bi bi-cash-coin text-primary fs-4"></i>
-                  </div>
-                  <div>
-                    <h5 class="mb-1">Prix justes</h5>
-                    <p class="mb-0">Tarification transparente sans mauvaises surprises</p>
+                <div class="col-md-6 mb-3">
+                  <div class="d-flex align-items-start">
+                    <div class="feature-icon me-3">
+                      <i class="bi bi-shield-check text-primary fs-4"></i>
+                    </div>
+                    <div>
+                      <h5 class="mb-1">Garantie</h5>
+                      <p class="mb-0">Tous nos travaux sont garantis pour votre tranquillité</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <div class="d-flex align-items-start">
-                  <div class="feature-icon me-3">
-                    <i class="bi bi-people text-primary fs-4"></i>
+                <div class="col-md-6 mb-3">
+                  <div class="d-flex align-items-start">
+                    <div class="feature-icon me-3">
+                      <i class="bi bi-cash-coin text-primary fs-4"></i>
+                    </div>
+                    <div>
+                      <h5 class="mb-1">Prix justes</h5>
+                      <p class="mb-0">Tarification transparente sans mauvaises surprises</p>
+                    </div>
                   </div>
-                  <div>
-                    <h5 class="mb-1">Expertise</h5>
-                    <p class="mb-0">Techniciens formés et expérimentés dans leur domaine</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="d-flex align-items-start">
+                    <div class="feature-icon me-3">
+                      <i class="bi bi-people text-primary fs-4"></i>
+                    </div>
+                    <div>
+                      <h5 class="mb-1">Expertise</h5>
+                      <p class="mb-0">Techniciens formés et expérimentés dans leur domaine</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-lg-4" data-aos="fade-left">
-          <img src="./img/equipe.png" alt="Notre équipe en action" class="rounded shadow img-fluid team-image">
-        </div>
-      </div>
-    </div>
-    <div class="scroll-arrow" data-target="#services">
-      <i class="bi bi-chevron-down"></i>
-    </div>
-  </section>
-
-  <section id="services" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Nos Services</h2>
-
-      <div class="services-grid">
-        <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="service-card-icon">
-            <i class="bi bi-tools"></i>
-          </div>
-          <div class="service-card-content">
-            <h3 class="service-card-title">Plomberie générale</h3>
-            <p class="service-card-text">Plomberie cuivre & PVC, dégorgement, soudure, brasage cuivre, pose d'éléments
-              sanitaires, dépannage particuliers.</p>
-            <a href="#contact" class="service-card-link">En savoir plus <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-
-        <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="service-card-icon">
-            <i class="bi bi-fire"></i>
-          </div>
-          <div class="service-card-content">
-            <h3 class="service-card-title">Chauffagiste & chaufferies collectives</h3>
-            <p class="service-card-text">Maintenance et dépannage de chaufferies collectives, chauffage et systèmes
-              thermiques.</p>
-            <a href="#contact" class="service-card-link">En savoir plus <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-
-        <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="service-card-icon">
-            <i class="bi bi-lightning-charge"></i>
-          </div>
-          <div class="service-card-content">
-            <h3 class="service-card-title">Électricité BT & câblage</h3>
-            <p class="service-card-text">Installation électrique, câblage basse tension, lecture de schémas et dépannage
-              électrique.</p>
-            <a href="#contact" class="service-card-link">En savoir plus <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-
-        <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-          <div class="service-card-icon">
-            <i class="bi bi-shield-lock"></i>
-          </div>
-          <div class="service-card-content">
-            <h3 class="service-card-title">Sécurité & alarmes</h3>
-            <p class="service-card-text">Installation et maintenance de systèmes de sécurité, alarmes et domotique.</p>
-            <a href="#contact" class="service-card-link">En savoir plus <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-
-        <div class="service-card" data-aos="fade-up" data-aos-delay="500">
-          <div class="service-card-icon">
-            <i class="bi bi-gear"></i>
-          </div>
-          <div class="service-card-content">
-            <h3 class="service-card-title">Gestion & pilotage de maintenance</h3>
-            <p class="service-card-text">Assistant chef de service, gestion de prestataires, pilotage de missions
-              préventives et curatives.</p>
-            <a href="#contact" class="service-card-link">En savoir plus <i class="bi bi-arrow-right"></i></a>
-          </div>
-        </div>
-
-        <div class="service-card" data-aos="fade-up" data-aos-delay="600">
-          <div class="service-card-icon">
-            <i class="bi bi-calculator"></i>
-          </div>
-          <div class="service-card-content">
-            <h3 class="service-card-title">Devis &amp; Pointage</h3>
-            <p class="service-card-text">Estimation précise et transparente pour tous vos projets de maintenance.</p>
-            <a href="#contact" class="service-card-link">En savoir plus <i class="bi bi-arrow-right"></i></a>
+          <div class="col-lg-4" data-aos="fade-left">
+            <img src="./img/equipe.png" alt="Équipe de techniciens AK Solutions en action"
+              class="rounded shadow img-fluid team-image">
           </div>
         </div>
       </div>
+      <div class="scroll-arrow" data-target="#services">
+        <i class="bi bi-chevron-down"></i>
+      </div>
+    </section>
 
-    </div>
-    <!-- Flèche de défilement -->
-    <div class="scroll-arrow" data-target="#gallery">
-      <i class="bi bi-chevron-down"></i>
-    </div>
-  </section>
+    <section id="services" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Nos Services de Maintenance Technique</h2>
 
-  <section id="gallery" class="py-5">
-    <div class="container">
-      <h2 class="text-center fw-bold mb-5" data-aos="fade-up">Quelques-unes de nos réalisations</h2>
-      
-      <!-- Masonry gallery container -->
-      <div class="masonry-gallery" data-aos="fade-up">
-        <!-- Réalisations existantes -->
-        <div class="masonry-item">
-          <div class="card shadow-sm">
-            <img src="./img/plomberie.png" class="card-img-top" alt="Installation plomberie">
-            <div class="card-body">
-              <h5>Rénovation de plomberie</h5>
-              <p>Réfection complète d'une installation sanitaire en milieu professionnel.</p>
+        <div class="services-grid">
+          <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-card-icon">
+              <i class="bi bi-tools"></i>
+            </div>
+            <div class="service-card-content">
+              <h3 class="service-card-title">Plomberie générale</h3>
+              <p class="service-card-text">Plomberie cuivre & PVC, dégorgement, soudure, brasage cuivre, pose d'éléments
+                sanitaires, dépannage particuliers à Paris et en Île-de-France.</p>
+              <a href="#contact" class="service-card-link">En savoir plus <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-card-icon">
+              <i class="bi bi-fire"></i>
+            </div>
+            <div class="service-card-content">
+              <h3 class="service-card-title">Chauffagiste & chaufferies collectives</h3>
+              <p class="service-card-text">Maintenance et dépannage de chaufferies collectives, chauffage et systèmes
+                thermiques pour copropriétés et entreprises.</p>
+              <a href="#contact" class="service-card-link">En savoir plus <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-card-icon">
+              <i class="bi bi-lightning-charge"></i>
+            </div>
+            <div class="service-card-content">
+              <h3 class="service-card-title">Électricité BT & câblage</h3>
+              <p class="service-card-text">Installation électrique, câblage basse tension, lecture de schémas et
+                dépannage
+                électrique pour particuliers et professionnels.</p>
+              <a href="#contact" class="service-card-link">En savoir plus <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-card-icon">
+              <i class="bi bi-shield-lock"></i>
+            </div>
+            <div class="service-card-content">
+              <h3 class="service-card-title">Sécurité & alarmes</h3>
+              <p class="service-card-text">Installation et maintenance de systèmes de sécurité, alarmes et domotique
+                pour votre tranquillité.</p>
+              <a href="#contact" class="service-card-link">En savoir plus <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+            <div class="service-card-icon">
+              <i class="bi bi-gear"></i>
+            </div>
+            <div class="service-card-content">
+              <h3 class="service-card-title">Gestion & pilotage de maintenance</h3>
+              <p class="service-card-text">Assistant chef de service, gestion de prestataires, pilotage de missions
+                préventives et curatives pour entreprises.</p>
+              <a href="#contact" class="service-card-link">En savoir plus <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+            <div class="service-card-icon">
+              <i class="bi bi-calculator"></i>
+            </div>
+            <div class="service-card-content">
+              <h3 class="service-card-title">Devis &amp; Pointage</h3>
+              <p class="service-card-text">Estimation précise et transparente pour tous vos projets de maintenance en
+                Île-de-France.</p>
+              <a href="#contact" class="service-card-link">En savoir plus <i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
         </div>
-        
-        <div class="masonry-item">
-          <div class="card shadow-sm">
-            <img src="./img/clim.png" class="card-img-top" alt="Entretien climatisation">
-            <div class="card-body">
-              <h5>Maintenance de climatisation</h5>
-              <p>Contrat annuel d'entretien de systèmes climatiques industriels.</p>
+
+      </div>
+      <!-- Flèche de défilement -->
+      <div class="scroll-arrow" data-target="#gallery">
+        <i class="bi bi-chevron-down"></i>
+      </div>
+    </section>
+
+    <section id="gallery" class="py-5">
+      <div class="container">
+        <h2 class="text-center fw-bold mb-5" data-aos="fade-up">Nos réalisations en maintenance technique</h2>
+
+        <!-- Masonry gallery container -->
+        <div class="masonry-gallery" data-aos="fade-up">
+          <!-- Réalisations existantes -->
+          <div class="masonry-item">
+            <div class="card shadow-sm">
+              <img src="./img/plomberie.png" class="card-img-top" alt="Rénovation plomberie à Paris" loading="lazy">
+              <div class="card-body">
+                <h5>Rénovation de plomberie</h5>
+                <p>Réfection complète d'une installation sanitaire en milieu professionnel à Paris.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="masonry-item">
+            <div class="card shadow-sm">
+              <img src="./img/clim.png" class="card-img-top" alt="Entretien climatisation en Île-de-France"
+                loading="lazy">
+              <div class="card-body">
+                <h5>Maintenance de climatisation</h5>
+                <p>Contrat annuel d'entretien de systèmes climatiques industriels en Île-de-France.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="masonry-item">
+            <div class="card shadow-sm">
+              <img src="./img/elec.png" class="card-img-top" alt="Mise aux normes électrique Paris" loading="lazy">
+              <div class="card-body">
+                <h5>Mise aux normes électrique</h5>
+                <p>Modernisation d'un tableau électrique dans un commerce parisien.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Nouvelles réalisations -->
+          <div class="masonry-item">
+            <div class="card shadow-sm">
+              <img src="./img/chaufferie.png" class="card-img-top" alt="Rénovation chaufferie collective Saint-Maurice"
+                loading="lazy">
+              <div class="card-body">
+                <h5>Rénovation de chaufferie collective</h5>
+                <p>Modernisation complète d'une chaufferie pour une copropriété de 40 logements à Saint-Maurice.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="masonry-item">
+            <div class="card shadow-sm">
+              <img src="./img/brasage.png" class="card-img-top" alt="Travaux de brasage cuivre Île-de-France"
+                loading="lazy">
+              <div class="card-body">
+                <h5>Soudo-brasure de précision</h5>
+                <p>Intervention technique sur un réseau de distribution d'eau chaude sanitaire en Île-de-France.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="masonry-item">
+            <div class="card shadow-sm">
+              <img src="./img/alarme.png" class="card-img-top" alt="Installation système d'alarme Paris" loading="lazy">
+              <div class="card-body">
+                <h5>Système de sécurité</h5>
+                <p>Installation d'un système d'alarme et vidéosurveillance pour un local commercial à Paris.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="masonry-item">
+            <div class="card shadow-sm">
+              <img src="./img/depannage.png" class="card-img-top" alt="Dépannage d'urgence plomberie Paris"
+                loading="lazy">
+              <div class="card-body">
+                <h5>Dépannage d'urgence</h5>
+                <p>Intervention rapide suite à une fuite d'eau dans un restaurant parisien.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="masonry-item">
+            <div class="card shadow-sm">
+              <img src="./img/schema.png" class="card-img-top" alt="Schéma technique électrique Île-de-France"
+                loading="lazy">
+              <div class="card-body">
+                <h5>Réalisation de schémas techniques</h5>
+                <p>Conception et mise à jour de plans électriques pour un bâtiment industriel en Île-de-France.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="masonry-item">
+            <div class="card shadow-sm">
+              <img src="./img/maintenance.png" class="card-img-top" alt="Maintenance préventive hôtel Paris"
+                loading="lazy">
+              <div class="card-body">
+                <h5>Maintenance préventive</h5>
+                <p>Contrat de maintenance multi-technique pour une résidence hôtelière à Paris.</p>
+              </div>
             </div>
           </div>
         </div>
-        
-        <div class="masonry-item">
-          <div class="card shadow-sm">
-            <img src="./img/elec.png" class="card-img-top" alt="Mise aux normes électrique">
-            <div class="card-body">
-              <h5>Mise aux normes électrique</h5>
-              <p>Modernisation d'un tableau électrique dans un commerce parisien.</p>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Nouvelles réalisations -->
-        <div class="masonry-item">
-          <div class="card shadow-sm">
-            <img src="./img/chaufferie.png" class="card-img-top" alt="Rénovation chaufferie">
-            <div class="card-body">
-              <h5>Rénovation de chaufferie collective</h5>
-              <p>Modernisation complète d'une chaufferie pour une copropriété de 40 logements.</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="masonry-item">
-          <div class="card shadow-sm">
-            <img src="./img/brasage.png" class="card-img-top" alt="Travaux de brasage">
-            <div class="card-body">
-              <h5>Soudo-brasure de précision</h5>
-              <p>Intervention technique sur un réseau de distribution d'eau chaude sanitaire.</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="masonry-item">
-          <div class="card shadow-sm">
-            <img src="./img/alarme.png" class="card-img-top" alt="Installation système d'alarme">
-            <div class="card-body">
-              <h5>Système de sécurité</h5>
-              <p>Installation d'un système d'alarme et vidéosurveillance pour un local commercial.</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="masonry-item">
-          <div class="card shadow-sm">
-            <img src="./img/depannage.png" class="card-img-top" alt="Dépannage d'urgence">
-            <div class="card-body">
-              <h5>Dépannage d'urgence</h5>
-              <p>Intervention rapide suite à une fuite d'eau dans un restaurant parisien.</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="masonry-item">
-          <div class="card shadow-sm">
-            <img src="./img/schema.png" class="card-img-top" alt="Schéma technique">
-            <div class="card-body">
-              <h5>Réalisation de schémas techniques</h5>
-              <p>Conception et mise à jour de plans électriques pour un bâtiment industriel.</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="masonry-item">
-          <div class="card shadow-sm">
-            <img src="./img/maintenance.png" class="card-img-top" alt="Maintenance préventive">
-            <div class="card-body">
-              <h5>Maintenance préventive</h5>
-              <p>Contrat de maintenance multi-technique pour une résidence hôtelière.</p>
-            </div>
-          </div>
+
+        <!-- Bouton pour voir plus de réalisations -->
+        <div class="text-center mt-5" data-aos="fade-up">
+          <a href="#contact" class="btn-modern btn-modern-icon">
+            <i class="bi bi-images"></i> Demander notre portfolio complet
+          </a>
         </div>
       </div>
       <!-- <div class="scroll-arrow" data-target="#testimonials">
         <i class="bi bi-chevron-down"></i>
       </div> -->
-      <!-- Bouton pour voir plus de réalisations -->
-      <div class="text-center mt-5" data-aos="fade-up">
-        <a href="#contact" class="btn-modern btn-modern-icon">
-          <i class="bi bi-images"></i> Demander notre portfolio complet
-        </a>
-      </div>
-    </div>
+    </section>
 
-  </section>
-  
-
-  <section id="testimonials" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center fw-bold mb-5" data-aos="fade-up">Nos clients témoignent</h2>
-      <div class="row">
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="card shadow-sm text-center">
-            <div class="card-body">
-              <i class="bi bi-quote fs-1 text-primary"></i>
-              <p>"Une entreprise sérieuse et ponctuelle. Ils ont parfaitement répondu à nos attentes."</p>
-              <h5 class="mt-3">Benoît, responsable technique</h5>
+    <section id="testimonials" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center fw-bold mb-5" data-aos="fade-up">Témoignages de nos clients satisfaits</h2>
+        <div class="row">
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="card shadow-sm text-center">
+              <div class="card-body">
+                <i class="bi bi-quote fs-1 text-primary"></i>
+                <p>"Une entreprise sérieuse et ponctuelle. Ils ont parfaitement répondu à nos attentes pour la
+                  maintenance de notre immeuble."</p>
+                <h5 class="mt-3">Benoît, responsable technique à Paris</h5>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="card shadow-sm text-center">
-            <div class="card-body">
-              <i class="bi bi-quote fs-1 text-primary"></i>
-              <p>"Des interventions toujours efficaces. Nous les recommandons sans hésitation."</p>
-              <h5 class="mt-3">Laura, syndic immobilier</h5>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="card shadow-sm text-center">
+              <div class="card-body">
+                <i class="bi bi-quote fs-1 text-primary"></i>
+                <p>"Des interventions toujours efficaces et rapides. Nous les recommandons sans hésitation pour tous
+                  travaux de plomberie."</p>
+                <h5 class="mt-3">Laura, syndic immobilier à Saint-Maurice</h5>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="card shadow-sm text-center">
-            <div class="card-body">
-              <i class="bi bi-quote fs-1 text-primary"></i>
-              <p>"Prestations de qualité, équipe professionnelle et attentive à nos besoins."</p>
-              <h5 class="mt-3">Julien, hôtelier</h5>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="card shadow-sm text-center">
+              <div class="card-body">
+                <i class="bi bi-quote fs-1 text-primary"></i>
+                <p>"Prestations de qualité, équipe professionnelle et attentive à nos besoins. Excellent service de
+                  maintenance."</p>
+                <h5 class="mt-3">Julien, hôtelier à Paris</h5>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="scroll-arrow" data-target="#contact">
+        <i class="bi bi-chevron-down"></i>
+      </div>
+    </section>
+
+    <div class="py-5 bg-primary text-dark text-center">
+      <div class="container" data-aos="zoom-in">
+        <h2 class="fw-bold mb-4">Un projet de maintenance ? Une urgence technique ?</h2>
+        <p>Contactez AK Solutions pour une intervention rapide ou une estimation gratuite en Île-de-France.</p>
+        <a href="#contact" class="btn btn-light btn-lg mt-3">Contactez-nous dès maintenant</a>
+      </div>
     </div>
-    <div class="scroll-arrow" data-target="#contact">
-      <i class="bi bi-chevron-down"></i>
-    </div>
-  </section>
 
-  <div class="py-5 bg-primary text-dark text-center">
-    <div class="container" data-aos="zoom-in">
-      <h2 class="fw-bold mb-4">Un projet ? Une urgence ?</h2>
-      <p>Contactez-nous pour une intervention rapide ou une estimation gratuite.</p>
-      <a href="#contact" class="btn btn-light btn-lg mt-3">Contactez-nous dès maintenant</a>
-    </div>
-  </div>
+    <section id="contact" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center fw-bold mb-5" data-aos="fade-up">Contactez AK Solutions</h2>
+        <div class="row">
+          <div class="col-lg-6" data-aos="fade-right">
+            <div class="contact-info-card">
+              <h3 class="mb-4">Besoin d'un technicien qualifié ?</h3>
+              <p class="lead mb-4">N'hésitez pas à nous contacter pour toute demande de devis ou d'information. Nous
+                vous
+                répondrons aussi rapidement que possible.</p>
+              <div class="contact-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="contact-icon">
+                  <i class="bi bi-geo-alt"></i>
+                </div>
+                <div class="contact-details">
+                  <h5>Adresse</h5>
+                  <p>85bis rue du Maréchal Leclerc<br>94410 Saint-Maurice</p>
+                </div>
+              </div>
 
-  <section id="contact" class="py-5 bg-light">
-    <div class="container">
-      <h2 class="text-center fw-bold mb-5" data-aos="fade-up">Contact</h2>
-      <div class="row">
-        <div class="col-lg-6" data-aos="fade-right">
-          <div class="contact-info-card">
-            <h3 class="mb-4">Besoin d'un technicien qualifié ?</h3>
-            <p class="lead mb-4">N'hésitez pas à nous contacter pour toute demande de devis ou d'information. Nous vous
-              répondrons aussi rapidement que possible.</p>
-            <div class="contact-item" data-aos="fade-up" data-aos-delay="100">
-              <div class="contact-icon">
-                <i class="bi bi-geo-alt"></i>
+              <div class="contact-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="contact-icon">
+                  <i class="bi bi-telephone"></i>
+                </div>
+                <div class="contact-details">
+                  <h5>Téléphone</h5>
+                  <p><a href="tel:0764352198" class="contact-link">07 64 35 21 98</a></p>
+                </div>
               </div>
-              <div class="contact-details">
-                <h5>Adresse</h5>
-                <p>85bis rue du Maréchal Leclerc<br>94410 Saint-Maurice</p>
-              </div>
-            </div>
 
-            <div class="contact-item" data-aos="fade-up" data-aos-delay="200">
-              <div class="contact-icon">
-                <i class="bi bi-telephone"></i>
+              <div class="contact-item" data-aos="fade-up" data-aos-delay="300">
+                <div class="contact-icon">
+                  <i class="bi bi-envelope"></i>
+                </div>
+                <div class="contact-details">
+                  <h5>Email</h5>
+                  <p><a href="mailto:karimamani79@gmail.com" class="contact-link">karimamani79@gmail.com</a></p>
+                </div>
               </div>
-              <div class="contact-details">
-                <h5>Téléphone</h5>
-                <p><a href="tel:0764352198" class="contact-link">07 64 35 21 98</a></p>
-              </div>
-            </div>
 
-            <div class="contact-item" data-aos="fade-up" data-aos-delay="300">
-              <div class="contact-icon">
-                <i class="bi bi-envelope"></i>
+              <div class="contact-item" data-aos="fade-up" data-aos-delay="400">
+                <div class="contact-icon">
+                  <i class="bi bi-clock"></i>
+                </div>
+                <div class="contact-details">
+                  <h5>Horaires</h5>
+                  <p>Lundi au Vendredi : 8h - 19h<br>Samedi : 9h - 18h<br>Intervention d'urgence 24/7</p>
+                </div>
               </div>
-              <div class="contact-details">
-                <h5>Email</h5>
-                <p><a href="mailto:karimamani79@gmail.com" class="contact-link">karimamani79@gmail.com</a></p>
-              </div>
-            </div>
 
-
-            <div class="contact-item" data-aos="fade-up" data-aos-delay="400">
-              <div class="contact-icon">
-                <i class="bi bi-clock"></i>
+              <div class="social-links mt-4" data-aos="fade-up" data-aos-delay="500">
+                <a href="#" class="social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="social-link" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="social-link" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
               </div>
-              <div class="contact-details">
-                <h5>Horaires</h5>
-                <p>Lundi au Vendredi : 8h - 19h<br>Samedi : 9h - 18h<br>Intervention d'urgence 24/7</p>
-              </div>
-            </div>
 
-            <div class="social-links mt-4" data-aos="fade-up" data-aos-delay="500">
-              <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+              <!-- Ajout d'une carte Google Maps -->
+              <div class="mt-4" data-aos="fade-up" data-aos-delay="600">
+                <h5>Notre zone d'intervention</h5>
+                <p>Nous intervenons sur Paris et toute l'Île-de-France pour vos besoins en maintenance technique.</p>
+                <div class="ratio ratio-16x9 mt-3">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d167998.10803373056!2d2.2069777!3d48.85883565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06e2b70f%3A0x40b82c3688c9460!2sParis!5e0!3m2!1sfr!2sfr!4v1647123456789!5m2!1sfr!2sfr"
+                    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                    title="Carte de notre zone d'intervention en Île-de-France"></iframe>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="col-lg-6 mt-4 mt-lg-0" data-aos="fade-left">
-          <div class="contact-form-card">
-            <h3 class="mb-4">Envoyez-nous un message</h3>
-            <!-- Dans la section contact, le formulaire a besoin d'attributs "name" pour chaque champ -->
-            <form id="contactForm">
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <div class="form-floating">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Votre nom" required>
-                    <label for="name">Votre nom</label>
+          <div class="col-lg-6 mt-4 mt-lg-0" data-aos="fade-left">
+            <div class="contact-form-card">
+              <h3 class="mb-4">Envoyez-nous un message</h3>
+              <!-- Dans la section contact, le formulaire a besoin d'attributs "name" pour chaque champ -->
+              <form id="contactForm">
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Votre nom" required>
+                      <label for="name">Votre nom</label>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <div class="form-floating">
+                      <input type="email" class="form-control" id="email" name="email" placeholder="Votre email"
+                        required>
+                      <label for="email">Votre email</label>
+                    </div>
                   </div>
                 </div>
-                <div class="col-md-6 mb-3">
+
+                <div class="mb-3">
                   <div class="form-floating">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Votre email" required>
-                    <label for="email">Votre email</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Votre téléphone">
+                    <label for="phone">Votre téléphone</label>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <div class="form-floating">
+                    <select class="form-select" id="service" name="service">
+                      <option selected disabled value="">Sélectionnez un service</option>
+                      <option value="plomberie">Plomberie & Dépannage</option>
+                      <option value="brasure">Soudo-brasure & remplacement de tubes</option>
+                      <option value="climatisation">Maintenance Clim & Chauffage</option>
+                      <option value="electricite">Électricité & Câblage</option>
+                      <option value="schemas">Lecture & Réalisation de schémas</option>
+                      <option value="devis">Devis & Pointage</option>
+                      <option value="autre">Autre demande</option>
+                    </select>
+                    <!-- <label for="service">Service requis</label> -->
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <div class="form-floating">
+                    <textarea class="form-control" id="message" name="message" placeholder="Votre message"
+                      style="height: 150px" required></textarea>
+                    <label for="message">Votre message</label>
+                  </div>
+                </div>
+
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input" id="privacy" name="privacy" required>
+                  <label class="form-check-label" for="privacy">J'accepte que mes données soient utilisées pour me
+                    recontacter</label>
+                </div>
+
+                <button type="submit" class="btn-modern w-100">
+                  <i class="bi bi-send"></i> Envoyer ma demande
+                </button>
+
+                <!-- Élément pour afficher les résultats du formulaire -->
+                <div id="result" class="mt-3 text-center"></div>
+              </form>
+            </div>
+
+            <!-- Ajout d'une FAQ pour le SEO -->
+            <div class="mt-5" data-aos="fade-up">
+              <h3 class="mb-4">Questions fréquentes</h3>
+              <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                  <h4 class="accordion-header" id="faqHeading1">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#faqCollapse1" aria-expanded="false" aria-controls="faqCollapse1">
+                      Dans quelles zones intervenez-vous ?
+                    </button>
+                  </h4>
+                  <div id="faqCollapse1" class="accordion-collapse collapse" aria-labelledby="faqHeading1"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                      Nous intervenons sur Paris et toute l'Île-de-France pour tous vos besoins en plomberie,
+                      électricité, chauffage et climatisation.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h4 class="accordion-header" id="faqHeading2">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                      Quel est le délai d'intervention ?
+                    </button>
+                  </h4>
+                  <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                      Nous intervenons généralement sous 24h pour les demandes standard, et proposons un service
+                      d'urgence 24/7 pour les situations critiques.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h4 class="accordion-header" id="faqHeading3">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                      Vos prestations sont-elles garanties ?
+                    </button>
+                  </h4>
+                  <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3"
+                    data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                      Oui, toutes nos prestations sont garanties. Nous nous engageons sur la qualité de notre travail et
+                      assurons un suivi après intervention.
+                    </div>
                   </div>
                 </div>
               </div>
-
-              <div class="mb-3">
-                <div class="form-floating">
-                  <input type="tel" class="form-control" id="phone" name="phone" placeholder="Votre téléphone">
-                  <label for="phone">Votre téléphone</label>
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <div class="form-floating">
-                  <select class="form-select" id="service" name="service">
-                    <option selected disabled value="">Sélectionnez un service</option>
-                    <option value="plomberie">Plomberie & Dépannage</option>
-                    <option value="brasure">Soudo-brasure & remplacement de tubes</option>
-                    <option value="climatisation">Maintenance Clim & Chauffage</option>
-                    <option value="electricite">Électricité & Câblage</option>
-                    <option value="schemas">Lecture & Réalisation de schémas</option>
-                    <option value="devis">Devis & Pointage</option>
-                    <option value="autre">Autre demande</option>
-                  </select>
-                  <!-- <label for="service">Service requis</label> -->
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <div class="form-floating">
-                  <textarea class="form-control" id="message" name="message" placeholder="Votre message"
-                    style="height: 150px" required></textarea>
-                  <label for="message">Votre message</label>
-                </div>
-              </div>
-
-              <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="privacy" name="privacy" required>
-                <label class="form-check-label" for="privacy">J'accepte que mes données soient utilisées pour me
-                  recontacter</label>
-              </div>
-
-              <button type="submit" class="btn-modern w-100">
-                <i class="bi bi-send"></i> Envoyer ma demande
-              </button>
-            </form>
-
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
+    </section>
+  </main>
 
   <footer class="bg-dark text-white py-5">
     <div class="container">
@@ -556,10 +719,14 @@
           <p class="mb-3">Votre partenaire de confiance pour tous vos besoins en maintenance technique depuis 2021. Nous
             intervenons sur Paris et toute l'Île-de-France.</p>
           <div class="social-icons d-flex gap-3 mb-3">
-            <a href="#" class="social-icon-footer" title="Facebook"><i class="bi bi-facebook"></i></a>
-            <a href="#" class="social-icon-footer" title="Instagram"><i class="bi bi-instagram"></i></a>
-            <a href="#" class="social-icon-footer" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-            <a href="#" class="social-icon-footer" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+            <a href="#" class="social-icon-footer" title="Facebook" aria-label="Facebook"><i
+                class="bi bi-facebook"></i></a>
+            <a href="#" class="social-icon-footer" title="Instagram" aria-label="Instagram"><i
+                class="bi bi-instagram"></i></a>
+            <a href="#" class="social-icon-footer" title="LinkedIn" aria-label="LinkedIn"><i
+                class="bi bi-linkedin"></i></a>
+            <a href="#" class="social-icon-footer" title="WhatsApp" aria-label="WhatsApp"><i
+                class="bi bi-whatsapp"></i></a>
           </div>
         </div>
 
@@ -609,7 +776,7 @@
 
       <div class="row align-items-center">
         <div class="col-md-6 mb-3 mb-md-0">
-          <p class="mb-0 small">© 2025 AK Solutions. Tous droits réservés.</p>
+          <p class="mb-0 small">© 2025 AK Solutions. Tous droits réservés. Maintenance technique en Île-de-France.</p>
         </div>
         <div class="col-md-6 text-md-end">
           <ul class="list-inline mb-0 small">
@@ -623,6 +790,12 @@
       </div>
     </div>
   </footer>
+
+  <!-- Bouton de retour en haut de page -->
+  <a href="#" id="back-to-top" class="btn btn-primary btn-lg back-to-top" role="button"
+    aria-label="Retour en haut de page">
+    <i class="bi bi-arrow-up"></i>
+  </a>
 
 </body>
 
