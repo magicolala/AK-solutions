@@ -30,6 +30,10 @@
   /* Système d'ombres */
   --shadow-100: 0px 0px 8px 2px rgba(0, 0, 0, .10);
   --shadow-200: 0px 0px 16px 4px rgba(0, 0, 0, .10);
+
+  /* Variables RGB pour les dégradés */
+  --primary-700-rgb: 0, 96, 230;
+  --primary-900-rgb: 0, 41, 100;
 }
 
 /* ======================================
@@ -867,4 +871,238 @@ footer hr {
 
 .list-inline-item:not(:last-child) {
   margin-right: 1rem;
+}
+
+/* Styles améliorés pour la galerie masonry */
+.gallery-card {
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gallery-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+.card-img-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-img-wrapper img {
+  transition: transform 0.8s ease, filter 0.5s ease;
+  width: 100%;
+  height: auto;
+}
+
+.gallery-card:hover .card-img-wrapper img {
+  transform: scale(1.08);
+  filter: brightness(0.8);
+}
+
+.card-img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(13, 110, 253, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.gallery-card:hover .card-img-overlay {
+  opacity: 1;
+}
+
+.overlay-content {
+  transform: translateY(20px);
+  transition: transform 0.4s ease;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-card:hover .overlay-content {
+  transform: translateY(0);
+}
+
+.card-title {
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.card-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-700);
+  transition: width 0.4s ease;
+}
+
+.gallery-card:hover .card-title {
+  color: var(--primary-700);
+}
+
+.gallery-card:hover .card-title::after {
+  width: 50px;
+}
+
+.card-text {
+  color: #6c757d;
+  transition: color 0.3s ease;
+}
+
+.gallery-card:hover .card-text {
+  color: #495057;
+}
+
+/* Animation staggered pour les éléments masonry */
+@media (prefers-reduced-motion: no-preference) {
+  .masonry-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .masonry-gallery.images-loaded .masonry-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .masonry-gallery.images-loaded .masonry-item:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+
+  .masonry-gallery.images-loaded .masonry-item:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+
+  .masonry-gallery.images-loaded .masonry-item:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+
+  .masonry-gallery.images-loaded .masonry-item:nth-child(4) {
+    transition-delay: 0.4s;
+  }
+
+  .masonry-gallery.images-loaded .masonry-item:nth-child(5) {
+    transition-delay: 0.5s;
+  }
+
+  .masonry-gallery.images-loaded .masonry-item:nth-child(6) {
+    transition-delay: 0.6s;
+  }
+
+  .masonry-gallery.images-loaded .masonry-item:nth-child(7) {
+    transition-delay: 0.7s;
+  }
+
+  .masonry-gallery.images-loaded .masonry-item:nth-child(8) {
+    transition-delay: 0.8s;
+  }
+
+  .masonry-gallery.images-loaded .masonry-item:nth-child(9) {
+    transition-delay: 0.9s;
+  }
+}
+
+/* Effet de pulse pour le clic sur une image */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.gallery-card.pulse {
+  animation: pulse 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Transition plus fluide pour les cartes */
+.masonry-item .card {
+  will-change: transform;
+  transform-origin: center bottom;
+  backface-visibility: hidden;
+}
+
+/* Effet de profondeur 3D subtil */
+.gallery-card.active {
+  z-index: 10;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Amélioration de l'overlay au survol */
+.card-img-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom,
+      rgba(var(--primary-700-rgb), 0.1),
+      rgba(var(--primary-900-rgb), 0.4));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.gallery-card:hover .card-img-overlay::before {
+  opacity: 1;
+}
+
+/* Effet de zoom progressif */
+.card-img-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0px solid white;
+  box-sizing: border-box;
+  transition: border 0.3s ease;
+}
+
+.gallery-card:hover .card-img-wrapper::after {
+  border: 8px solid white;
+}
+
+/* Amélioration de l'accessibilité */
+.overlay-content:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.5);
+}
+
+/* Effet de transition pour le texte */
+.card-body {
+  transition: transform 0.3s ease;
+}
+
+.gallery-card:hover .card-body {
+  transform: translateY(-5px);
+}
+
+.card-img-wrapper {
+  padding: 7px;
 }
