@@ -1,74 +1,27 @@
-// Initialisation des animations AOS
-document.addEventListener("DOMContentLoaded", function () {
-  // Initialisation de la galerie masonry
-  function initMasonryGallery() {
-    // Attendre que toutes les images soient chargées pour un meilleur rendu masonry
-    const galleryImages = document.querySelectorAll(".masonry-item img");
-    let imagesLoaded = 0;
+// ======================================
+// Main JavaScript for AK-Solutions
+// ======================================
 
-    galleryImages.forEach((img) => {
-      img.onload = () => {
-        imagesLoaded++;
-        if (imagesLoaded === galleryImages.length) {
-          // Toutes les images sont chargées, on peut appliquer des animations supplémentaires si nécessaire
-          document
-            .querySelector(".masonry-gallery")
-            .classList.add("images-loaded");
-        }
-      };
-
-      // Pour les images déjà en cache
-      if (img.complete) {
-        img.onload();
-      }
-    });
-
-    // Animation au survol des cartes
-    const masonryItems = document.querySelectorAll(".masonry-item");
-    masonryItems.forEach((item) => {
-      item.addEventListener("mouseenter", function () {
-        this.querySelector(".card").style.transform = "translateY(-10px)";
-        this.querySelector(".card").style.boxShadow =
-          "0 10px 20px rgba(0, 0, 0, 0.1)";
-      });
-
-      item.addEventListener("mouseleave", function () {
-        this.querySelector(".card").style.transform = "translateY(0)";
-        this.querySelector(".card").style.boxShadow =
-          "0 4px 6px rgba(0, 0, 0, 0.1)";
-      });
-    });
-  }
-
-  // Appeler cette fonction dans le DOMContentLoaded
+document.addEventListener("DOMContentLoaded", () => {
+  initAOS();
   initMasonryGallery();
-  // Exclure le footer des animations AOS
-  const footerElements = document.querySelectorAll("footer *");
-  footerElements.forEach((el) => {
-    if (el.hasAttribute("data-aos")) {
-      el.removeAttribute("data-aos");
-    }
-  });
+  initNavbarScroll();
+  initBackToTop();
+  initCounters();
+  initCardHover();
+  initContactForm();
+  initSmoothScroll();
+  initActiveNavLink();
+  initScrollArrows();
+});
 
-  // Gestion du bouton de retour en haut de page
-  const backToTopButton = document.getElementById("back-to-top");
-
-  // Afficher le bouton quand l'utilisateur descend de 300px
-  window.addEventListener("scroll", function () {
-    if (window.scrollY > 300) {
-      backToTopButton.style.display = "block";
-    } else {
-      backToTopButton.style.display = "none";
-    }
-  });
-
-  // Faire défiler vers le haut lorsque le bouton est cliqué
-  backToTopButton.addEventListener("click", function (e) {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+// --------------------------------------
+// 1. AOS (Animate On Scroll) init
+// --------------------------------------
+function initAOS() {
+  // Exclude footer elements from AOS animation
+  document.querySelectorAll("footer *[data-aos]").forEach(el => {
+    el.removeAttribute("data-aos");
   });
 
   AOS.init({
@@ -76,212 +29,249 @@ document.addEventListener("DOMContentLoaded", function () {
     easing: "ease-in-out",
     once: true,
     mirror: false,
-    disable: "footer", // Désactiver AOS pour le footer
+    disable: "footer"
+  });
+}
+
+// --------------------------------------
+// 2. Masonry Gallery
+// --------------------------------------
+function initMasonryGallery() {
+  const gallery = document.querySelector(".masonry-gallery");
+  if (!gallery) return;
+
+  const images = gallery.querySelectorAll(".masonry-item img");
+  let loadedCount = 0;
+
+  images.forEach(img => {
+    img.onload = () => {
+      loadedCount++;
+      if (loadedCount === images.length) {
+        gallery.classList.add("images-loaded");
+      }
+    };
+    if (img.complete) img.onload();
   });
 
-  // Animation de la navbar au défilement
+  // Hover animation per item
+  gallery.querySelectorAll(".masonry-item").forEach(item => {
+    const card = item.querySelector(".card");
+    item.addEventListener("mouseenter", () => {
+      card.style.transform = "translateY(-10px)";
+      card.style.boxShadow = "0 10px 20px rgba(0,0,0,0.1)";
+    });
+    item.addEventListener("mouseleave", () => {
+      card.style.transform = "";
+      card.style.boxShadow = "";
+    });
+  });
+}
+
+// --------------------------------------
+// 3. Navbar scroll behavior
+// --------------------------------------
+function initNavbarScroll() {
   const navbar = document.querySelector(".navbar");
-  window.addEventListener("scroll", function () {
-    if (window.scrollY > 50) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
-    }
+  if (!navbar) return;
+
+  window.addEventListener("scroll", () => {
+    navbar.classList.toggle("scrolled", window.scrollY > 50);
+  });
+}
+
+// --------------------------------------
+// 4. Back-to-top button
+// --------------------------------------
+function initBackToTop() {
+  const btn = document.getElementById("back-to-top");
+  if (!btn) return;
+
+  window.addEventListener("scroll", () => {
+    btn.style.display = window.scrollY > 300 ? "block" : "none";
   });
 
-  // Animation des compteurs
+  btn.addEventListener("click", e => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+// --------------------------------------
+// 5. Counter animations
+// --------------------------------------
+function initCounters() {
   const counters = document.querySelectorAll(".counter");
   const speed = 200;
 
-  counters.forEach((counter) => {
-    const updateCount = () => {
-      const target = parseInt(counter.innerText);
-      const count = parseInt(counter.innerText);
+  counters.forEach(counter => {
+    const target = parseInt(counter.innerText, 10);
+    let count = 0;
 
+    const update = () => {
       if (count < target) {
-        counter.innerText = count + 1;
-        setTimeout(updateCount, speed);
-      } else {
-        counter.innerText = target;
+        count++;
+        counter.innerText = count;
+        setTimeout(update, speed);
       }
     };
-
-    updateCount();
+    update();
   });
+}
 
-  // Animation des cartes au survol
-  const cards = document.querySelectorAll(".card");
-  cards.forEach((card) => {
-    card.addEventListener("mouseenter", function () {
-      this.style.transform = "translateY(-10px)";
-      this.style.boxShadow = "0 10px 20px rgba(0, 0, 0, 0.1)";
+// --------------------------------------
+// 6. Card hover animation
+// --------------------------------------
+function initCardHover() {
+  document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("mouseenter", () => {
+      card.style.transform = "translateY(-10px)";
+      card.style.boxShadow = "0 10px 20px rgba(0,0,0,0.1)";
     });
-
-    card.addEventListener("mouseleave", function () {
-      this.style.transform = "translateY(0)";
-      this.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "";
+      card.style.boxShadow = "";
     });
   });
+}
 
-  // Validation du formulaire de contact avec Web3Forms
-  const contactForm = document.getElementById("contactForm");
-  if (contactForm) {
-    // Ajouter le champ caché pour l'access key de Web3Forms
-    if (!contactForm.querySelector('input[name="access_key"]')) {
-      const accessKeyInput = document.createElement("input");
-      accessKeyInput.type = "hidden";
-      accessKeyInput.name = "access_key";
-      accessKeyInput.value = "a05cfc85-ef1b-4b2a-8f99-cc7c88673290";
-      contactForm.appendChild(accessKeyInput);
-    }
+// --------------------------------------
+// 7. Contact form via Web3Forms
+// --------------------------------------
+function initContactForm() {
+  const form = document.getElementById("contactForm");
+  if (!form) return;
 
-    // Ajouter le champ caché pour la vérification anti-bot
-    if (!contactForm.querySelector('input[name="botcheck"]')) {
-      const botcheckInput = document.createElement("input");
-      botcheckInput.type = "checkbox";
-      botcheckInput.name = "botcheck";
-      botcheckInput.className = "hidden";
-      botcheckInput.style.display = "none";
-      contactForm.appendChild(botcheckInput);
-    }
-
-    // Créer un élément pour afficher le résultat si nécessaire
-    let resultElement = contactForm.querySelector("#result");
-    if (!resultElement) {
-      resultElement = document.createElement("div");
-      resultElement.id = "result";
-      contactForm.appendChild(resultElement);
-    }
-
-    contactForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const submitBtn = this.querySelector('button[type="submit"]');
-      const originalText = submitBtn.innerText;
-
-      submitBtn.disabled = true;
-      submitBtn.innerHTML =
-        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Envoi en cours...';
-
-      // Préparation des données pour Web3Forms
-      const formData = new FormData(contactForm);
-      const object = Object.fromEntries(formData);
-      const json = JSON.stringify(object);
-
-      resultElement.innerHTML = "Veuillez patienter...";
-
-      // Envoi des données à Web3Forms
-      fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: json,
-      })
-        .then(async (response) => {
-          let json = await response.json();
-          if (response.status == 200) {
-            submitBtn.innerHTML =
-              '<i class="bi bi-check-circle"></i> Message envoyé!';
-            submitBtn.classList.remove("btn-primary");
-            submitBtn.classList.add("btn-success");
-            resultElement.innerHTML = "Formulaire envoyé avec succès";
-          } else {
-            console.log(response);
-            submitBtn.innerHTML = '<i class="bi bi-x-circle"></i> Erreur!';
-            submitBtn.classList.remove("btn-primary");
-            submitBtn.classList.add("btn-danger");
-            resultElement.innerHTML =
-              json.message || "Une erreur s'est produite";
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          submitBtn.innerHTML = '<i class="bi bi-x-circle"></i> Erreur!';
-          submitBtn.classList.remove("btn-primary");
-          submitBtn.classList.add("btn-danger");
-          resultElement.innerHTML = "Une erreur s'est produite!";
-        })
-        .finally(() => {
-          // Réinitialisation du formulaire et du bouton après 3 secondes
-          setTimeout(() => {
-            submitBtn.innerText = originalText;
-            submitBtn.disabled = false;
-            submitBtn.classList.remove("btn-success", "btn-danger");
-            submitBtn.classList.add("btn-primary");
-            resultElement.style.display = "none";
-          }, 3000);
-        });
-    });
+  // Hidden inputs for Web3Forms
+  if (!form.querySelector('input[name="access_key"]')) {
+    const key = document.createElement("input");
+    key.type = "hidden";
+    key.name = "access_key";
+    key.value = "a05cfc85-ef1b-4b2a-8f99-cc7c88673290";
+    form.appendChild(key);
+  }
+  if (!form.querySelector('input[name="botcheck"]')) {
+    const bot = document.createElement("input");
+    bot.type = "checkbox";
+    bot.name = "botcheck";
+    bot.style.display = "none";
+    form.appendChild(bot);
   }
 
-  // Animation des liens d'ancrage pour un défilement fluide
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
+  let result = form.querySelector("#result");
+  if (!result) {
+    result = document.createElement("div");
+    result.id = "result";
+    form.appendChild(result);
+  }
 
-      const targetId = this.getAttribute("href");
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    const original = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Envoi en cours...`;
+    result.textContent = "Veuillez patienter...";
 
-      // Si le href est juste "#", ne rien faire ou remonter en haut de page
-      if (targetId === "#") {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
+    try {
+      const data = JSON.stringify(Object.fromEntries(new FormData(form)));
+      const resp = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: data
+      });
+      const json = await resp.json();
+
+      if (resp.ok) {
+        btn.innerHTML = `<i class="bi bi-check-circle"></i> Message envoyé!`;
+        btn.classList.replace("btn-primary", "btn-success");
+        result.textContent = "Formulaire envoyé avec succès";
+      } else {
+        btn.innerHTML = `<i class="bi bi-x-circle"></i> Erreur!`;
+        btn.classList.replace("btn-primary", "btn-danger");
+        result.textContent = json.message || "Une erreur s'est produite";
+      }
+    } catch {
+      btn.innerHTML = `<i class="bi bi-x-circle"></i> Erreur!`;
+      btn.classList.replace("btn-primary", "btn-danger");
+      result.textContent = "Une erreur s'est produite!";
+    } finally {
+      setTimeout(() => {
+        btn.innerHTML = original;
+        btn.disabled = false;
+        btn.classList.replace("btn-success", "btn-primary");
+        btn.classList.remove("btn-danger");
+        result.style.display = "none";
+      }, 3000);
+    }
+  });
+}
+
+// --------------------------------------
+// 8. Smooth scroll for anchor links
+// --------------------------------------
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", e => {
+      const target = anchor.getAttribute("href");
+      if (target === "#") {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
         return;
       }
-
-      const targetElement = document.querySelector(targetId);
-
-      if (targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop - 70,
-          behavior: "smooth",
-        });
+      const el = document.querySelector(target);
+      if (el) {
+        e.preventDefault();
+        window.scrollTo({ top: el.offsetTop - 70, behavior: "smooth" });
       }
     });
   });
-  // Marquer le lien actif dans la navigation
-  const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".nav-link");
+}
 
+// --------------------------------------
+// 9. Active link highlighting on scroll
+// --------------------------------------
+function initActiveNavLink() {
+  const sections = document.querySelectorAll("section[id]");
+  const links    = document.querySelectorAll(".nav-link");
+  const collapse = document.querySelector(".navbar-collapse");
+
+  // Close mobile menu on link click
+  links.forEach(link => {
+    link.addEventListener("click", () => {
+      if (collapse.classList.contains("show")) {
+        new bootstrap.Collapse(collapse).hide();
+      }
+    });
+  });
+
+  // Highlight on scroll
   window.addEventListener("scroll", () => {
     let current = "";
+    const offset = 100;
 
-    sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 100;
-      const sectionHeight = section.offsetHeight;
-
-      if (
-        window.scrollY >= sectionTop &&
-        window.scrollY < sectionTop + sectionHeight
-      ) {
-        current = section.getAttribute("id");
+    sections.forEach(sec => {
+      const top = sec.offsetTop - offset;
+      if (window.scrollY >= top && window.scrollY < top + sec.offsetHeight) {
+        current = sec.id;
       }
     });
 
-    navLinks.forEach((link) => {
-      link.classList.remove("active");
-      if (link.getAttribute("href") === `#${current}`) {
-        link.classList.add("active");
+    links.forEach(link => {
+      link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
+    });
+  });
+}
+
+// --------------------------------------
+// 10. Scroll arrows behavior
+// --------------------------------------
+function initScrollArrows() {
+  document.querySelectorAll(".scroll-arrow").forEach(arrow => {
+    arrow.addEventListener("click", () => {
+      const target = document.querySelector(arrow.dataset.target);
+      if (target) {
+        window.scrollTo({ top: target.offsetTop, behavior: "smooth" });
       }
     });
   });
-
-  // Gestion des flèches de défilement
-  const scrollArrows = document.querySelectorAll(".scroll-arrow");
-  scrollArrows.forEach((arrow) => {
-    arrow.addEventListener("click", function () {
-      const targetId = this.getAttribute("data-target");
-      const targetElement = document.querySelector(targetId);
-
-      if (targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop,
-          behavior: "smooth",
-        });
-      }
-    });
-  });
-});
+}
