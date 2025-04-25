@@ -1,155 +1,50 @@
-/* Styles personnalisés en complément de Bootstrap */
-
+/* ======================================
+   1. VARIABLES ET CONFIGURATION DE BASE
+   ====================================== */
 :root {
+  /* Couleurs principales */
   --bs-primary: #dae9ff !important;
   --bs-primary-rgb: 218, 233, 255 !important;
+
+  /* Variables pour le système de design */
+  --primary-100: #dbf0ff;
+  --primary-500: #00aaff;
+  --primary-700: #0060e6;
+  --primary-900: #002964;
+  --secondary-100: #d1fff7;
+  --secondary-500: #00ffd5;
+  --secondary-700: #008670;
+
+  /* Système d'espacement */
+  --space-s: 8px;
+  --space-m: 16px;
+  --space-l: 24px;
+  --space-xl: 32px;
+
+  /* Système de rayons */
+  --radius-s: 8px;
+  --radius-m: 12px;
+  --radius-l: 24px;
+  --radius-xl: 48px;
+
+  /* Système d'ombres */
+  --shadow-100: 0px 0px 8px 2px rgba(0, 0, 0, .10);
+  --shadow-200: 0px 0px 16px 4px rgba(0, 0, 0, .10);
 }
 
-.bg-primary {
-  background-color: #579bff !important;
-}
-
-.text-primary {
-  color: #0d6efd !important;
-  /* Gardez une couleur de texte plus foncée pour la lisibilité */
-}
-
-/* Utilisation de la police Nunito */
+/* ======================================
+     2. STYLES GÉNÉRAUX
+     ====================================== */
 body {
   font-family: 'Nunito', sans-serif;
   overflow-x: hidden;
 }
 
-/* Hero section avec dégradé - utilisation de classes plus spécifiques */
-.hero-custom {
-  background: linear-gradient(135deg, #b9d6ff, #0dcaf0) !important;
-  padding-top: 6rem !important;
-  padding-bottom: 10rem !important;
-  position: relative !important;
-  overflow: visible !important;
-  margin-bottom: -2rem !important;
+ul {
+  list-style-type: none;
 }
 
-/* Style pour la forme arrondie en bas du hero */
-.shape-wrap {
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 150px;
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 500 150' fill='none' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'><path d='M 0 75 C 150 225 350 0 500 120 L 500 150 L 0 150' fill='white'/></svg>");
-  z-index: 1;
-}
-
-/* Animation des cartes de services */
-.card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
-}
-
-/* Boutons avec animation */
-.btn {
-  transition: transform 0.2s ease, background-color 0.3s ease;
-}
-
-.btn:hover {
-  transform: scale(1.05);
-}
-
-/* Navbar avec ombre */
-.navbar {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Sections avec espacement */
-section {
-  overflow: hidden;
-}
-
-/* Effet de survol sur les liens de navigation - version éclaircie */
-.nav-link {
-  position: relative;
-  padding: 0.5rem 0;
-  margin: 0 1rem;
-  color: rgba(255, 255, 255, 0.9) !important;
-  /* Liens plus clairs */
-  font-weight: 600 !important;
-  /* Police plus épaisse */
-  letter-spacing: 0.5px;
-  /* Espacement des lettres */
-  text-transform: uppercase;
-  /* Texte en majuscules */
-  font-size: 0.9rem;
-  /* Taille légèrement réduite */
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: white;
-  transition: width 0.3s ease;
-}
-
-.nav-link:hover {
-  color: white !important;
-  /* Blanc pur au survol */
-}
-
-.nav-link:hover::after {
-  width: 100%;
-}
-
-/* Style actif pour le lien de navigation courant */
-.nav-link.active {
-  color: white !important;
-  font-weight: 700 !important;
-}
-
-.nav-link.active::after {
-  width: 100%;
-}
-
-.team-image {
-  max-height: 500px; /* Ajustez cette valeur selon la hauteur souhaitée */
-  width: auto;
-  object-fit: cover;
-  display: block;
-  margin: 0 auto;
-}
-
-/* Style pour le bouton Contact dans la navbar */
-.nav-contact-btn {
-  transition: all 0.3s ease;
-  border: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.nav-contact-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  background-color: #333 !important;
-}
-
-/* Adaptation pour mobile */
-@media (max-width: 991.98px) {
-  .nav-contact-btn {
-    display: inline-block;
-    margin-top: 10px;
-  }
-}
-
-
-/* Styles spécifiques pour la police Nunito */
+/* Typographie */
 h1,
 h2,
 h3,
@@ -167,276 +62,9 @@ h6 {
   font-weight: 400;
 }
 
-.navbar-brand {
-  font-weight: 800;
-}
-
-/* Animation des icônes */
-.bi {
-  transition: transform 0.3s ease;
-}
-
-.card:hover .bi {
-  transform: scale(1.2);
-  color: #0d6efd;
-}
-
-/* Animation des images de la galerie */
-.gallery-item {
-  overflow: hidden;
-}
-
-.gallery-item img {
-  transition: transform 0.5s ease;
-}
-
-.gallery-item:hover img {
-  transform: scale(1.1);
-}
-
-/* Animation des compteurs */
-.counter {
-  display: inline-block;
-  position: relative;
-}
-
-/* Animation du formulaire */
-#contactForm input,
-#contactForm textarea {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-#contactForm input:focus,
-#contactForm textarea:focus {
-  border-color: #0d6efd;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-}
-
-/* Styles pour la section contact */
-.contact-info-card,
-.contact-form-card {
-  background-color: white;
-  border-radius: var(--radius-m);
-  padding: var(--space-xl);
-  height: 100%;
-  box-shadow: var(--shadow-100);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.contact-info-card:hover,
-.contact-form-card:hover {
-  box-shadow: var(--shadow-200);
-}
-
-.contact-item {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: var(--space-l);
-}
-
-.contact-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  height: 50px;
-  background-color: var(--primary-100);
-  color: var(--primary-700);
-  border-radius: 50%;
-  margin-right: var(--space-m);
-  flex-shrink: 0;
-}
-
-.contact-icon i {
-  font-size: 1.5rem;
-}
-
-.contact-details h5 {
-  margin-bottom: var(--space-xs);
-  color: var(--primary-900);
-  font-weight: 700;
-}
-
-.contact-details p {
-  margin-bottom: 0;
-  color: var(--neutral-700);
-}
-
-.contact-link {
-  color: var(--primary-700);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.contact-link:hover {
-  color: var(--primary-900);
-  text-decoration: underline;
-}
-
-.social-links {
-  display: flex;
-  gap: var(--space-m);
-}
-
-.social-link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  background-color: var(--primary-700);
-  color: white;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-
-.social-link:hover {
-  background-color: var(--primary-900);
-  transform: translateY(-3px);
-}
-
-/* Styles pour le formulaire */
-.form-floating {
-  margin-bottom: 0;
-}
-
-.form-control,
-.form-select {
-  border: 1px solid var(--neutral-100);
-  border-radius: var(--radius-s);
-  padding: var(--space-m);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.form-control:focus,
-.form-select:focus {
-  border-color: var(--primary-500);
-  box-shadow: 0 0 0 0.25rem rgba(0, 170, 255, 0.25);
-}
-
-.form-check-input:checked {
-  background-color: var(--primary-700);
-  border-color: var(--primary-700);
-}
-
-.form-check-input:focus {
-  border-color: var(--primary-500);
-  box-shadow: 0 0 0 0.25rem rgba(0, 170, 255, 0.25);
-}
-
-/* Animation du bouton d'envoi */
-#contactForm button[type="submit"] {
-  position: relative;
-  overflow: hidden;
-}
-
-#contactForm button[type="submit"] i {
-  margin-right: var(--space-s);
-  transition: transform 0.3s ease;
-}
-
-#contactForm button[type="submit"]:hover i {
-  transform: translateX(3px);
-}
-
-/* Correction pour les bordures de formulaire */
-.form-floating .form-control,
-.form-floating .form-select {
-  border: 1px solid #ced4da;
-  /* Couleur de bordure standard Bootstrap */
-  border-radius: var(--radius-s);
-  height: calc(3.5rem + 2px);
-  /* Hauteur standard pour les champs flottants */
-  line-height: 1.25;
-  padding: 1rem 0.75rem;
-}
-
-.form-floating textarea.form-control {
-  height: 150px;
-  /* Hauteur fixe pour le textarea */
-  min-height: 150px;
-}
-
-.form-floating>label {
-  padding: 1rem 0.75rem;
-}
-
-.form-floating .form-control:focus,
-.form-floating .form-select:focus {
-  border-color: var(--primary-500);
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-}
-
-/* Assurer que les bordures sont visibles même en mode sombre */
-.form-control,
-.form-select {
-  background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid #ced4da !important;
-  /* Force l'affichage des bordures */
-}
-
-/* Amélioration de la visibilité des labels */
-.form-floating>label {
-  color: #6c757d;
-}
-
-/* Assurer que le focus est bien visible */
-.form-control:focus,
-.form-select:focus {
-  color: #212529;
-  background-color: #fff;
-  border-color: #86b7fe !important;
-  outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-}
-
-
-/* Correction pour le footer */
-footer {
-  position: relative;
-  z-index: 10;
-  min-height: auto !important;
-  /* Annule le min-height des sections */
-  display: block !important;
-  /* Annule le display flex des sections */
-}
-
-footer .row {
-  padding: 1rem 0;
-}
-
-footer h5 {
-  margin-bottom: 1rem;
-}
-
-footer .bi {
-  font-size: 1.5rem;
-  /* margin-right: 0.5rem; */
-}
-
-footer .bi:hover {
-  transform: scale(1.3);
-}
-
-/* Animation de la barre de navigation au défilement */
-.navbar.scrolled {
-  background-color: rgba(13, 110, 253, 0.95) !important;
-  backdrop-filter: blur(10px);
-}
-
-/* Effet de parallaxe pour le fond */
-.bg-light {
-  position: relative;
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-}
-
-/* Faire en sorte que les sections prennent presque toute la hauteur de l'écran */
+/* Sections */
 section {
   min-height: 90vh;
-  /* 90% de la hauteur de la fenêtre */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -445,92 +73,173 @@ section {
   overflow: hidden;
 }
 
-/* Style pour les flèches de défilement */
-.scroll-arrow {
+section:last-of-type {
+  margin-bottom: 0;
+}
+
+.section-content {
+  width: 100%;
+}
+
+/* Couleurs et fonds */
+.bg-primary {
+  background-color: #579bff !important;
+}
+
+.text-primary {
+  color: #0d6efd !important;
+}
+
+.bg-light {
+  position: relative;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+/* ======================================
+     3. NAVIGATION
+     ====================================== */
+.navbar {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: 800;
+}
+
+.navbar.scrolled {
+  background-color: rgba(13, 110, 253, 0.95) !important;
+  backdrop-filter: blur(10px);
+}
+
+.navbar-dark.bg-primary {
+  background-color: #dae9ff !important;
+}
+
+.navbar-dark .navbar-nav .nav-link,
+.navbar-dark .navbar-brand {
+  color: #333 !important;
+}
+
+/* Liens de navigation */
+.nav-link {
+  position: relative;
+  padding: 0.5rem 0;
+  margin: 0 1rem;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.nav-link::after {
+  content: '';
   position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  cursor: pointer;
-  animation: bounce 2s infinite;
-}
-
-.scroll-arrow .bi {
-  font-size: 2rem;
-  color: #0d6efd;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
   background-color: white;
-  border-radius: 50%;
-  padding: 0.4rem 0.7rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: width 0.3s ease;
 }
 
-.scroll-arrow:hover .bi {
-  transform: scale(1.1);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+.nav-link:hover {
+  color: white !important;
 }
 
-/* Animation de rebond pour les flèches */
-@keyframes bounce {
+.nav-link:hover::after {
+  width: 100%;
+}
 
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateX(-50%) translateY(0);
-  }
+.nav-link.active {
+  color: white !important;
+  font-weight: 700 !important;
+}
 
-  40% {
-    transform: translateX(-50%) translateY(-10px);
-  }
+.nav-link.active::after {
+  width: 100%;
+}
 
-  60% {
-    transform: translateX(-50%) translateY(-5px);
+/* Bouton Contact dans la navbar */
+.nav-contact-btn {
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-contact-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background-color: #333 !important;
+}
+
+@media (max-width: 991.98px) {
+  .nav-contact-btn {
+    display: inline-block;
+    margin-top: 10px;
   }
 }
 
-/* Ajustement pour la section hero qui a déjà un padding spécifique */
+/* ======================================
+     4. SECTION HERO
+     ====================================== */
 .hero-custom {
+  background: linear-gradient(135deg, #b9d6ff, #0dcaf0) !important;
+  padding-top: 6rem !important;
+  padding-bottom: 10rem !important;
+  position: relative !important;
+  overflow: visible !important;
+  margin-bottom: -2rem !important;
   min-height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-/* Ajustement pour le contenu des sections */
-.section-content {
+.hero.bg-primary {
+  background-color: #dae9ff !important;
+  color: #333 !important;
+}
+
+/* Forme arrondie en bas du hero */
+.shape-wrap {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
   width: 100%;
+  height: 150px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 500 150' fill='none' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'><path d='M 0 75 C 150 225 350 0 500 120 L 500 150 L 0 150' fill='white'/></svg>");
+  z-index: 1;
 }
 
-/* Ajustement pour la dernière section (pas de flèche) */
-section:last-of-type {
-  margin-bottom: 0;
+/* ======================================
+     5. BOUTONS ET INTERACTIONS
+     ====================================== */
+/* Boutons standard */
+.btn {
+  transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
-/* Variables pour le bouton moderne */
-:root {
-  --primary-100: #dbf0ff;
-  --primary-500: #00aaff;
-  --primary-700: #0060e6;
-  --primary-900: #002964;
-  --secondary-100: #d1fff7;
-  --secondary-500: #00ffd5;
-  --secondary-700: #008670;
-  --radius-s: 8px;
-  --radius-m: 12px;
-  --radius-l: 24px;
-  --radius-xl: 48px;
-  --shadow-100: 0px 0px 8px 2px rgba(0, 0, 0, .10);
-  --shadow-200: 0px 0px 16px 4px rgba(0, 0, 0, .10);
-  --space-s: 8px;
-  --space-m: 16px;
-  --space-l: 24px;
-  --space-xl: 32px;
+.btn:hover {
+  transform: scale(1.05);
 }
 
-/* Style du bouton moderne pour la section hero */
+.btn-primary {
+  background-color: #dae9ff !important;
+  border-color: #c5dbff !important;
+  color: #333 !important;
+}
+
+.btn-primary:hover {
+  background-color: #c5dbff !important;
+  border-color: #b0ceff !important;
+}
+
+/* Boutons modernes */
 .btn-modern {
   display: inline-flex;
   justify-content: center;
@@ -558,23 +267,23 @@ section:last-of-type {
   position: relative;
   overflow: hidden;
   z-index: 1;
+  background-color: #5298ff !important;
+  color: #333 !important;
 }
 
-/* Effet de survol */
 .btn-modern:hover {
   background: var(--primary-900);
   transform: translateY(-3px);
   box-shadow: var(--shadow-200);
   color: white;
+  background-color: #c5dbff !important;
 }
 
-/* Effet au clic */
 .btn-modern:active {
   transform: translateY(0);
   box-shadow: var(--shadow-100);
 }
 
-/* Effet d'ondulation au clic */
 .btn-modern::after {
   content: '';
   position: absolute;
@@ -594,6 +303,39 @@ section:last-of-type {
   animation: ripple 1s ease-out;
 }
 
+.btn-modern-icon {
+  padding-right: var(--space-xl);
+}
+
+.btn-modern-icon i {
+  margin-right: var(--space-m);
+  font-size: 1.2rem;
+}
+
+.btn-modern-secondary {
+  background: var(--secondary-700);
+}
+
+.btn-modern-secondary:hover {
+  background: var(--secondary-900);
+}
+
+.btn-modern-outline {
+  background: rgba(255, 255, 255, .7);
+  border: 2px solid rgba(255, 255, 255, .7);
+  color: var(--primary-700);
+  border-color: #dae9ff !important;
+  color: #dae9ff !important;
+}
+
+.btn-modern-outline:hover {
+  background: var(--primary-100);
+  color: var(--primary-900);
+  background-color: #dae9ff !important;
+  color: #333 !important;
+}
+
+/* Animation d'ondulation */
 @keyframes ripple {
   0% {
     transform: scale(0, 0);
@@ -611,38 +353,82 @@ section:last-of-type {
   }
 }
 
-/* Variante avec icône */
-.btn-modern-icon {
-  padding-right: var(--space-xl);
+/* Flèches de défilement */
+.scroll-arrow {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  cursor: pointer;
+  animation: bounce 2s infinite;
 }
 
-.btn-modern-icon i {
-  margin-right: var(--space-m);
-  font-size: 1.2rem;
+.scroll-arrow .bi {
+  font-size: 2rem;
+  color: #0d6efd;
+  background-color: white;
+  border-radius: 50%;
+  padding: 0.4rem 0.7rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Variante secondaire */
-.btn-modern-secondary {
-  background: var(--secondary-700);
+.scroll-arrow:hover .bi {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.btn-modern-secondary:hover {
-  background: var(--secondary-900);
+@keyframes bounce {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
 }
 
-/* Variante outline */
-.btn-modern-outline {
-  background: rgba(255, 255, 255, .7);
-  border: 2px solid rgba(255, 255, 255, .7);
-  color: var(--primary-700);
+/* Bouton retour en haut */
+.back-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: none;
+  /* Caché par défaut */
+  z-index: 99;
+  opacity: 0.8;
+  transition: all 0.3s ease;
 }
 
-.btn-modern-outline:hover {
-  background: var(--primary-100);
-  color: var(--primary-900);
+.back-to-top:hover {
+  opacity: 1;
+  transform: translateY(-3px);
 }
 
-/* Style pour les cartes de services avec fond gris/bleu */
+/* ======================================
+     6. CARTES ET SERVICES
+     ====================================== */
+/* Cartes standard */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Cartes de services */
 .service-card {
   display: flex;
   justify-content: flex-end;
@@ -653,7 +439,6 @@ section:last-of-type {
   padding: var(--space-l);
   min-height: 320px;
   background-color: #f0f5ff;
-  /* Fond gris/bleu très léger */
   border-radius: var(--radius-m);
   text-align: right;
   font-family: 'Nunito', sans-serif;
@@ -669,7 +454,6 @@ section:last-of-type {
   transform: translateY(-10px);
   box-shadow: var(--shadow-200);
   background-color: #e6eeff;
-  /* Légèrement plus foncé au survol */
 }
 
 .service-card::before {
@@ -733,142 +517,52 @@ section:last-of-type {
   transform: translateX(4px);
 }
 
-/* Style pour la grille de services - 2 rangées de 3 cartes */
+/* Grille de services */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* Exactement 3 colonnes */
   gap: var(--space-l);
   margin-top: var(--space-xl);
 }
 
-/* Responsive pour tablettes */
 @media (max-width: 992px) {
   .services-grid {
     grid-template-columns: repeat(2, 1fr);
-    /* 2 colonnes sur tablette */
   }
 }
 
-/* Responsive pour mobiles */
 @media (max-width: 576px) {
   .services-grid {
     grid-template-columns: 1fr;
-    /* 1 colonne sur mobile */
   }
 }
 
-ul {
-  list-style-type: none;
+/* ======================================
+     7. GALERIE ET IMAGES
+     ====================================== */
+/* Images d'équipe */
+.team-image {
+  max-height: 500px;
+  width: auto;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
 }
 
-:root {
-  --bs-primary: #dae9ff !important;
-  --bs-primary-rgb: 218, 233, 255 !important;
+/* Animation des images de la galerie */
+.gallery-item {
+  overflow: hidden;
 }
 
-.bg-primary {
-  background-color: #4d95ff !important;
+.gallery-item img {
+  transition: transform 0.5s ease;
 }
 
-.text-primary {
-  color: #0d6efd !important;
-  /* Gardez une couleur de texte plus foncée pour la lisibilité */
+.gallery-item:hover img {
+  transform: scale(1.1);
 }
 
-/* Ajustez les éléments avec la couleur principale */
-.btn-primary {
-  background-color: #dae9ff !important;
-  border-color: #c5dbff !important;
-  color: #333 !important;
-  /* Texte foncé pour meilleure lisibilité sur fond clair */
-}
-
-.btn-primary:hover {
-  background-color: #c5dbff !important;
-  border-color: #b0ceff !important;
-}
-
-/* Ajustez également les boutons modernes personnalisés */
-.btn-modern {
-  background-color: #5298ff !important;
-  color: #333 !important;
-}
-
-.btn-modern:hover {
-  background-color: #c5dbff !important;
-}
-
-.btn-modern-outline {
-  border-color: #dae9ff !important;
-  color: #dae9ff !important;
-}
-
-.btn-modern-outline:hover {
-  background-color: #dae9ff !important;
-  color: #333 !important;
-}
-
-/* Assurez-vous que la navbar a un contraste suffisant */
-.navbar-dark.bg-primary {
-  background-color: #dae9ff !important;
-}
-
-.navbar-dark .navbar-nav .nav-link,
-.navbar-dark .navbar-brand {
-  color: #333 !important;
-}
-
-/* Ajustez la section hero pour assurer la lisibilité */
-.hero.bg-primary {
-  background-color: #dae9ff !important;
-  color: #333 !important;
-}
-
-/* Styles pour le footer */
-.footer-link {
-  color: #adb5bd;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer-link:hover {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.footer-links li,
-.footer-contact li {
-  margin-bottom: 10px;
-}
-
-.social-icon-footer {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  transition: all 0.3s ease;
-}
-
-.social-icon-footer:hover {
-  background-color: #dae9ff;
-  color: #212529;
-  transform: translateY(-3px);
-}
-
-footer hr {
-  opacity: 0.15;
-}
-
-.list-inline-item:not(:last-child) {
-  margin-right: 1rem;
-}
-
-/* Masonry Gallery Styles */
+/* Masonry Gallery */
 .masonry-gallery {
   column-count: 1;
   column-gap: 1.5rem;
@@ -897,7 +591,6 @@ footer hr {
   object-fit: cover;
 }
 
-/* Responsive columns */
 @media (min-width: 576px) {
   .masonry-gallery {
     column-count: 2;
@@ -910,18 +603,268 @@ footer hr {
   }
 }
 
-/* Style pour le bouton de retour en haut de page */
-.back-to-top {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  display: none; /* Caché par défaut */
-  z-index: 99;
-  opacity: 0.8;
+/* ======================================
+     8. ICÔNES ET ANIMATIONS
+     ====================================== */
+/* Animation des icônes */
+.bi {
+  transition: transform 0.3s ease;
+}
+
+.card:hover .bi {
+  transform: scale(1.2);
+  color: #0d6efd;
+}
+
+/* Animation des compteurs */
+.counter {
+  display: inline-block;
+  position: relative;
+}
+
+/* ======================================
+     9. FORMULAIRES ET CONTACT
+     ====================================== */
+/* Styles pour les formulaires */
+.form-floating {
+  margin-bottom: 0;
+}
+
+.form-control,
+.form-select {
+  border: 1px solid var(--neutral-100);
+  border-radius: var(--radius-s);
+  padding: var(--space-m);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 0.25rem rgba(0, 170, 255, 0.25);
+  color: #212529;
+  background-color: #fff;
+  border-color: #86b7fe !important;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.form-check-input:checked {
+  background-color: var(--primary-700);
+  border-color: var(--primary-700);
+}
+
+.form-check-input:focus {
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 0.25rem rgba(0, 170, 255, 0.25);
+}
+
+/* Correction pour les bordures de formulaire */
+.form-floating .form-control,
+.form-floating .form-select {
+  border: 1px solid #ced4da;
+  border-radius: var(--radius-s);
+  height: calc(3.5rem + 2px);
+  line-height: 1.25;
+  padding: 1rem 0.75rem;
+}
+
+.form-floating textarea.form-control {
+  height: 150px;
+  min-height: 150px;
+}
+
+.form-floating>label {
+  padding: 1rem 0.75rem;
+  color: #6c757d;
+}
+
+.form-floating .form-control:focus,
+.form-floating .form-select:focus {
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Animation du formulaire */
+#contactForm input,
+#contactForm textarea {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#contactForm input:focus,
+#contactForm textarea:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Animation du bouton d'envoi */
+#contactForm button[type="submit"] {
+  position: relative;
+  overflow: hidden;
+}
+
+#contactForm button[type="submit"] i {
+  margin-right: var(--space-s);
+  transition: transform 0.3s ease;
+}
+
+#contactForm button[type="submit"]:hover i {
+  transform: translateX(3px);
+}
+
+/* Cartes de contact */
+.contact-info-card,
+.contact-form-card {
+  background-color: white;
+  border-radius: var(--radius-m);
+  padding: var(--space-xl);
+  height: 100%;
+  box-shadow: var(--shadow-100);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-info-card:hover,
+.contact-form-card:hover {
+  box-shadow: var(--shadow-200);
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--space-l);
+}
+
+.contact-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: var(--primary-100);
+  color: var(--primary-700);
+  border-radius: 50%;
+  margin-right: var(--space-m);
+  flex-shrink: 0;
+}
+
+.contact-icon i {
+  font-size: 1.5rem;
+}
+
+.contact-details h5 {
+  margin-bottom: var(--space-xs);
+  color: var(--primary-900);
+  font-weight: 700;
+}
+
+.contact-details p {
+  margin-bottom: 0;
+  color: var(--neutral-700);
+}
+
+.contact-link {
+  color: var(--primary-700);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+  color: var(--primary-900);
+  text-decoration: underline;
+}
+
+/* Liens sociaux */
+.social-links {
+  display: flex;
+  gap: var(--space-m);
+}
+
+.social-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary-700);
+  color: white;
+  border-radius: 50%;
   transition: all 0.3s ease;
 }
 
-.back-to-top:hover {
-  opacity: 1;
+.social-link:hover {
+  background-color: var(--primary-900);
   transform: translateY(-3px);
+}
+
+/* ======================================
+     10. FOOTER
+     ====================================== */
+footer {
+  position: relative;
+  z-index: 10;
+  min-height: auto !important;
+  display: block !important;
+}
+
+footer .row {
+  padding: 1rem 0;
+}
+
+footer h5 {
+  margin-bottom: 1rem;
+}
+
+footer .bi {
+  font-size: 1.5rem;
+}
+
+footer .bi:hover {
+  transform: scale(1.3);
+}
+
+footer hr {
+  opacity: 0.15;
+}
+
+/* Liens du footer */
+.footer-link {
+  color: #adb5bd;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-links li,
+.footer-contact li {
+  margin-bottom: 10px;
+}
+
+/* Icônes sociales du footer */
+.social-icon-footer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.social-icon-footer:hover {
+  background-color: #dae9ff;
+  color: #212529;
+  transform: translateY(-3px);
+}
+
+.list-inline-item:not(:last-child) {
+  margin-right: 1rem;
 }
