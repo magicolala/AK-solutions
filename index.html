@@ -2,10 +2,13 @@
 <html lang="fr">
 
 <head>
+  <!-- Définition du type de document et de la langue -->
   <meta charset="UTF-8">
+  <!-- Viewport pour le responsive design - permet au site de s'adapter à différentes tailles d'écran -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Balises meta SEO améliorées -->
+  <!-- ===== SECTION SEO ===== -->
+  <!-- Balises meta SEO améliorées pour le référencement sur les moteurs de recherche -->
   <title>AK Solutions - Maintenance Technique & Dépannage en Île-de-France</title>
   <meta name="description"
     content="Entreprise de maintenance technique à Saint-Maurice. Plomberie, électricité, chauffage, climatisation. Interventions rapides sur Paris et toute l'Île-de-France.">
@@ -13,7 +16,7 @@
     content="maintenance technique, plomberie, électricité, chauffage, climatisation, dépannage, Île-de-France, Paris, Saint-Maurice">
   <meta name="author" content="AK Solutions">
 
-  <!-- Open Graph pour les réseaux sociaux -->
+  <!-- Open Graph pour les réseaux sociaux - contrôle l'apparence lors du partage sur Facebook, LinkedIn, etc. -->
   <meta property="og:title" content="AK Solutions - Maintenance Technique & Dépannage en Île-de-France">
   <meta property="og:description"
     content="Entreprise de maintenance technique à Saint-Maurice. Plomberie, électricité, chauffage, climatisation. Interventions rapides sur Paris et toute l'Île-de-France.">
@@ -21,45 +24,50 @@
   <meta property="og:url" content="https://www.ak-solutions.fr">
   <meta property="og:type" content="website">
 
-  <!-- Twitter Card -->
+  <!-- Twitter Card - similaire à Open Graph mais pour Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="AK Solutions - Maintenance Technique & Dépannage en Île-de-France">
   <meta name="twitter:description"
     content="Entreprise de maintenance technique à Saint-Maurice. Plomberie, électricité, chauffage, climatisation. Interventions rapides sur Paris et toute l'Île-de-France.">
   <meta name="twitter:image" content="https://www.ak-solutions.fr/img/logo.png">
-  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="shortcut icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="manifest" href="/site.webmanifest" />
 
-  <!-- Canonical URL -->
+  <!-- ===== FAVICONS ===== -->
+  <!-- Différentes versions d'icônes pour différents appareils et navigateurs -->
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+  <!-- URL canonique - indique aux moteurs de recherche l'URL principale pour éviter le contenu dupliqué -->
   <link rel="canonical" href="https://www.ak-solutions.fr">
 
-  <!-- Favicon -->
+  <!-- Favicon - icône qui apparaît dans l'onglet du navigateur -->
   <link rel="icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-  <!-- Google Fonts - Nunito -->
+  <!-- ===== RESSOURCES EXTERNES ===== -->
+  <!-- Google Fonts - Nunito - préchargement de la police pour améliorer les performances -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
     rel="stylesheet">
-  <!-- Bootstrap CSS -->
+  <!-- Bootstrap CSS - framework CSS pour le responsive design et les composants UI -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons -->
+  <!-- Bootstrap Icons - bibliothèque d'icônes -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  <!-- AOS Animation CSS -->
+  <!-- AOS Animation CSS - bibliothèque pour les animations au défilement -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <!-- Custom CSS -->
+  <!-- Custom CSS - notre propre fichier CSS pour les styles personnalisés -->
   <link rel="stylesheet" href="style.css">
-  <!-- Bootstrap JS Bundle with Popper -->
+
+  <!-- ===== SCRIPTS JAVASCRIPT ===== -->
+  <!-- Bootstrap JS Bundle avec Popper - pour les composants interactifs comme le menu hamburger -->
+  <!-- L'attribut defer fait que le script se charge après le HTML pour de meilleures performances -->
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- AOS Animation JS -->
+  <!-- AOS Animation JS - pour initialiser les animations au défilement -->
   <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- Notre script personnalisé -->
   <script defer src="script.js"></script>
 
-  <!-- Structured Data / Schema.org -->
+  <!-- ===== DONNÉES STRUCTURÉES ===== -->
+  <!-- Structured Data / Schema.org - aide les moteurs de recherche à comprendre le contenu -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -106,29 +114,40 @@
 </head>
 
 <body>
+  <!-- ===== HEADER / NAVIGATION ===== -->
+  <!-- sticky-top fait que la barre de navigation reste collée en haut lors du défilement -->
   <header class="sticky-top">
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
       <div class="container">
+        <!-- Logo et nom de l'entreprise -->
+        <!-- data-aos="fade-right" crée une animation d'entrée depuis la droite -->
         <a class="navbar-brand fw-bold" href="#" data-aos="fade-right">
           <div class="d-flex align-items-center">
+            <!-- d-flex aligne les éléments horizontalement, align-items-center les centre verticalement -->
             <img src="./img/logo.png" alt="Logo AK Solutions" width="40" height="40" class="me-2">
             <span>AK Solutions</span>
           </div>
         </a>
 
         <!-- Numéro de téléphone pour les écrans moyens et grands -->
+        <!-- d-none d-lg-flex cache sur petit écran, affiche en flex sur grand écran -->
         <div class="d-none d-lg-flex align-items-center me-auto ms-4">
           <i class="bi bi-telephone-fill me-2"></i>
           <a href="tel:0764352198" class="text-dark text-decoration-none fw-bold">07 64 35 21 98</a>
         </div>
 
+        <!-- Bouton hamburger pour mobile - apparaît uniquement sur petits écrans -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+
+        <!-- Menu de navigation qui se replie en hamburger sur mobile -->
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto align-items-center">
+            <!-- ms-auto pousse les éléments vers la droite -->
             <li class="nav-item" data-aos="fade-down" data-aos-delay="100">
+              <!-- data-aos-delay retarde l'animation pour créer un effet séquentiel -->
               <a class="nav-link" href="#about">Qui sommes-nous ?</a>
             </li>
             <li class="nav-item" data-aos="fade-down" data-aos-delay="200">
@@ -140,13 +159,13 @@
             <li class="nav-item" data-aos="fade-down" data-aos-delay="400">
               <a class="nav-link" href="#testimonials">Témoignages</a>
             </li>
-            <!-- Lien Contact mis en valeur -->
+            <!-- Lien Contact mis en valeur avec un bouton -->
             <li class="nav-item ms-lg-3" data-aos="fade-down" data-aos-delay="500">
               <a class="btn btn-dark rounded-pill px-4 nav-contact-btn" href="#contact">
                 <i class="bi bi-chat-dots me-1"></i> Contact
               </a>
             </li>
-            <!-- Numéro de téléphone pour les petits écrans -->
+            <!-- Numéro de téléphone pour les petits écrans uniquement -->
             <li class="nav-item d-lg-none mt-3" data-aos="fade-down" data-aos-delay="600">
               <a class="nav-link" href="tel:0764352198">
                 <i class="bi bi-telephone-fill me-2"></i>07 64 35 21 98
@@ -159,8 +178,11 @@
   </header>
 
   <main>
+    <!-- ===== SECTION HERO ===== -->
+    <!-- Section d'introduction avec appel à l'action principal -->
     <section class="hero bg-primary text-dark text-center py-5 position-relative hero-custom">
       <div class="container">
+        <!-- Titre principal avec animation zoom -->
         <h1 class="display-4 fw-bold mb-4" data-aos="zoom-in">
           Technicien multi-compétences à votre écoute en Île-de-France
         </h1>
@@ -169,7 +191,9 @@
           votre
           sécurité à Paris et en Île-de-France.
         </p>
+        <!-- Boutons d'appel à l'action -->
         <div class="d-flex justify-content-center gap-3">
+          <!-- btn-modern est une classe personnalisée définie dans style.css -->
           <a href="#contact" class="btn-modern btn-modern-icon" data-aos="fade-up" data-aos-delay="200">
             <i class="bi bi-chat-dots"></i> Demander un devis gratuit
           </a>
@@ -178,15 +202,19 @@
           </a>
         </div>
       </div>
+      <!-- Forme décorative en bas de la section (définie en CSS) -->
       <div class="shape-wrap"></div>
+      <!-- Flèche de défilement vers la section suivante -->
       <div class="scroll-arrow" data-target="#about">
         <i class="bi bi-chevron-down"></i>
       </div>
     </section>
 
+    <!-- ===== SECTION À PROPOS ===== -->
     <section id="about" class="py-5">
       <div class="container">
         <div class="row align-items-center">
+          <!-- Colonne de texte (8/12 sur grands écrans, 12/12 sur petits) -->
           <div class="col-lg-8" data-aos="fade-right">
             <h2 class="fw-bold">À propos de AK Solutions</h2>
             <p class="lead">
@@ -194,6 +222,7 @@
               chauffage,
               climatisation et dépannage technique sur Paris et toute l'Île-de-France.
             </p>
+            <!-- Liste à puces avec emojis -->
             <ul>
               <li>✔️ Techniciens qualifiés et certifiés</li>
               <li>✔️ Interventions rapides sous 24h</li>
@@ -202,18 +231,21 @@
 
             <!-- Bouton de téléchargement d'habilitation -->
             <div class="mt-4" data-aos="fade-up">
+              <!-- L'attribut download indique que le lien télécharge un fichier -->
               <a href="./docs/habilitation_technique.pdf" download class="btn-modern btn-modern-icon">
                 <i class="bi bi-file-earmark-pdf"></i> Télécharger notre habilitation technique
               </a>
               <p class="small text-muted mt-2">Format PDF - Nos certifications et habilitations officielles</p>
             </div>
 
-            <!-- Nouvelle section "Pourquoi nous choisir ?" -->
+            <!-- Section "Pourquoi nous choisir ?" avec icônes et texte -->
             <div class="mt-4" data-aos="fade-up" data-aos-delay="100">
               <h3 class="fw-bold">Pourquoi choisir AK Solutions ?</h3>
               <div class="row mt-3">
+                <!-- Avantage 1 -->
                 <div class="col-md-6 mb-3">
                   <div class="d-flex align-items-start">
+                    <!-- Icône avec couleur primaire et taille plus grande -->
                     <div class="feature-icon me-3">
                       <i class="bi bi-clock-history text-primary fs-4"></i>
                     </div>
@@ -223,6 +255,7 @@
                     </div>
                   </div>
                 </div>
+                <!-- Avantage 2 -->
                 <div class="col-md-6 mb-3">
                   <div class="d-flex align-items-start">
                     <div class="feature-icon me-3">
@@ -234,6 +267,7 @@
                     </div>
                   </div>
                 </div>
+                <!-- Avantage 3 -->
                 <div class="col-md-6 mb-3">
                   <div class="d-flex align-items-start">
                     <div class="feature-icon me-3">
@@ -245,6 +279,7 @@
                     </div>
                   </div>
                 </div>
+                <!-- Avantage 4 -->
                 <div class="col-md-6 mb-3">
                   <div class="d-flex align-items-start">
                     <div class="feature-icon me-3">
@@ -259,22 +294,29 @@
               </div>
             </div>
           </div>
+          <!-- Colonne d'image (4/12 sur grands écrans, 12/12 sur petits) -->
           <div class="col-lg-4" data-aos="fade-left">
             <img src="./img/equipe.png" alt="Équipe de techniciens AK Solutions en action"
               class="rounded shadow img-fluid team-image">
+            <!-- img-fluid rend l'image responsive (s'adapte à la taille du conteneur) -->
           </div>
         </div>
       </div>
+      <!-- Flèche de défilement vers la section suivante -->
       <div class="scroll-arrow" data-target="#services">
         <i class="bi bi-chevron-down"></i>
       </div>
     </section>
 
+    <!-- ===== SECTION SERVICES ===== -->
+    <!-- bg-light ajoute un fond gris clair pour différencier les sections -->
     <section id="services" class="py-5 bg-light">
       <div class="container">
         <h2 class="text-center mb-5 fw-bold" data-aos="fade-up">Nos Services de Maintenance Technique</h2>
 
+        <!-- Grille personnalisée pour les services (définie en CSS) -->
         <div class="services-grid">
+          <!-- Service 1 -->
           <div class="service-card" data-aos="fade-up" data-aos-delay="100">
             <div class="service-card-icon">
               <i class="bi bi-tools"></i>
@@ -287,6 +329,7 @@
             </div>
           </div>
 
+          <!-- Service 2 -->
           <div class="service-card" data-aos="fade-up" data-aos-delay="200">
             <div class="service-card-icon">
               <i class="bi bi-fire"></i>
@@ -299,6 +342,7 @@
             </div>
           </div>
 
+          <!-- Service 3 -->
           <div class="service-card" data-aos="fade-up" data-aos-delay="300">
             <div class="service-card-icon">
               <i class="bi bi-lightning-charge"></i>
@@ -312,6 +356,7 @@
             </div>
           </div>
 
+          <!-- Service 4 -->
           <div class="service-card" data-aos="fade-up" data-aos-delay="400">
             <div class="service-card-icon">
               <i class="bi bi-shield-lock"></i>
@@ -324,6 +369,7 @@
             </div>
           </div>
 
+          <!-- Service 5 -->
           <div class="service-card" data-aos="fade-up" data-aos-delay="500">
             <div class="service-card-icon">
               <i class="bi bi-gear"></i>
@@ -336,6 +382,7 @@
             </div>
           </div>
 
+          <!-- Service 6 -->
           <div class="service-card" data-aos="fade-up" data-aos-delay="600">
             <div class="service-card-icon">
               <i class="bi bi-calculator"></i>
@@ -350,24 +397,25 @@
         </div>
 
       </div>
-      <!-- Flèche de défilement -->
+      <!-- Flèche de défilement vers la section suivante -->
       <div class="scroll-arrow" data-target="#gallery">
         <i class="bi bi-chevron-down"></i>
       </div>
     </section>
 
+    <!-- ===== SECTION GALERIE ===== -->
     <section id="gallery" class="py-5">
       <div class="container">
         <h2 class="text-center fw-bold mb-5" data-aos="fade-up">Nos réalisations en maintenance technique</h2>
 
-        <!-- Masonry gallery container -->
+        <!-- Galerie de type masonry (comme Pinterest) -->
         <div class="masonry-gallery" data-aos="fade-up">
-          <!-- Réalisations existantes -->
+          <!-- Réalisation 1 -->
           <div class="masonry-item" data-aos="zoom-in" data-aos-delay="100">
             <div class="card shadow-sm gallery-card">
               <div class="card-img-wrapper">
+                <!-- loading="lazy" charge l'image uniquement quand elle devient visible -->
                 <img src="./img/plomberie.png" class="card-img-top" alt="Rénovation plomberie à Paris" loading="lazy">
-
               </div>
               <div class="card-body">
                 <h5 class="card-title">Rénovation de plomberie</h5>
@@ -377,12 +425,12 @@
             </div>
           </div>
 
+          <!-- Réalisation 2 -->
           <div class="masonry-item" data-aos="zoom-in" data-aos-delay="200">
             <div class="card shadow-sm gallery-card">
               <div class="card-img-wrapper">
                 <img src="./img/clim.png" class="card-img-top" alt="Entretien climatisation en Île-de-France"
                   loading="lazy">
-
               </div>
               <div class="card-body">
                 <h5 class="card-title">Maintenance de climatisation</h5>
@@ -392,11 +440,12 @@
             </div>
           </div>
 
+          <!-- Autres réalisations (structure similaire) -->
+          <!-- Réalisation 3 -->
           <div class="masonry-item" data-aos="zoom-in" data-aos-delay="300">
             <div class="card shadow-sm gallery-card">
               <div class="card-img-wrapper">
                 <img src="./img/elec.png" class="card-img-top" alt="Mise aux normes électrique Paris" loading="lazy">
-
               </div>
               <div class="card-body">
                 <h5 class="card-title">Mise aux normes électrique</h5>
@@ -405,13 +454,12 @@
             </div>
           </div>
 
-          <!-- Nouvelles réalisations -->
+          <!-- Réalisation 4 -->
           <div class="masonry-item" data-aos="zoom-in" data-aos-delay="100">
             <div class="card shadow-sm gallery-card">
               <div class="card-img-wrapper">
                 <img src="./img/chaufferie.png" class="card-img-top"
                   alt="Rénovation chaufferie collective Saint-Maurice" loading="lazy">
-
               </div>
               <div class="card-body">
                 <h5 class="card-title">Rénovation de chaufferie collective</h5>
@@ -504,14 +552,16 @@
       </div>
     </section>
 
-
+    <!-- ===== SECTION TÉMOIGNAGES ===== -->
     <section id="testimonials" class="py-5 bg-light">
       <div class="container">
         <h2 class="text-center fw-bold mb-5" data-aos="fade-up">Témoignages de nos clients satisfaits</h2>
         <div class="row">
+          <!-- Témoignage 1 -->
           <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
             <div class="card shadow-sm text-center">
               <div class="card-body">
+                <!-- Icône de citation -->
                 <i class="bi bi-quote fs-1 text-primary"></i>
                 <p>"Une entreprise sérieuse et ponctuelle. Ils ont parfaitement répondu à nos attentes pour la
                   maintenance de notre immeuble."</p>
@@ -519,6 +569,8 @@
               </div>
             </div>
           </div>
+
+          <!-- Témoignage 2 -->
           <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
             <div class="card shadow-sm text-center">
               <div class="card-body">
@@ -529,6 +581,8 @@
               </div>
             </div>
           </div>
+
+          <!-- Témoignage 3 -->
           <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
             <div class="card shadow-sm text-center">
               <div class="card-body">
@@ -541,11 +595,14 @@
           </div>
         </div>
       </div>
+      <!-- Flèche de défilement vers la section suivante -->
       <div class="scroll-arrow" data-target="#contact">
         <i class="bi bi-chevron-down"></i>
       </div>
     </section>
 
+    <!-- ===== BANNIÈRE D'APPEL À L'ACTION ===== -->
+    <!-- Section courte pour inciter à contacter l'entreprise -->
     <div class="py-5 bg-primary text-dark text-center">
       <div class="container" data-aos="zoom-in">
         <h2 class="fw-bold mb-4">Un projet de maintenance ? Une urgence technique ?</h2>
@@ -554,16 +611,20 @@
       </div>
     </div>
 
+    <!-- ===== SECTION CONTACT ===== -->
     <section id="contact" class="py-5 bg-light">
       <div class="container">
         <h2 class="text-center fw-bold mb-5" data-aos="fade-up">Contactez AK Solutions</h2>
         <div class="row">
+          <!-- Colonne gauche : Informations de contact -->
           <div class="col-lg-6" data-aos="fade-right">
             <div class="contact-info-card">
               <h3 class="mb-4">Besoin d'un technicien qualifié ?</h3>
               <p class="lead mb-4">N'hésitez pas à nous contacter pour toute demande de devis ou d'information. Nous
                 vous
                 répondrons aussi rapidement que possible.</p>
+
+              <!-- Adresse avec icône -->
               <div class="contact-item" data-aos="fade-up" data-aos-delay="100">
                 <div class="contact-icon">
                   <i class="bi bi-geo-alt"></i>
@@ -574,6 +635,7 @@
                 </div>
               </div>
 
+              <!-- Téléphone avec icône -->
               <div class="contact-item" data-aos="fade-up" data-aos-delay="200">
                 <div class="contact-icon">
                   <i class="bi bi-telephone"></i>
@@ -584,6 +646,7 @@
                 </div>
               </div>
 
+              <!-- Email avec icône -->
               <div class="contact-item" data-aos="fade-up" data-aos-delay="300">
                 <div class="contact-icon">
                   <i class="bi bi-envelope"></i>
@@ -594,6 +657,7 @@
                 </div>
               </div>
 
+              <!-- Horaires avec icône -->
               <div class="contact-item" data-aos="fade-up" data-aos-delay="400">
                 <div class="contact-icon">
                   <i class="bi bi-clock"></i>
@@ -604,16 +668,19 @@
                 </div>
               </div>
 
+              <!-- Liens réseaux sociaux -->
               <div class="social-links mt-4" data-aos="fade-up" data-aos-delay="500">
+                <!-- aria-label améliore l'accessibilité pour les lecteurs d'écran -->
                 <a href="#" class="social-link" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
                 <a href="#" class="social-link" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
                 <a href="#" class="social-link" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
               </div>
 
-              <!-- Ajout d'une carte Google Maps -->
+              <!-- Carte Google Maps -->
               <div class="mt-4" data-aos="fade-up" data-aos-delay="600">
                 <h5>Notre zone d'intervention</h5>
                 <p>Nous intervenons sur Paris et toute l'Île-de-France pour vos besoins en maintenance technique.</p>
+                <!-- ratio ratio-16x9 crée un conteneur responsive pour l'iframe -->
                 <div class="ratio ratio-16x9 mt-3">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d167998.10803373056!2d2.2069777!3d48.85883565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e1f06e2b70f%3A0x40b82c3688c9460!2sParis!5e0!3m2!1sfr!2sfr!4v1647123456789!5m2!1sfr!2sfr"
@@ -624,18 +691,23 @@
             </div>
           </div>
 
+          <!-- Colonne droite : Formulaire de contact -->
           <div class="col-lg-6 mt-4 mt-lg-0" data-aos="fade-left">
             <div class="contact-form-card">
               <h3 class="mb-4">Envoyez-nous un message</h3>
-              <!-- Dans la section contact, le formulaire a besoin d'attributs "name" pour chaque champ -->
+              <!-- Le formulaire sera traité par JavaScript (script.js) -->
               <form id="contactForm">
+                <!-- Ligne avec 2 champs côte à côte sur écrans moyens et grands -->
                 <div class="row">
+                  <!-- Champ Nom -->
                   <div class="col-md-6 mb-3">
                     <div class="form-floating">
+                      <!-- form-floating crée un champ avec étiquette flottante -->
                       <input type="text" class="form-control" id="name" name="name" placeholder="Votre nom" required>
                       <label for="name">Votre nom</label>
                     </div>
                   </div>
+                  <!-- Champ Email -->
                   <div class="col-md-6 mb-3">
                     <div class="form-floating">
                       <input type="email" class="form-control" id="email" name="email" placeholder="Votre email"
@@ -645,6 +717,7 @@
                   </div>
                 </div>
 
+                <!-- Champ Téléphone -->
                 <div class="mb-3">
                   <div class="form-floating">
                     <input type="tel" class="form-control" id="phone" name="phone" placeholder="Votre téléphone">
@@ -652,6 +725,7 @@
                   </div>
                 </div>
 
+                <!-- Menu déroulant pour le service -->
                 <div class="mb-3">
                   <div class="form-floating">
                     <select class="form-select" id="service" name="service">
@@ -664,10 +738,12 @@
                       <option value="devis">Devis & Pointage</option>
                       <option value="autre">Autre demande</option>
                     </select>
+                    <!-- Label commenté car problème d'affichage avec form-floating et select -->
                     <!-- <label for="service">Service requis</label> -->
                   </div>
                 </div>
 
+                <!-- Zone de texte pour le message -->
                 <div class="mb-3">
                   <div class="form-floating">
                     <textarea class="form-control" id="message" name="message" placeholder="Votre message"
@@ -676,25 +752,29 @@
                   </div>
                 </div>
 
+                <!-- Case à cocher pour la politique de confidentialité -->
                 <div class="mb-3 form-check">
                   <input type="checkbox" class="form-check-input" id="privacy" name="privacy" required>
                   <label class="form-check-label" for="privacy">J'accepte que mes données soient utilisées pour me
                     recontacter</label>
                 </div>
 
+                <!-- Bouton d'envoi -->
                 <button type="submit" class="btn-modern w-100">
                   <i class="bi bi-send"></i> Envoyer ma demande
                 </button>
 
-                <!-- Élément pour afficher les résultats du formulaire -->
+                <!-- Élément pour afficher les résultats du formulaire (rempli par JavaScript) -->
                 <div id="result" class="mt-3 text-center"></div>
               </form>
             </div>
 
-            <!-- Ajout d'une FAQ pour le SEO -->
+            <!-- FAQ pour le SEO et l'information client -->
             <div class="mt-5" data-aos="fade-up">
               <h3 class="mb-4">Questions fréquentes</h3>
+              <!-- Accordéon Bootstrap pour les questions/réponses -->
               <div class="accordion" id="faqAccordion">
+                <!-- Question 1 -->
                 <div class="accordion-item">
                   <h4 class="accordion-header" id="faqHeading1">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -710,6 +790,7 @@
                     </div>
                   </div>
                 </div>
+                <!-- Question 2 -->
                 <div class="accordion-item">
                   <h4 class="accordion-header" id="faqHeading2">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -725,6 +806,7 @@
                     </div>
                   </div>
                 </div>
+                <!-- Question 3 -->
                 <div class="accordion-item">
                   <h4 class="accordion-header" id="faqHeading3">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
@@ -748,6 +830,7 @@
     </section>
   </main>
 
+  <!-- ===== PIED DE PAGE ===== -->
   <footer class="bg-dark text-white py-5">
     <div class="container">
       <div class="row">
@@ -756,6 +839,7 @@
           <h5 class="fw-bold mb-3">AK Solutions</h5>
           <p class="mb-3">Votre partenaire de confiance pour tous vos besoins en maintenance technique depuis 2021. Nous
             intervenons sur Paris et toute l'Île-de-France.</p>
+          <!-- Icônes de réseaux sociaux -->
           <div class="social-icons d-flex gap-3 mb-3">
             <a href="#" class="social-icon-footer" title="Facebook" aria-label="Facebook"><i
                 class="bi bi-facebook"></i></a>
@@ -772,6 +856,7 @@
         <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
           <h5 class="fw-bold mb-3">Liens rapides</h5>
           <ul class="list-unstyled footer-links">
+            <!-- list-unstyled supprime les puces de liste -->
             <li><a href="#about" class="footer-link"><i class="bi bi-chevron-right"></i> À propos</a></li>
             <li><a href="#services" class="footer-link"><i class="bi bi-chevron-right"></i> Services</a></li>
             <li><a href="#gallery" class="footer-link"><i class="bi bi-chevron-right"></i> Réalisations</a></li>
@@ -799,25 +884,35 @@
         <div class="col-lg-3">
           <h5 class="fw-bold mb-3">Contact</h5>
           <ul class="list-unstyled footer-contact">
+            <!-- Adresse -->
             <li class="mb-2"><i class="bi bi-geo-alt-fill me-2"></i> 85bis rue du Maréchal Leclerc, 94410 Saint-Maurice
             </li>
+            <!-- Téléphone -->
             <li class="mb-2"><i class="bi bi-telephone-fill me-2"></i> <a href="tel:0764352198" class="footer-link">07
                 64 35 21 98</a></li>
+            <!-- Email -->
             <li class="mb-2"><i class="bi bi-envelope-fill me-2"></i> <a href="mailto:karimamani79@gmail.com"
                 class="footer-link">karimamani79@gmail.com</a></li>
+            <!-- Horaires -->
             <li><i class="bi bi-clock-fill me-2"></i> Lun-Ven: 8h-19h | Sam: 9h-18h</li>
           </ul>
         </div>
       </div>
 
+      <!-- Séparateur -->
       <hr class="mt-4 mb-4 border-secondary">
 
+      <!-- Ligne du bas avec copyright et liens légaux -->
       <div class="row align-items-center">
+        <!-- Copyright -->
         <div class="col-md-6 mb-3 mb-md-0">
           <p class="mb-0 small">© 2025 AK Solutions. Tous droits réservés. Maintenance technique en Île-de-France.</p>
         </div>
+        <!-- Liens légaux -->
         <div class="col-md-6 text-md-end">
+          <!-- text-md-end aligne à droite sur les écrans moyens et grands -->
           <ul class="list-inline mb-0 small">
+            <!-- list-inline affiche les éléments horizontalement -->
             <li class="list-inline-item"><a href="#" class="footer-link">Mentions légales</a></li>
             <li class="list-inline-item">•</li>
             <li class="list-inline-item"><a href="#" class="footer-link">Politique de confidentialité</a></li>
@@ -829,7 +924,8 @@
     </div>
   </footer>
 
-  <!-- Bouton de retour en haut de page -->
+  <!-- ===== BOUTON RETOUR EN HAUT ===== -->
+  <!-- Bouton fixe qui apparaît quand on défile vers le bas (contrôlé par JavaScript) -->
   <a href="#" id="back-to-top" class="btn btn-primary btn-lg back-to-top" role="button"
     aria-label="Retour en haut de page">
     <i class="bi bi-arrow-up"></i>
