@@ -1,3 +1,20 @@
+/**
+ * Initializes the main JavaScript functionality for AK-Solutions.
+ * 
+ * This script sets up various interactive features when the DOM is fully loaded:
+ * - Animate On Scroll (AOS) initialization
+ * - Masonry gallery interactions
+ * - Navbar scroll behavior
+ * - Back-to-top button
+ * - Counter animations
+ * - Card hover effects
+ * - Contact form handling
+ * - Smooth scrolling
+ * - Active navigation link highlighting
+ * - Scroll arrow interactions
+ * 
+ * @fires DOMContentLoaded
+ */
 // ======================================
 // Main JavaScript for AK-Solutions
 // ======================================
