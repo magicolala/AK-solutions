@@ -227,7 +227,7 @@ function initContactForm() {
     const key = document.createElement("input");
     key.type = "hidden";
     key.name = "access_key";
-    key.value = "a05cfc85-ef1b-4b2a-8f99-cc7c88673290";
+    key.value = "41067a98-9a4e-4cec-b09b-361099b59bee";
     form.appendChild(key);
   }
   if (!form.querySelector('input[name="botcheck"]')) {
