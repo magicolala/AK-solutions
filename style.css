@@ -190,9 +190,9 @@ section:last-of-type {
      4. SECTION HERO
      ====================================== */
 .hero-custom {
-  background: linear-gradient(224deg,#b9d6ff,#0dcaf0,#2d0cf5);
-  background-size: 180% 180%;
-  animation: gradient-animation 12s ease infinite;
+  background: linear-gradient(224deg,#b9d6ff,#0dcaf0,#7c61ff,#8f8cff);
+  background-size: 240% 240%;
+  animation: gradient-animation 10s ease infinite;
   padding-top: 6rem !important;
   padding-bottom: 10rem !important;
   position: relative !important;
