@@ -190,7 +190,9 @@ section:last-of-type {
      4. SECTION HERO
      ====================================== */
 .hero-custom {
-  background: linear-gradient(135deg, #b9d6ff, #0dcaf0) !important;
+  background: linear-gradient(224deg,#b9d6ff,#0dcaf0,#5c53ff,#8affc5);
+  background-size: 240% 240%;
+  animation: gradient-animation 10s ease infinite;
   padding-top: 6rem !important;
   padding-bottom: 10rem !important;
   position: relative !important;
@@ -218,6 +220,18 @@ section:last-of-type {
   background-repeat: no-repeat;
   background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 500 150' fill='none' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'><path d='M 0 75 C 150 225 350 0 500 120 L 500 150 L 0 150' fill='white'/></svg>");
   z-index: 1;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* ======================================
