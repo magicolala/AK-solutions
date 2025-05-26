@@ -2,6 +2,15 @@
 <html lang="fr">
 
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPSK308HP7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-MPSK308HP7');
+  </script>
   <!-- Définition du type de document et de la langue -->
   <meta charset="UTF-8">
   <!-- Viewport pour le responsive design - permet au site de s'adapter à différentes tailles d'écran -->
@@ -15,17 +24,6 @@
   <meta name="keywords"
     content="maintenance technique, plomberie, électricité, chauffage, climatisation, dépannage, Île-de-France, Paris, Saint-Maurice">
   <meta name="author" content="AK Solutions">
-
-  <!-- Google Tag Manager -->
-  <script>(function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-NZFXBGPQ');</script>
-  <!-- End Google Tag Manager -->
 
   <!-- Open Graph pour les réseaux sociaux - contrôle l'apparence lors du partage sur Facebook, LinkedIn, etc. -->
   <meta property="og:title" content="AK Solutions - Maintenance Technique & Dépannage en Île-de-France">
@@ -125,9 +123,6 @@
 </head>
 
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZFXBGPQ" height="0" width="0"
-      style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <!-- ===== HEADER / NAVIGATION ===== -->
   <!-- sticky-top fait que la barre de navigation reste collée en haut lors du défilement -->
@@ -780,6 +775,29 @@
                     <label for="message">Votre message</label>
                   </div>
                 </div>
+
+                <!-- Ajoutez ces champs dans votre formulaire existant -->
+                <div class="mb-3">
+                  <div class="form-floating">
+                    <select class="form-select" id="source" name="source">
+                      <option selected disabled value="">Comment nous avez-vous trouvé ?</option>
+                      <option value="google">Recherche Google</option>
+                      <option value="facebook">Facebook</option>
+                      <option value="instagram">Instagram</option>
+                      <option value="bouche-a-oreille">Bouche à oreille</option>
+                      <option value="site-web">Autre site web</option>
+                      <option value="autre">Autre</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <div class="form-floating">
+                    <input type="text" class="form-control" id="city" name="city" placeholder="Votre ville">
+                    <label for="city">Votre ville (optionnel)</label>
+                  </div>
+                </div>
+
 
                 <!-- Case à cocher pour la politique de confidentialité -->
                 <div class="mb-3 form-check">

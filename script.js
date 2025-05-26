@@ -356,3 +356,42 @@ function initScrollArrows() {
     });
   });
 }
+
+// Suivi des clics sur le numéro de téléphone
+document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+  link.addEventListener('click', () => {
+    gtag('event', 'phone_call', {
+      event_category: 'contact',
+      event_label: 'Header Phone Click'
+    });
+  });
+});
+
+// Suivi des clics sur l'email
+document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+  link.addEventListener('click', () => {
+    gtag('event', 'email_click', {
+      event_category: 'contact',
+      event_label: 'Email Click'
+    });
+  });
+});
+
+// Suivi de la soumission du formulaire
+document.getElementById('contactForm').addEventListener('submit', (e) => {
+  gtag('event', 'form_submit', {
+    event_category: 'lead_generation',
+    event_label: 'Contact Form'
+  });
+});
+
+// Suivi du temps passé sur la page
+let startTime = Date.now();
+window.addEventListener('beforeunload', () => {
+  let timeSpent = Math.round((Date.now() - startTime) / 1000);
+  gtag('event', 'time_on_page', {
+    event_category: 'engagement',
+    value: timeSpent
+  });
+});
+
