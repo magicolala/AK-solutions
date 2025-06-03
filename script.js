@@ -30,6 +30,31 @@ document.addEventListener("DOMContentLoaded", () => {
   initSmoothScroll();
   initActiveNavLink();
   initScrollArrows();
+    if (typeof Granim !== 'undefined' && document.getElementById('granim-canvas')) {
+        var granimInstance = new Granim({
+            element: '#granim-canvas',
+            direction: 'diagonal',
+            isPausedWhenNotInView: true,
+            opacity: [0.9, 1],
+            states: {
+                "default-state": {
+                    gradients: [
+                        // Dégradés avec les trois couleurs principales
+                        ['#006187', '#7A8EFF', '#82E2FF'],
+                        ['#82E2FF', '#006187', '#7A8EFF'],
+                        ['#7A8EFF', '#82E2FF', '#006187'],
+                        
+                        // Variations avec nuances intermédiaires
+                        ['#004A6B', '#6B7EE6', '#9AE8FF'],
+                        ['#007BA3', '#8A9AFF', '#6ADDFF'],
+                        ['#005571', '#7080F0', '#A5E6FF']
+                    ],
+                    transitionSpeed: 3500,
+                    loop: true
+                }
+            }
+        });
+    }
 });
 
 // --------------------------------------

@@ -190,9 +190,11 @@ section:last-of-type {
      4. SECTION HERO
      ====================================== */
 .hero-custom {
-  background: linear-gradient(224deg,#b9d6ff,#0dcaf0,#5c53ff,#8affc5);
-  background-size: 240% 240%;
-  animation: gradient-animation 10s ease infinite;
+  /* Gradient de base avec vos couleurs - s'affiche immédiatement */
+  background: linear-gradient(135deg, #006187 0%, #7A8EFF 50%, #82E2FF 100%);
+  background-size: 400% 400%;
+  animation: gradient-fallback 8s ease infinite;
+  
   padding-top: 6rem !important;
   padding-bottom: 10rem !important;
   position: relative !important;
@@ -204,9 +206,83 @@ section:last-of-type {
   justify-content: center;
 }
 
+/* Animation de fallback pour le gradient CSS */
+@keyframes gradient-fallback {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Canvas Granim - se superpose au gradient CSS */
+#granim-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* Quand Granim est chargé, on fait apparaître le canvas */
+#granim-canvas.loaded {
+  opacity: 1;
+}
+
+/* Assurer que le contenu soit au-dessus */
+.hero-custom .container {
+  z-index: 2;
+  position: relative;
+}
+
+.hero-custom .shape-wrap,
+.hero-custom .scroll-arrow {
+  z-index: 3;
+}
+
 .hero.bg-primary {
-  background-color: #dae9ff !important;
+  background-color: transparent !important;
   color: #333 !important;
+}
+
+/* Amélioration de la lisibilité du texte */
+.hero-custom h1,
+.hero-custom p {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  color: white !important;
+}
+
+/* Amélioration des boutons sur fond coloré */
+.hero-custom .btn-modern {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  color: #006187 !important;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.hero-custom .btn-modern:hover {
+  background-color: rgba(255, 255, 255, 1) !important;
+  color: #006187 !important;
+  transform: translateY(-3px);
+}
+
+.hero-custom .btn-modern-outline {
+  background-color: transparent !important;
+  color: white !important;
+  border: 2px solid rgba(255, 255, 255, 0.8) !important;
+}
+
+.hero-custom .btn-modern-outline:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  border-color: white !important;
 }
 
 /* Forme arrondie en bas du hero */
@@ -220,18 +296,6 @@ section:last-of-type {
   background-repeat: no-repeat;
   background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 500 150' fill='none' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'><path d='M 0 75 C 150 225 350 0 500 120 L 500 150 L 0 150' fill='white'/></svg>");
   z-index: 1;
-}
-
-@keyframes gradient-animation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 /* ======================================

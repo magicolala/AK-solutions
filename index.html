@@ -3,11 +3,14 @@
 
 <head>
   <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-NZFXBGPQ');</script>
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NZFXBGPQ');</script>
   <!-- End Google Tag Manager -->
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPSK308HP7"></script>
@@ -130,8 +133,8 @@
 
 <body>
   <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZFXBGPQ"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NZFXBGPQ" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
   <!-- ===== HEADER / NAVIGATION ===== -->
   <!-- sticky-top fait que la barre de navigation reste collée en haut lors du défilement -->
@@ -200,7 +203,10 @@
     <!-- ===== SECTION HERO ===== -->
     <!-- Section d'introduction avec appel à l'action principal -->
     <section class="hero bg-primary text-dark text-center py-5 position-relative hero-custom">
-      <div class="container">
+      <!-- Canvas pour l'animation Granim -->
+      <canvas id="granim-canvas"></canvas>
+
+      <div class="container position-relative">
         <!-- Titre principal avec animation zoom -->
         <h1 class="display-4 fw-bold mb-4" data-aos="zoom-in">
           Technicien multi-compétences à votre écoute en Île-de-France
@@ -228,6 +234,7 @@
         <i class="bi bi-chevron-down"></i>
       </div>
     </section>
+
 
     <!-- ===== SECTION À PROPOS ===== -->
     <section id="about" class="py-5">
@@ -996,6 +1003,8 @@
     aria-label="Retour en haut de page">
     <i class="bi bi-arrow-up"></i>
   </a>
+  <!-- Granim.js pour les animations de dégradé -->
+  <script defer src="https://cdn.jsdelivr.net/npm/granim@2.0.0/dist/granim.min.js"></script>
 
 </body>
 
