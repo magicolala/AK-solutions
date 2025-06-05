@@ -101,6 +101,40 @@ section:last-of-type {
   background-size: cover;
 }
 
+/* Fix pour l'espace blanc du widget WhatsApp */
+#__EAAPS_PORTAL {
+  position: fixed !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  z-index: 9999 !important;
+  pointer-events: none !important;
+}
+
+#__EAAPS_PORTAL * {
+  pointer-events: auto !important;
+}
+
+/* Empêcher le widget de créer de l'espace dans le flux du document */
+.elfsight-app-968c307b-94f2-49a3-b8b0-adb8b5e6bb98 {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* Supprimer tout margin/padding qui pourrait causer l'espace blanc */
+body {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* S'assurer que le footer reste en bas */
+footer {
+  margin-bottom: 0 !important;
+}
+
 /* ======================================
      3. NAVIGATION
      ====================================== */
