@@ -194,7 +194,7 @@ section:last-of-type {
   background: linear-gradient(135deg, #006187 0%, #7A8EFF 50%, #82E2FF 100%);
   background-size: 400% 400%;
   animation: gradient-fallback 8s ease infinite;
-  
+
   padding-top: 6rem !important;
   padding-bottom: 10rem !important;
   position: relative !important;
@@ -211,9 +211,11 @@ section:last-of-type {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }

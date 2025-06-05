@@ -30,6 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initSmoothScroll();
   initActiveNavLink();
   initScrollArrows();
+    // Ajouter les nouvelles fonctions pour cacher Elfsight
+  injectHidingCSS();
+  hideElfsightBranding();
     if (typeof Granim !== 'undefined' && document.getElementById('granim-canvas')) {
         var granimInstance = new Granim({
             element: '#granim-canvas',
@@ -417,3 +420,110 @@ window.addEventListener('beforeunload', () => {
   });
 });
 
+// --------------------------------------
+// 11. Hide Elfsight widget text and logo
+// --------------------------------------
+function hideElfsightBranding() {
+  // Fonction pour cacher les éléments Elfsight
+  const hideElements = () => {
+    // Cacher le lien "Free Whatsapp Chat button"
+    const elfsightLinks = document.querySelectorAll('a[href*="elfsight.com/whatsapp-chat-widget"][href*="utm_campaign=free-widget"]');
+    elfsightLinks.forEach(link => {
+      link.style.setProperty('display', 'none', 'important');
+      link.style.setProperty('visibility', 'hidden', 'important');
+      link.style.setProperty('opacity', '0', 'important');
+      link.style.setProperty('height', '0', 'important');
+      link.style.setProperty('width', '0', 'important');
+      link.style.setProperty('overflow', 'hidden', 'important');
+    });
+
+    // Cacher tous les liens Elfsight génériques
+    const allElfsightLinks = document.querySelectorAll('a[href*="elfsight.com"]');
+    allElfsightLinks.forEach(link => {
+      link.style.setProperty('display', 'none', 'important');
+      link.style.setProperty('visibility', 'hidden', 'important');
+    });
+
+    // Cacher le texte par contenu
+    const allLinks = document.querySelectorAll('a');
+    allLinks.forEach(link => {
+      if (link.textContent.includes('Free Whatsapp Chat button') || 
+          link.textContent.includes('Elfsight') ||
+          link.href.includes('elfsight.com')) {
+        link.style.setProperty('display', 'none', 'important');
+        link.style.setProperty('visibility', 'hidden', 'important');
+      }
+    });
+
+    // Cacher les éléments par classe ou attributs Elfsight
+    const elfsightElements = document.querySelectorAll('[class*="elfsight"], [id*="elfsight"], [data-elfsight]');
+    elfsightElements.forEach(element => {
+      // Ne cacher que les éléments de branding, pas le widget entier
+      if (element.tagName === 'A' || 
+          element.textContent.includes('Free') || 
+          element.textContent.includes('Elfsight')) {
+        element.style.setProperty('display', 'none', 'important');
+        element.style.setProperty('visibility', 'hidden', 'important');
+      }
+    });
+  };
+
+  // Exécuter immédiatement
+  hideElements();
+
+  // Observer les changements dans le DOM pour les widgets chargés dynamiquement
+  const observer = new MutationObserver((mutations) => {
+    let shouldCheck = false;
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+        shouldCheck = true;
+      }
+    });
+    
+    if (shouldCheck) {
+      setTimeout(hideElements, 100); // Petit délai pour laisser le widget se charger
+    }
+  });
+
+  // Observer tout le document
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+  // Vérifier périodiquement (au cas où le MutationObserver ne capturerait pas tout)
+  setInterval(hideElements, 2000);
+}
+
+// Fonction pour injecter du CSS directement dans le head
+function injectHidingCSS() {
+  const style = document.createElement('style');
+  style.textContent = `
+    /* Cacher le branding Elfsight avec une priorité maximale */
+    a[href*="elfsight.com"] {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      height: 0 !important;
+      width: 0 !important;
+      overflow: hidden !important;
+      position: absolute !important;
+      left: -9999px !important;
+    }
+    
+    /* Cacher par contenu textuel */
+    a:has-text("Free Whatsapp Chat button"),
+    a:has-text("Elfsight") {
+      display: none !important;
+      visibility: hidden !important;
+    }
+    
+    /* Cacher les éléments avec classes Elfsight qui sont des liens */
+    [class*="elfsight"] a,
+    [id*="elfsight"] a {
+      display: none !important;
+      visibility: hidden !important;
+    }
+  `;
+  document.head.appendChild(style);
+}
