@@ -563,16 +563,15 @@ footer {
 /* Cartes de services */
 .service-card {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  flex-wrap: nowrap;
+  /* Contrôle amélioré de la disposition */
+  flex-direction: column;
+  /* Mobile-first: icône au-dessus du contenu */
   position: relative;
-  margin: 0 var(--space-m) var(--space-m) 0;
   padding: var(--space-l);
   min-height: 320px;
   background-color: #f0f5ff;
+  /* Nuance de bleu plus claire */
   border-radius: var(--radius-m);
-  text-align: right;
   font-family: 'Nunito', sans-serif;
   color: var(--primary-900);
   border: 1px solid #ddd;
@@ -585,10 +584,10 @@ footer {
 
 .service-card:hover {
   transform: translateY(-10px);
-  box-shadow: var(--shadow-200);
-  background-color: #e6eeff;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   background-color: var(--primary-100);
+  box-shadow: var(--shadow-200);
+  /* Assurer que le shadow est bien celui souhaité */
+
 }
 
 .service-card::before {
@@ -598,53 +597,73 @@ footer {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(0, 96, 230, 0.05) 0%, rgba(0, 170, 255, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(var(--primary-700-rgb), 0.03), rgba(var(--primary-500-rgb), 0.07));
+  /* Dégradé plus subtil */
   z-index: 0;
+  pointer-events: none;
+  /* Permet aux clics de passer au travers */
+
 }
 
 .service-card-icon {
-  position: absolute;
-  color: var(--primary-700);
-  top: var(--space-l);
-  left: var(--space-l);
-  font-size: 2.5rem;
-  /* Taille de la police pour l'icône <i> */
-  z-index: 1;
-  /* Assurer que le conteneur de l'icône a une taille définie et centre l'icône */
-  width: 2.5rem;
-  /* Largeur du conteneur égale à la taille de l'icône */
-  height: 2.5rem;
-  /* Hauteur du conteneur égale à la taille de l'icône */
+  /* Styles pour mobile et base */
   display: flex;
+  /* Pour centrer l'icône <i> */
   align-items: center;
   justify-content: center;
+  width: 3rem;
+  /* Taille fixe pour le conteneur de l'icône */
+  height: 3rem;
+  /* Taille fixe pour le conteneur de l'icône */
+  font-size: 1.8rem;
+  /* Taille de l'icône <i> elle-même */
+  color: var(--primary-700);
+  background-color: rgba(var(--primary-500-rgb), 0.1);
+  /* Fond léger pour l'icône */
+  border-radius: 50%;
+  /* Icône circulaire */
+  margin-bottom: var(--space-m);
+  /* Espace sous l'icône sur mobile */
+  z-index: 1;
+  flex-shrink: 0;
+  /* Empêche l'icône de rétrécir si le contenu est long */
 }
 
 .service-card-content {
   position: relative;
-  font-weight: 500;
+  /* Pour s'assurer qu'il est au-dessus du ::before */
   z-index: 1;
+  font-weight: 500;
   width: 100%;
+  text-align: left;
+  /* Texte aligné à gauche par défaut (pour mobile) */
 }
 
 .service-card-title {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
+  /* Légèrement réduit pour un meilleur équilibre */
   font-weight: 700;
-  margin-bottom: var(--space-m);
+  margin-bottom: var(--space-s);
+  /* Réduit l'espace sous le titre */
   color: var(--primary-900);
 }
 
 .service-card-text {
-  font-size: 1rem;
-  color: var(--neutral-700);
-  margin-bottom: var(--space-l);
+  font-size: 0.95rem;
+  /* Légèrement ajusté */
+  color: #555;
+  /* Gris foncé pour une bonne lisibilité, var(--neutral-700) non défini */
+  margin-bottom: var(--space-m);
+  /* Espace avant le lien */
+  line-height: 1.6;
 }
 
 .service-card-link,
 .btn-secondary {
   display: inline-flex;
   align-items: center;
-  color: var(--secondary-700);
+  color: var(--primary-700);
+  /* Couleur plus affirmée, cohérente avec l'icône */
   font-weight: 700;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -652,6 +671,7 @@ footer {
 
 .service-card-link:hover {
   color: var(--primary-900);
+  transform: translateX(3px);
 }
 
 .service-card-link i {
