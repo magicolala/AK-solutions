@@ -88,7 +88,7 @@ section:last-of-type {
 }
 
 /* Couleurs et fonds */
-.bg-primary {  
+.bg-primary {
   background-color: var(--primary-500) !important;
 }
 
@@ -141,7 +141,8 @@ footer {
 /* ======================================
      3. NAVIGATION
      ====================================== */
-.navbar, .modal-content {
+.navbar,
+.modal-content {
   font-family: inherit;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15), inset 0 -1px 0 rgba(255, 255, 255, 0.15);
 }
@@ -205,7 +206,10 @@ footer {
 }
 
 /* Bouton Contact dans la navbar */
-.nav-contact-btn, .btn-modern, .btn-modern-outline, .btn {
+.nav-contact-btn,
+.btn-modern,
+.btn-modern-outline,
+.btn {
   transition: all 0.3s ease;
   border: none;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -483,15 +487,21 @@ footer {
 }
 
 .scroll-arrow .bi {
-  font-size: 1.8rem; /* Ajustement de la taille de l'icône pour un meilleur rendu */
+  font-size: 1.8rem;
+  /* Ajustement de la taille de l'icône pour un meilleur rendu */
   color: #0d6efd;
   background-color: white;
   border-radius: 50%;
-  width: 56px; /* Largeur fixe pour le bouton */
-  height: 56px; /* Hauteur fixe, égale à la largeur pour un cercle parfait */
-  display: inline-flex; /* Permet d'utiliser align-items et justify-content */
-  align-items: center; /* Centrage vertical de l'icône */
-  justify-content: center; /* Centrage horizontal de l'icône */
+  width: 56px;
+  /* Largeur fixe pour le bouton */
+  height: 56px;
+  /* Hauteur fixe, égale à la largeur pour un cercle parfait */
+  display: inline-flex;
+  /* Permet d'utiliser align-items et justify-content */
+  align-items: center;
+  /* Centrage vertical de l'icône */
+  justify-content: center;
+  /* Centrage horizontal de l'icône */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -593,7 +603,8 @@ footer {
 }
 
 .service-card-icon {
-  position: absolute;  color: var(--primary-700);
+  position: absolute;
+  color: var(--primary-700);
   top: var(--space-l);
   left: var(--space-l);
   font-size: 2.5rem;
@@ -621,7 +632,8 @@ footer {
   margin-bottom: var(--space-l);
 }
 
-.service-card-link, .btn-secondary {
+.service-card-link,
+.btn-secondary {
   display: inline-flex;
   align-items: center;
   color: var(--secondary-700);
@@ -795,7 +807,8 @@ footer {
 
 .form-floating textarea.form-control {
   height: 150px;
-  min-height: 150px;  padding-top: var(--space-l);
+  min-height: 150px;
+  padding-top: var(--space-l);
 }
 
 .form-floating>label {
@@ -836,7 +849,7 @@ footer {
   background-color: white;
   border-radius: var(--radius-m);
   padding: var(--space-xl);
- min-height: 400px;
+  min-height: 400px;
   box-shadow: var(--shadow-100);
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
@@ -857,7 +870,8 @@ footer {
   justify-content: center;
   align-items: center;
   width: 50px;
-  height: 50px; /* Égal à la largeur pour un cercle parfait */
+  height: 50px;
+  /* Égal à la largeur pour un cercle parfait */
   background-color: var(--primary-500);
   color: white;
   border-radius: 50%;
@@ -903,7 +917,8 @@ footer {
   justify-content: center;
   align-items: center;
   width: 40px;
-  height: 40px; /* Égal à la largeur pour un cercle parfait */
+  height: 40px;
+  /* Égal à la largeur pour un cercle parfait */
   background-color: var(--primary-700);
   color: white;
   border-radius: 50%;
@@ -935,7 +950,8 @@ footer h5 {
   font-weight: 700 !important;
   font-size: 1.2rem !important;
   position: relative;
-  padding-left: 15px; /* Espace pour l'indicateur */
+  padding-left: 15px;
+  /* Espace pour l'indicateur */
 }
 
 /* Ajoute un petit indicateur coloré à gauche */
@@ -951,12 +967,12 @@ footer h5::before {
   border-radius: 2px;
 }
 
-.footer-icon{
+.footer-icon {
   font-size: 2rem;
   padding-right: var(--space-m);
   color: rgba(255, 255, 255, 0.5);
   transition: color 0.3s ease;
-  
+
 }
 
 footer hr {
@@ -965,7 +981,7 @@ footer hr {
 
 /* Liens du footer */
 .footer-link {
- color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.7);
   font-weight: 500;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -1006,7 +1022,8 @@ footer hr {
 
 /* Styles améliorés pour la galerie masonry */
 .gallery-card {
-  overflow: hidden; /* Assure que les enfants ne dépassent pas les coins arrondis */
+  overflow: hidden;
+  /* Assure que les enfants ne dépassent pas les coins arrondis */
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -1253,12 +1270,14 @@ footer hr {
 }
 
 .modal-header .btn-close {
-  filter: invert(1) grayscale(100%) brightness(200%); /* Rend la croix blanche */
+  filter: invert(1) grayscale(100%) brightness(200%);
+  /* Rend la croix blanche */
 }
 
 .modal-title {
   font-weight: 700;
-  color: white !important; /* Surcharge la couleur h5 générale */
+  color: white !important;
+  /* Surcharge la couleur h5 générale */
 }
 
 .modal-body {
@@ -1276,7 +1295,8 @@ footer hr {
 }
 
 .modal-body ul {
-  list-style-type: disc; /* Puces standard pour la lisibilité */
+  list-style-type: disc;
+  /* Puces standard pour la lisibilité */
   padding-left: var(--space-l);
   margin-bottom: var(--space-l);
 }
@@ -1289,19 +1309,25 @@ footer hr {
      12. SECTION "À PROPOS" - AMÉLIORATIONS
      ====================================== */
 .feature-icon {
-  background-color: rgba(var(--primary-500-rgb), 0.1); /* Fond léger pour l'icône */
+  background-color: rgba(var(--primary-500-rgb), 0.1);
+  /* Fond léger pour l'icône */
   padding: var(--space-m);
-  border-radius: 50%; /* Cercle parfait */
-  display: inline-flex; /* Pour centrer l'icône à l'intérieur */
+  border-radius: 50%;
+  /* Cercle parfait */
+  display: inline-flex;
+  /* Pour centrer l'icône à l'intérieur */
   align-items: center;
   justify-content: center;
-  width: 60px; /* Taille fixe pour l'icône */
+  width: 60px;
+  /* Taille fixe pour l'icône */
   height: 60px;
 }
 
 .feature-icon i {
-  font-size: 1.8rem; /* Ajuster la taille de l'icône Bootstrap */
-  color: var(--primary-700); /* Couleur principale pour l'icône */
+  font-size: 1.8rem;
+  /* Ajuster la taille de l'icône Bootstrap */
+  color: var(--primary-700);
+  /* Couleur principale pour l'icône */
 }
 
 .team-image {

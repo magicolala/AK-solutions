@@ -246,7 +246,8 @@
             <p class="lead">
               Spécialisés en maintenance technique depuis plus de 20 ans, nous intervenons en plomberie, électricité,
               chauffage,
-              climatisation et dépannage technique sur Paris et toute l'Île-de-France. Notre engagement : vous apporter des solutions durables et un service client irréprochable.
+              climatisation et dépannage technique sur Paris et toute l'Île-de-France. Notre engagement : vous apporter
+              des solutions durables et un service client irréprochable.
             </p>
             <!-- Liste à puces avec emojis -->
             <ul>
@@ -277,8 +278,9 @@
                 </div>
                 <!-- Bouton pour afficher le code APE et les métiers (MODIFIÉ) -->
                 <div class="col-md-6 col-lg-3">
-                  <button type="button" class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center" data-bs-toggle="modal"
-                    data-bs-target="#modalCodeApe">
+                  <button type="button"
+                    class="btn btn-outline-danger w-100 d-flex align-items-center justify-content-center"
+                    data-bs-toggle="modal" data-bs-target="#modalCodeApe">
                     <i class="bi bi-info-circle me-2"></i> Code APE et métiers
                   </button>
                   <p class="small text-muted text-center mt-1">Informations légales</p>
@@ -355,35 +357,63 @@
         <i class="bi bi-chevron-down"></i>
       </div>
     </section>
-    <!-- Modale pour le code APE et les métiers -->
+    <!-- Modale améliorée pour les informations légales et activités -->
     <div class="modal fade" id="modalCodeApe" tabindex="-1" aria-labelledby="modalCodeApeLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalCodeApeLabel">Code APE et corps de métiers</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title" id="modalCodeApeLabel">Informations Légales & Activités - AK Solutions</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+              aria-label="Fermer"></button>
           </div>
           <div class="modal-body">
-            <p class="lead"><strong>Informations Professionnelles</strong></p>
-            <p><strong>Code APE :</strong> 4321A<br><small>(Travaux d'installation électrique dans tous locaux)</small></p>
-            <p><strong>Code APRM :</strong> 4322AZ<br><small>(Travaux d'installation d'équipements thermiques et de climatisation)</small>
-            </p>
-            <p><strong>Option :</strong> QPA - Personne qualifiée</p>
-            <h6 class="mt-4">Corps de Métiers Validés</h6>
-            <ul>
-              <li>Plaquiste</li>
-              <li>Peintre</li>
-              <li>Solier</li>
-              <li>Serrurier</li>
-              <li>Menuisier</li>
-              <li>Plombier</li>
-              <li>Électricien</li>
-              <li>Carreleur</li>
-            </ul>
+            <section class="mb-4">
+              <h6 class="fw-bold">Informations Générales</h6>
+              <ul class="list-group">
+                <li class="list-group-item"><strong>Forme juridique :</strong> Entrepreneur individuel</li>
+                <li class="list-group-item"><strong>Régime :</strong> Micro-entreprise</li>
+                <li class="list-group-item"><strong>Présence de salarié :</strong> Non</li>
+              </ul>
+            </section>
+
+            <section class="mb-4">
+              <h6 class="fw-bold">Informations sur l'Entreprise</h6>
+              <ul class="list-group">
+                <li class="list-group-item"><strong>Dénomination commerciale :</strong> AK Solutions</li>
+                <li class="list-group-item"><strong>SIRET :</strong> 94177035600017</li>
+                <li class="list-group-item"><strong>Code APE :</strong> 4321A <small>(Travaux d'installation
+                    électrique)</small></li>
+                <li class="list-group-item"><strong>Adresse :</strong> 85 Bis Rue du Maréchal Leclerc, 94410
+                  Saint-Maurice, FRANCE</li>
+              </ul>
+            </section>
+
+            <section>
+              <h6 class="fw-bold">Activités Déclarées</h6>
+              <ul class="list-group">
+                <li class="list-group-item"><strong>Plomberie</strong> <small>(Artisanale réglementée)</small></li>
+                <li class="list-group-item"><strong>Électricité</strong> <small>(Artisanale réglementée)</small></li>
+                <li class="list-group-item"><strong>Frigoriste</strong> <small>(Artisanale non réglementée)</small></li>
+                <li class="list-group-item"><strong>Peintre en bâtiment</strong> <small>(Artisanale réglementée -
+                    Personne qualifiée)</small></li>
+                <li class="list-group-item"><strong>Moquettiste solier</strong> <small>(Artisanale réglementée)</small>
+                </li>
+                <li class="list-group-item"><strong>Installation dépannage serrurerie</strong> <small>(Artisanale
+                    réglementée)</small></li>
+                <li class="list-group-item"><strong>Travaux de menuiserie</strong> <small>(Artisanale réglementée -
+                    Personne qualifiée)</small></li>
+                <li class="list-group-item"><strong>Carreleur</strong> <small>(Artisanale réglementée)</small></li>
+                <li class="list-group-item"><strong>Achat & vente de matériel lié à l'activité</strong>
+                  <small>(Commerciale)</small></li>
+              </ul>
+            </section>
+
+            <p class="text-muted mt-4 small">Ces informations sont issues de la formalité déposée par AK Solutions.</p>
           </div>
         </div>
       </div>
     </div>
+
 
     <!-- ===== SECTION SERVICES ===== -->
     <!-- bg-light ajoute un fond gris clair pour différencier les sections -->
@@ -429,9 +459,10 @@
             </div>
             <div class="service-card-content">
               <h3 class="service-card-title">Travaux de Second Œuvre</h3>
-              <p class="service-card-text">Nous réalisons vos projets de rénovation et d'aménagement intérieur : travaux de 
-                Plaquiste (cloisons, doublages, faux-plafonds), Peinture et finitions, pose de revêtements de 
-                Sols (Solier), Serrurerie, Menuiserie (intérieure et extérieure), et Carrelage. Pour une 
+              <p class="service-card-text">Nous réalisons vos projets de rénovation et d'aménagement intérieur : travaux
+                de
+                Plaquiste (cloisons, doublages, faux-plafonds), Peinture et finitions, pose de revêtements de
+                Sols (Solier), Serrurerie, Menuiserie (intérieure et extérieure), et Carrelage. Pour une
                 transformation complète de vos espaces.</p>
               <a href="#contact" class="service-card-link">En savoir plus <i class="bi bi-arrow-right"></i></a>
             </div>
@@ -444,8 +475,9 @@
             </div>
             <div class="service-card-content">
               <h3 class="service-card-title">Devis &amp; Pointage</h3>
-              <p class="service-card-text">Estimation précise et transparente pour tous vos projets de maintenance et 
-                de rénovation en Île-de-France. Devis détaillés et suivi de l’avancement pour garantir la qualité de chaque prestation.
+              <p class="service-card-text">Estimation précise et transparente pour tous vos projets de maintenance et
+                de rénovation en Île-de-France. Devis détaillés et suivi de l’avancement pour garantir la qualité de
+                chaque prestation.
               </p>
               <a href="#contact" class="service-card-link">En savoir plus <i class="bi bi-arrow-right"></i></a>
             </div>
@@ -970,7 +1002,8 @@
             <li><a href="#services" class="footer-link"><i class="bi bi-chevron-right"></i> Plomberie générale</a></li>
             <li><a href="#services" class="footer-link"><i class="bi bi-chevron-right"></i> Électricité HT & BT</a>
             </li>
-            <li><a href="#services" class="footer-link"><i class="bi bi-chevron-right"></i> Travaux de Second Œuvre</a></li>
+            <li><a href="#services" class="footer-link"><i class="bi bi-chevron-right"></i> Travaux de Second Œuvre</a>
+            </li>
             <li><a href="#services" class="footer-link"><i class="bi bi-chevron-right"></i> Devis & Pointage</a></li>
           </ul>
         </div>
