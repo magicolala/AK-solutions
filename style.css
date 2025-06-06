@@ -931,6 +931,24 @@ footer .row {
 
 footer h5 {
   margin-bottom: 1rem;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 1.2rem !important;
+  position: relative;
+  padding-left: 15px; /* Espace pour l'indicateur */
+}
+
+/* Ajoute un petit indicateur coloré à gauche */
+footer h5::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 20px;
+  background-color: var(--primary-500);
+  border-radius: 2px;
 }
 
 .footer-icon{
