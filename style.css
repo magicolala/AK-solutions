@@ -857,11 +857,11 @@ footer {
   justify-content: center;
   align-items: center;
   width: 50px;
-  height: 45px;
+  height: 50px; /* Égal à la largeur pour un cercle parfait */
   background-color: var(--primary-500);
   color: white;
   border-radius: 50%;
-  padding: var(--space-m);
+  /* Le padding est géré par le centrage flex, ou peut être ajusté si besoin */
   margin-right: var(--space-m);
   flex-shrink: 0;
 }
@@ -903,7 +903,7 @@ footer {
   justify-content: center;
   align-items: center;
   width: 40px;
-  height: 45px;
+  height: 40px; /* Égal à la largeur pour un cercle parfait */
   background-color: var(--primary-700);
   color: white;
   border-radius: 50%;
