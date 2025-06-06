@@ -608,8 +608,16 @@ footer {
   top: var(--space-l);
   left: var(--space-l);
   font-size: 2.5rem;
-  color: var(--primary-700);
+  /* Taille de la police pour l'icône <i> */
   z-index: 1;
+  /* Assurer que le conteneur de l'icône a une taille définie et centre l'icône */
+  width: 2.5rem;
+  /* Largeur du conteneur égale à la taille de l'icône */
+  height: 2.5rem;
+  /* Hauteur du conteneur égale à la taille de l'icône */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .service-card-content {
@@ -672,6 +680,24 @@ footer {
 @media (max-width: 576px) {
   .services-grid {
     grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    /* Ajuster l'alignement du bloc de contenu sur mobile */
+    justify-content: flex-start;
+    /* Aligner le bloc de contenu à gauche */
+    align-items: flex-start;
+    /* Aligner le bloc de contenu en haut */
+    text-align: left;
+    /* Aligner le texte à l'intérieur du contenu à gauche */
+  }
+
+  .service-card-content {
+    /* Ajouter un padding en haut pour que le texte commence sous l'icône */
+    /* L'icône a une hauteur de 2.5rem. var(--space-m) est un espacement. */
+    padding-top: calc(2.5rem + var(--space-m));
+    width: 100%;
+    /* S'assurer que le contenu prend toute la largeur disponible */
   }
 }
 
