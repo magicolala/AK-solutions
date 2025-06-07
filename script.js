@@ -20,7 +20,12 @@
 // ======================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  
+  console.log(`
+🚀 AK-Solutions Script v1.0.1
+📅 Build: ${new Date().toISOString()}
+🌐 URL: ${window.location.href}
+`);
+
   // Utiliser requestIdleCallback de façon plus intelligente
   if ("requestIdleCallback" in window) {
     // Tâches critiques immédiatement
@@ -71,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
     link.addEventListener("click", () => {
-      if (typeof gtag !== 'undefined') {
+      if (typeof gtag !== "undefined") {
         gtag("event", "phone_call", {
           event_category: "contact",
           event_label: "Header Phone Click",
@@ -83,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Suivi des clics sur l'email
   document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
     link.addEventListener("click", () => {
-      if (typeof gtag !== 'undefined') {
+      if (typeof gtag !== "undefined") {
         gtag("event", "email_click", {
           event_category: "contact",
           event_label: "Email Click",
@@ -96,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const contactForm = document.getElementById("contactForm");
   if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
-      if (typeof gtag !== 'undefined') {
+      if (typeof gtag !== "undefined") {
         gtag("event", "form_submit", {
           event_category: "lead_generation",
           event_label: "Contact Form",
@@ -108,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Suivi du temps passé sur la page
   let startTime = Date.now();
   window.addEventListener("beforeunload", () => {
-    if (typeof gtag !== 'undefined') {
+    if (typeof gtag !== "undefined") {
       let timeSpent = Math.round((Date.now() - startTime) / 1000);
       gtag("event", "time_on_page", {
         event_category: "engagement",
@@ -549,7 +554,7 @@ function initActiveNavLink() {
 // --------------------------------------
 function initScrollArrows() {
   const arrows = document.querySelectorAll(".scroll-arrow");
-  
+
   if (arrows.length === 0) {
     console.log("Aucune flèche de défilement trouvée");
     return;
@@ -559,30 +564,33 @@ function initScrollArrows() {
     arrow.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
-      
+
       const targetSelector = arrow.dataset.target;
-      
+
       if (!targetSelector) {
         console.warn(`Flèche ${index + 1}: Aucun data-target défini`);
         return;
       }
 
       const target = document.querySelector(targetSelector);
-      
+
       if (target) {
         // Calculer la position avec offset pour la navbar
-        const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 70;
+        const navbarHeight =
+          document.querySelector(".navbar")?.offsetHeight || 70;
         const offsetTop = target.offsetTop - navbarHeight;
-        
+
         // Animation de scroll fluide
-        window.scrollTo({ 
-          top: Math.max(0, offsetTop), 
-          behavior: "smooth" 
+        window.scrollTo({
+          top: Math.max(0, offsetTop),
+          behavior: "smooth",
         });
-        
+
         console.log(`Scroll vers: ${targetSelector}`);
       } else {
-        console.warn(`Flèche ${index + 1}: Cible "${targetSelector}" non trouvée`);
+        console.warn(
+          `Flèche ${index + 1}: Cible "${targetSelector}" non trouvée`
+        );
       }
     });
 
@@ -590,11 +598,11 @@ function initScrollArrows() {
     arrow.addEventListener("mousedown", () => {
       arrow.style.transform = "scale(0.95)";
     });
-    
+
     arrow.addEventListener("mouseup", () => {
       arrow.style.transform = "";
     });
-    
+
     arrow.addEventListener("mouseleave", () => {
       arrow.style.transform = "";
     });
@@ -876,12 +884,12 @@ function debugScrollArrows() {
   console.log("=== DEBUG SCROLL ARROWS ===");
   const arrows = document.querySelectorAll(".scroll-arrow");
   console.log(`Nombre de flèches trouvées: ${arrows.length}`);
-  
+
   arrows.forEach((arrow, index) => {
     console.log(`Flèche ${index + 1}:`, {
       element: arrow,
       target: arrow.dataset.target,
-      targetExists: !!document.querySelector(arrow.dataset.target)
+      targetExists: !!document.querySelector(arrow.dataset.target),
     });
   });
 }
