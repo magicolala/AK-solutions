@@ -257,7 +257,7 @@
             </ul>
             <!-- Section des habilitations et infos légales -->
             <div class="mt-4" data-aos="fade-up">
-              <h5 class="fw-bold mb-3">Nos habilitations et informations légales</h5>
+              <h3 class="fw-bold mb-3">Nos habilitations et informations légales</h5>
               <div class="row gy-3">
                 <!-- Passeport sécurité -->
                 <div class="col-md-6 col-lg-3">
@@ -859,11 +859,18 @@
 
           <!-- Contrôles du carrousel -->
           <div class="carousel-controls">
-            <button class="carousel-btn prev-btn" id="prevBtn">
+            <button
+              class="carousel-btn prev-btn"
+              id="prevBtn"
+              aria-label="Slide précédente"
+              disabled>
               <i class="bi bi-chevron-left"></i>
             </button>
             <div class="carousel-dots" id="carouselDots"></div>
-            <button class="carousel-btn next-btn" id="nextBtn">
+            <button
+              class="carousel-btn next-btn"
+              id="nextBtn"
+              aria-label="Slide suivante">
               <i class="bi bi-chevron-right"></i>
             </button>
           </div>
@@ -982,6 +989,7 @@
                 <!-- ratio ratio-16x9 crée un conteneur responsive pour l'iframe -->
                 <div class="ratio ratio-16x9 mt-3">
                   <iframe
+                      title="Carte de la zone d’intervention d’AK Solutions en Île-de-France"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d674391.7885529336!2d1.843271365399521!3d48.67980791738999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e5e1c403a68c17%3A0x10b82c3688b2570!2s%C3%8Ele-de-France!5e0!3m2!1sfr!2sfr!4v1747050498085!5m2!1sfr!2sfr"
                     width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -1028,7 +1036,8 @@
                 <!-- Menu déroulant pour le service -->
                 <div class="mb-3">
                   <div class="form-floating">
-                    <select class="form-select" id="service" name="service">
+                      <label for="service" class="form-label">Service requis</label>
+                      <select class="form-select" id="service" name="service" required>
                       <option selected disabled value="">Sélectionnez un service</option>
                       <option value="plomberie">Plomberie & Dépannage</option>
                       <option value="brasure">Soudo-brasure & remplacement de tubes</option>
@@ -1055,8 +1064,9 @@
                 <!-- Ajoutez ces champs dans votre formulaire existant -->
                 <div class="mb-3">
                   <div class="form-floating">
-                    <select class="form-select" id="source" name="source">
-                      <option selected disabled value="">Comment nous avez-vous trouvé ?</option>
+  <label for="source" class="form-label">Comment nous avez-vous trouvé ?</label>
+  <select class="form-select" id="source" name="source" required>
+    <option value="" disabled selected>Choisissez une option</option>
                       <option value="google">Recherche Google</option>
                       <option value="facebook">Facebook</option>
                       <option value="instagram">Instagram</option>
