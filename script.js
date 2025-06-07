@@ -1,6 +1,6 @@
 /**
  * Initializes the main JavaScript functionality for AK-Solutions.
- * 
+ *
  * This script sets up various interactive features when the DOM is fully loaded:
  * - Animate On Scroll (AOS) initialization
  * - Masonry gallery interactions
@@ -12,7 +12,7 @@
  * - Smooth scrolling
  * - Active navigation link highlighting
  * - Scroll arrow interactions
- * 
+ *
  * @fires DOMContentLoaded
  */
 // ======================================
@@ -20,50 +20,78 @@
 // ======================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  initAOS();
-  initMasonryGallery();
-  initNavbarScroll();
-  initBackToTop();
-  initCounters();
-  initCardHover();
-  initContactForm();
-  initSmoothScroll();
-  initActiveNavLink();
-  initScrollArrows();
-  initTestimonialsCarousel();
-    // Ajouter les nouvelles fonctions pour cacher Elfsight
-  injectHidingCSS();
-  hideElfsightBranding();
-    if (typeof Granim !== 'undefined' && document.getElementById('granim-canvas')) {
-        var granimInstance = new Granim({
-            element: '#granim-canvas',
-            direction: 'diagonal',
-            isPausedWhenNotInView: true,
-            opacity: [0.9, 1],
-            states: {
-                "default-state": {
-                    gradients: [
-                        ['#006187', '#82E2FF'],
-                        ['#82E2FF', '#7A8EFF'],
-                        ['#7A8EFF', '#006187'],
-                        ['#006187', '#7A8EFF'],
-                        ['#7A8EFF', '#82E2FF'],
-                        ['#82E2FF', '#006187']
-                    ],
-                    transitionSpeed: 3000,
-                    loop: true
-                }
-            }
-        });
-    }
+  // Utiliser requestIdleCallback pour les tâches non critiques
+  if ("requestIdleCallback" in window) {
+    requestIdleCallback(() => {
+      initAOS();
+      initMasonryGallery();
+      initTestimonialsCarousel();
+    });
+
+    // Tâches critiques immédiatement
+    initNavbarScroll();
+    initSmoothScroll();
+    initContactForm();
+  } else {
+    // Fallback pour les navigateurs qui ne supportent pas requestIdleCallback
+    setTimeout(() => {
+      initAOS();
+      initMasonryGallery();
+      initNavbarScroll();
+      initBackToTop();
+      initCounters();
+      initCardHover();
+      initContactForm();
+      initSmoothScroll();
+      initActiveNavLink();
+      initScrollArrows();
+      initTestimonialsCarousel();
+    }, 100);
+  }
+
+  // Charger les widgets tiers de manière différée
+  loadElfsightWidget();
+
+  // Initialiser Granim après le chargement complet
+  window.addEventListener("load", initGranim);
 });
+
+function initGranim() {
+  if (
+    typeof Granim !== "undefined" &&
+    document.getElementById("granim-canvas")
+  ) {
+    requestAnimationFrame(() => {
+      new Granim({
+        element: "#granim-canvas",
+        direction: "diagonal",
+        isPausedWhenNotInView: true,
+        opacity: [0.9, 1],
+        states: {
+          "default-state": {
+            gradients: [
+              ["#006187", "#82E2FF"],
+              ["#82E2FF", "#7A8EFF"],
+              ["#7A8EFF", "#006187"],
+              ["#006187", "#7A8EFF"],
+              ["#7A8EFF", "#82E2FF"],
+              ["#82E2FF", "#006187"],
+            ],
+            transitionSpeed: 3000,
+            loop: true,
+          },
+        },
+      });
+    });
+  }
+}
 
 // --------------------------------------
 // 1. AOS (Animate On Scroll) init
 // --------------------------------------
 function initAOS() {
   // Exclude footer elements from AOS animation
-  document.querySelectorAll("footer *[data-aos]").forEach(el => {
+  document.querySelectorAll("footer *[data-aos]").forEach((el) => {
     el.removeAttribute("data-aos");
   });
 
@@ -72,7 +100,7 @@ function initAOS() {
     easing: "ease-in-out",
     once: true,
     mirror: false,
-    disable: "footer"
+    disable: "footer",
   });
 }
 
@@ -88,15 +116,15 @@ function initMasonryGallery() {
   let loadedCount = 0;
 
   // Attendre que toutes les images soient chargées
-  images.forEach(img => {
+  images.forEach((img) => {
     img.onload = () => {
       loadedCount++;
       if (loadedCount === images.length) {
         gallery.classList.add("images-loaded");
-        
+
         // Animation d'entrée séquentielle
         setTimeout(() => {
-          gallery.querySelectorAll('.masonry-item').forEach((item, index) => {
+          gallery.querySelectorAll(".masonry-item").forEach((item, index) => {
             setTimeout(() => {
               item.style.opacity = "1";
               item.style.transform = "translateY(0)";
@@ -109,64 +137,64 @@ function initMasonryGallery() {
   });
 
   // Interaction avancée au survol
-  gallery.querySelectorAll(".gallery-card").forEach(card => {
-    card.addEventListener("mouseenter", function() {
+  gallery.querySelectorAll(".gallery-card").forEach((card) => {
+    card.addEventListener("mouseenter", function () {
       // Ajouter une classe active pour des effets supplémentaires
       this.classList.add("active");
-      
+
       // Effet de profondeur sur les autres cartes
-      gallery.querySelectorAll(".gallery-card").forEach(otherCard => {
+      gallery.querySelectorAll(".gallery-card").forEach((otherCard) => {
         if (otherCard !== card) {
           otherCard.style.opacity = "0.7";
           otherCard.style.transform = "scale(0.98)";
         }
       });
     });
-    
-    card.addEventListener("mouseleave", function() {
+
+    card.addEventListener("mouseleave", function () {
       // Retirer la classe active
       this.classList.remove("active");
-      
+
       // Restaurer l'apparence normale des autres cartes
-      gallery.querySelectorAll(".gallery-card").forEach(otherCard => {
+      gallery.querySelectorAll(".gallery-card").forEach((otherCard) => {
         otherCard.style.opacity = "";
         otherCard.style.transform = "";
       });
     });
-    
+
     // Effet de parallaxe sur l'image au mouvement de la souris
-    card.addEventListener("mousemove", function(e) {
+    card.addEventListener("mousemove", function (e) {
       const cardRect = this.getBoundingClientRect();
       const cardCenterX = cardRect.left + cardRect.width / 2;
       const cardCenterY = cardRect.top + cardRect.height / 2;
-      
+
       // Calculer la distance entre le curseur et le centre de la carte
       const moveX = (e.clientX - cardCenterX) / 20;
       const moveY = (e.clientY - cardCenterY) / 20;
-      
+
       // Appliquer un léger effet de parallaxe à l'image
       const img = this.querySelector("img");
       img.style.transform = `scale(1.08) translate(${moveX}px, ${moveY}px)`;
     });
-    
+
     // Réinitialiser la position de l'image quand la souris quitte la carte
-    card.addEventListener("mouseleave", function() {
+    card.addEventListener("mouseleave", function () {
       const img = this.querySelector("img");
       img.style.transform = "";
     });
   });
-  
+
   // Ajouter un effet de clic pour simuler une ouverture de modal (optionnel)
-  gallery.querySelectorAll(".card-img-overlay").forEach(overlay => {
-    overlay.addEventListener("click", function() {
+  gallery.querySelectorAll(".card-img-overlay").forEach((overlay) => {
+    overlay.addEventListener("click", function () {
       const img = this.previousElementSibling;
       const src = img.getAttribute("src");
       const alt = img.getAttribute("alt");
-      
+
       // Vous pourriez implémenter ici une lightbox ou un modal
       // Pour l'instant, juste un effet visuel
       this.closest(".gallery-card").classList.add("pulse");
-      
+
       setTimeout(() => {
         this.closest(".gallery-card").classList.remove("pulse");
       }, 500);
@@ -197,7 +225,7 @@ function initBackToTop() {
     btn.style.display = window.scrollY > 300 ? "block" : "none";
   });
 
-  btn.addEventListener("click", e => {
+  btn.addEventListener("click", (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
@@ -210,7 +238,7 @@ function initCounters() {
   const counters = document.querySelectorAll(".counter");
   const speed = 200;
 
-  counters.forEach(counter => {
+  counters.forEach((counter) => {
     const target = parseInt(counter.innerText, 10);
     let count = 0;
 
@@ -229,7 +257,7 @@ function initCounters() {
 // 6. Card hover animation
 // --------------------------------------
 function initCardHover() {
-  document.querySelectorAll(".card").forEach(card => {
+  document.querySelectorAll(".card").forEach((card) => {
     card.addEventListener("mouseenter", () => {
       card.style.transform = "translateY(-10px)";
       card.style.boxShadow = "0 10px 20px rgba(0,0,0,0.1)";
@@ -271,7 +299,7 @@ function initContactForm() {
     form.appendChild(result);
   }
 
-  form.addEventListener("submit", async e => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const btn = form.querySelector('button[type="submit"]');
     const original = btn.innerHTML;
@@ -283,8 +311,11 @@ function initContactForm() {
       const data = JSON.stringify(Object.fromEntries(new FormData(form)));
       const resp = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: data
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: data,
       });
       const json = await resp.json();
 
@@ -317,8 +348,8 @@ function initContactForm() {
 // 8. Smooth scroll for anchor links
 // --------------------------------------
 function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", e => {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (e) => {
       const target = anchor.getAttribute("href");
       if (target === "#") {
         e.preventDefault();
@@ -339,11 +370,11 @@ function initSmoothScroll() {
 // --------------------------------------
 function initActiveNavLink() {
   const sections = document.querySelectorAll("section[id]");
-  const links    = document.querySelectorAll(".nav-link");
+  const links = document.querySelectorAll(".nav-link");
   const collapse = document.querySelector(".navbar-collapse");
 
   // Close mobile menu on link click
-  links.forEach(link => {
+  links.forEach((link) => {
     link.addEventListener("click", () => {
       if (collapse.classList.contains("show")) {
         new bootstrap.Collapse(collapse).hide();
@@ -356,15 +387,18 @@ function initActiveNavLink() {
     let current = "";
     const offset = 100;
 
-    sections.forEach(sec => {
+    sections.forEach((sec) => {
       const top = sec.offsetTop - offset;
       if (window.scrollY >= top && window.scrollY < top + sec.offsetHeight) {
         current = sec.id;
       }
     });
 
-    links.forEach(link => {
-      link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
+    links.forEach((link) => {
+      link.classList.toggle(
+        "active",
+        link.getAttribute("href") === `#${current}`
+      );
     });
   });
 }
@@ -373,7 +407,7 @@ function initActiveNavLink() {
 // 10. Scroll arrows behavior
 // --------------------------------------
 function initScrollArrows() {
-  document.querySelectorAll(".scroll-arrow").forEach(arrow => {
+  document.querySelectorAll(".scroll-arrow").forEach((arrow) => {
     arrow.addEventListener("click", () => {
       const target = document.querySelector(arrow.dataset.target);
       if (target) {
@@ -384,40 +418,40 @@ function initScrollArrows() {
 }
 
 // Suivi des clics sur le numéro de téléphone
-document.querySelectorAll('a[href^="tel:"]').forEach(link => {
-  link.addEventListener('click', () => {
-    gtag('event', 'phone_call', {
-      event_category: 'contact',
-      event_label: 'Header Phone Click'
+document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
+  link.addEventListener("click", () => {
+    gtag("event", "phone_call", {
+      event_category: "contact",
+      event_label: "Header Phone Click",
     });
   });
 });
 
 // Suivi des clics sur l'email
-document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
-  link.addEventListener('click', () => {
-    gtag('event', 'email_click', {
-      event_category: 'contact',
-      event_label: 'Email Click'
+document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+  link.addEventListener("click", () => {
+    gtag("event", "email_click", {
+      event_category: "contact",
+      event_label: "Email Click",
     });
   });
 });
 
 // Suivi de la soumission du formulaire
-document.getElementById('contactForm').addEventListener('submit', (e) => {
-  gtag('event', 'form_submit', {
-    event_category: 'lead_generation',
-    event_label: 'Contact Form'
+document.getElementById("contactForm").addEventListener("submit", (e) => {
+  gtag("event", "form_submit", {
+    event_category: "lead_generation",
+    event_label: "Contact Form",
   });
 });
 
 // Suivi du temps passé sur la page
 let startTime = Date.now();
-window.addEventListener('beforeunload', () => {
+window.addEventListener("beforeunload", () => {
   let timeSpent = Math.round((Date.now() - startTime) / 1000);
-  gtag('event', 'time_on_page', {
-    event_category: 'engagement',
-    value: timeSpent
+  gtag("event", "time_on_page", {
+    event_category: "engagement",
+    value: timeSpent,
   });
 });
 
@@ -428,43 +462,53 @@ function hideElfsightBranding() {
   // Fonction pour cacher les éléments Elfsight
   const hideElements = () => {
     // Cacher le lien "Free Whatsapp Chat button"
-    const elfsightLinks = document.querySelectorAll('a[href*="elfsight.com/whatsapp-chat-widget"][href*="utm_campaign=free-widget"]');
-    elfsightLinks.forEach(link => {
-      link.style.setProperty('display', 'none', 'important');
-      link.style.setProperty('visibility', 'hidden', 'important');
-      link.style.setProperty('opacity', '0', 'important');
-      link.style.setProperty('height', '0', 'important');
-      link.style.setProperty('width', '0', 'important');
-      link.style.setProperty('overflow', 'hidden', 'important');
+    const elfsightLinks = document.querySelectorAll(
+      'a[href*="elfsight.com/whatsapp-chat-widget"][href*="utm_campaign=free-widget"]'
+    );
+    elfsightLinks.forEach((link) => {
+      link.style.setProperty("display", "none", "important");
+      link.style.setProperty("visibility", "hidden", "important");
+      link.style.setProperty("opacity", "0", "important");
+      link.style.setProperty("height", "0", "important");
+      link.style.setProperty("width", "0", "important");
+      link.style.setProperty("overflow", "hidden", "important");
     });
 
     // Cacher tous les liens Elfsight génériques
-    const allElfsightLinks = document.querySelectorAll('a[href*="elfsight.com"]');
-    allElfsightLinks.forEach(link => {
-      link.style.setProperty('display', 'none', 'important');
-      link.style.setProperty('visibility', 'hidden', 'important');
+    const allElfsightLinks = document.querySelectorAll(
+      'a[href*="elfsight.com"]'
+    );
+    allElfsightLinks.forEach((link) => {
+      link.style.setProperty("display", "none", "important");
+      link.style.setProperty("visibility", "hidden", "important");
     });
 
     // Cacher le texte par contenu
-    const allLinks = document.querySelectorAll('a');
-    allLinks.forEach(link => {
-      if (link.textContent.includes('Free Whatsapp Chat button') || 
-          link.textContent.includes('Elfsight') ||
-          link.href.includes('elfsight.com')) {
-        link.style.setProperty('display', 'none', 'important');
-        link.style.setProperty('visibility', 'hidden', 'important');
+    const allLinks = document.querySelectorAll("a");
+    allLinks.forEach((link) => {
+      if (
+        link.textContent.includes("Free Whatsapp Chat button") ||
+        link.textContent.includes("Elfsight") ||
+        link.href.includes("elfsight.com")
+      ) {
+        link.style.setProperty("display", "none", "important");
+        link.style.setProperty("visibility", "hidden", "important");
       }
     });
 
     // Cacher les éléments par classe ou attributs Elfsight
-    const elfsightElements = document.querySelectorAll('[class*="elfsight"], [id*="elfsight"], [data-elfsight]');
-    elfsightElements.forEach(element => {
+    const elfsightElements = document.querySelectorAll(
+      '[class*="elfsight"], [id*="elfsight"], [data-elfsight]'
+    );
+    elfsightElements.forEach((element) => {
       // Ne cacher que les éléments de branding, pas le widget entier
-      if (element.tagName === 'A' || 
-          element.textContent.includes('Free') || 
-          element.textContent.includes('Elfsight')) {
-        element.style.setProperty('display', 'none', 'important');
-        element.style.setProperty('visibility', 'hidden', 'important');
+      if (
+        element.tagName === "A" ||
+        element.textContent.includes("Free") ||
+        element.textContent.includes("Elfsight")
+      ) {
+        element.style.setProperty("display", "none", "important");
+        element.style.setProperty("visibility", "hidden", "important");
       }
     });
   };
@@ -476,11 +520,11 @@ function hideElfsightBranding() {
   const observer = new MutationObserver((mutations) => {
     let shouldCheck = false;
     mutations.forEach((mutation) => {
-      if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+      if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
         shouldCheck = true;
       }
     });
-    
+
     if (shouldCheck) {
       setTimeout(hideElements, 100); // Petit délai pour laisser le widget se charger
     }
@@ -489,7 +533,7 @@ function hideElfsightBranding() {
   // Observer tout le document
   observer.observe(document.body, {
     childList: true,
-    subtree: true
+    subtree: true,
   });
 
   // Vérifier périodiquement (au cas où le MutationObserver ne capturerait pas tout)
@@ -498,7 +542,7 @@ function hideElfsightBranding() {
 
 // Fonction pour injecter du CSS directement dans le head
 function injectHidingCSS() {
-  const style = document.createElement('style');
+  const style = document.createElement("style");
   style.textContent = `
     /* Cacher le branding Elfsight avec une priorité maximale */
     a[href*="elfsight.com"] {
@@ -533,14 +577,14 @@ function injectHidingCSS() {
 // 12. Testimonials Carousel
 // --------------------------------------
 function initTestimonialsCarousel() {
-  const carousel = document.getElementById('testimonialsCarousel');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const dotsContainer = document.getElementById('carouselDots');
+  const carousel = document.getElementById("testimonialsCarousel");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const dotsContainer = document.getElementById("carouselDots");
 
   if (!carousel || !prevBtn || !nextBtn || !dotsContainer) return;
 
-  const slides = carousel.querySelectorAll('.testimonial-slide');
+  const slides = carousel.querySelectorAll(".testimonial-slide");
   const totalSlides = slides.length;
   let currentIndex = 0;
   let slidesPerView = 1; // Default for mobile
@@ -561,17 +605,17 @@ function initTestimonialsCarousel() {
 
   // Create dots
   const updateDots = () => {
-    dotsContainer.innerHTML = ''; // Clear existing dots
+    dotsContainer.innerHTML = ""; // Clear existing dots
     // Calculate total pages (number of groups of slides)
     const totalDots = Math.ceil(totalSlides / slidesPerView);
     for (let i = 0; i < totalDots; i++) {
-      const dot = document.createElement('span');
-      dot.classList.add('carousel-dot');
+      const dot = document.createElement("span");
+      dot.classList.add("carousel-dot");
       // Determine which dot should be active based on the current index and slides per view
       if (i === Math.floor(currentIndex / slidesPerView)) {
-        dot.classList.add('active');
+        dot.classList.add("active");
       }
-      dot.addEventListener('click', () => {
+      dot.addEventListener("click", () => {
         // Jump to the start of the corresponding page
         currentIndex = i * slidesPerView;
         updateCarousel();
@@ -602,29 +646,32 @@ function initTestimonialsCarousel() {
     carousel.style.transform = `translateX(${offset}%)`;
 
     // Update active dot based on the current page
-    dotsContainer.querySelectorAll('.carousel-dot').forEach((dot, index) => {
-      dot.classList.toggle('active', index === Math.floor(currentIndex / slidesPerView));
+    dotsContainer.querySelectorAll(".carousel-dot").forEach((dot, index) => {
+      dot.classList.toggle(
+        "active",
+        index === Math.floor(currentIndex / slidesPerView)
+      );
     });
 
     // Update button states
     prevBtn.disabled = currentIndex === 0;
     nextBtn.disabled = currentIndex >= maxIndex;
 
-     // If total slides are less than or equal to slides per view, disable both buttons
-     if (totalSlides <= slidesPerView) {
-         prevBtn.disabled = true;
-         nextBtn.disabled = true;
-     }
+    // If total slides are less than or equal to slides per view, disable both buttons
+    if (totalSlides <= slidesPerView) {
+      prevBtn.disabled = true;
+      nextBtn.disabled = true;
+    }
   };
 
   // Navigation buttons
-  prevBtn.addEventListener('click', () => {
+  prevBtn.addEventListener("click", () => {
     // Move back by the number of slides per view
     currentIndex -= slidesPerView;
     updateCarousel();
   });
 
-  nextBtn.addEventListener('click', () => {
+  nextBtn.addEventListener("click", () => {
     // Move forward by the number of slides per view
     currentIndex += slidesPerView;
     updateCarousel();
@@ -632,7 +679,7 @@ function initTestimonialsCarousel() {
 
   // Initial setup and update on resize
   updateSlidesPerView(); // Set initial slidesPerView and update carousel/dots
-  window.addEventListener('resize', updateSlidesPerView);
+  window.addEventListener("resize", updateSlidesPerView);
 
   // Ensure initial state is correct (redundant after updateSlidesPerView but safe)
   // updateCarousel();

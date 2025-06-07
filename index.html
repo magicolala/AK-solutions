@@ -3,24 +3,23 @@
 
 <head>
   <!-- Google Tag Manager -->
-  <script>(function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-NZFXBGPQ');</script>
-  <!-- End Google Tag Manager -->
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPSK308HP7"></script>
   <script>
+    // Version optimisée de gtag
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
+    gtag('config', 'G-MPSK308HP7', {
+      // Réduire les mesures automatiques pour éviter les layout shifts
+      send_page_view: false,
+      custom_map: {}
+    });
 
-    gtag('config', 'G-MPSK308HP7');
+    // Envoyer la page view après le chargement complet
+    window.addEventListener('load', function () {
+      gtag('event', 'page_view');
+    });
   </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPSK308HP7"></script>
   <!-- Définition du type de document et de la langue -->
   <meta charset="UTF-8">
   <!-- Viewport pour le responsive design - permet au site de s'adapter à différentes tailles d'écran -->
