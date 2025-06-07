@@ -18,10 +18,32 @@
 // ======================================
 // Main JavaScript for AK-Solutions
 // ======================================
+// Fonction pour récupérer et afficher la version du script
+(function () {
+  // Récupérer tous les scripts
+  const scripts = document.querySelectorAll('script[src*="script.js"]');
+  let version = "unknown";
 
+  // Chercher le script avec la version
+  scripts.forEach((script) => {
+    const src = script.getAttribute("src");
+    if (src && src.includes("script.js")) {
+      const versionMatch = src.match(/v=([^&]*)/);
+      if (versionMatch) {
+        version = versionMatch[1];
+      }
+    }
+  });
+
+  // Afficher la version dans la console
+  console.log(`📄 Script source: ${scripts[0]?.src || "script.js"}`);
+
+  // Stocker la version globalement pour usage ultérieur
+  window.AK_SCRIPT_VERSION = version;
+})();
 document.addEventListener("DOMContentLoaded", () => {
   console.log(`
-🚀 AK-Solutions Script v1.0.1
+🚀 AK-Solutions Script v${window.AK_SCRIPT_VERSION} initialized
 📅 Build: ${new Date().toISOString()}
 🌐 URL: ${window.location.href}
 `);
@@ -555,11 +577,6 @@ function initActiveNavLink() {
 function initScrollArrows() {
   const arrows = document.querySelectorAll(".scroll-arrow");
 
-  if (arrows.length === 0) {
-    console.log("Aucune flèche de défilement trouvée");
-    return;
-  }
-
   arrows.forEach((arrow, index) => {
     arrow.addEventListener("click", (e) => {
       e.preventDefault();
@@ -607,8 +624,6 @@ function initScrollArrows() {
       arrow.style.transform = "";
     });
   });
-
-  console.log(`✅ ${arrows.length} flèche(s) de défilement initialisée(s)`);
 }
 
 // Suivi des clics sur le numéro de téléphone
