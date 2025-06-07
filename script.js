@@ -556,20 +556,23 @@ function initTestimonialsCarousel() {
     }
     // Recalculate total pages/dots based on slidesPerView
     updateDots();
-    updateCarousel();
+    updateCarousel(); // Update carousel position after changing slidesPerView
   };
 
   // Create dots
   const updateDots = () => {
     dotsContainer.innerHTML = ''; // Clear existing dots
+    // Calculate total pages (number of groups of slides)
     const totalDots = Math.ceil(totalSlides / slidesPerView);
     for (let i = 0; i < totalDots; i++) {
       const dot = document.createElement('span');
       dot.classList.add('carousel-dot');
+      // Determine which dot should be active based on the current index and slides per view
       if (i === Math.floor(currentIndex / slidesPerView)) {
         dot.classList.add('active');
       }
       dot.addEventListener('click', () => {
+        // Jump to the start of the corresponding page
         currentIndex = i * slidesPerView;
         updateCarousel();
       });
@@ -579,48 +582,58 @@ function initTestimonialsCarousel() {
 
   // Update carousel position and dot active state
   const updateCarousel = () => {
-    // Ensure currentIndex is within bounds
+    // Calculate the maximum valid index
+    // The last possible index is when the first slide of the last visible group is shown.
+    // If totalSlides = 6 and slidesPerView = 3, maxIndex = 6 - 3 = 3. (Slides 3, 4, 5 are visible)
+    // If totalSlides = 6 and slidesPerView = 2, maxIndex = 6 - 2 = 4. (Slides 4, 5 are visible)
+    // If totalSlides = 6 and slidesPerView = 1, maxIndex = 6 - 1 = 5. (Slide 5 is visible)
+    // If totalSlides <= slidesPerView, maxIndex should be 0.
+    const maxIndex = Math.max(0, totalSlides - slidesPerView);
+
+    // Clamp the currentIndex to be within valid bounds [0, maxIndex]
     if (currentIndex < 0) {
-        currentIndex = 0;
-    } else if (currentIndex >= totalSlides - (slidesPerView > 1 ? slidesPerView - 1 : 0)) {
-         // Adjust max index based on slides per view
-         currentIndex = totalSlides - (slidesPerView > 1 ? slidesPerView - 1 : 1);
-         if (currentIndex < 0) currentIndex = 0; // Handle case with fewer slides than slidesPerView
+      currentIndex = 0;
+    } else if (currentIndex > maxIndex) {
+      currentIndex = maxIndex;
     }
 
-
+    // Calculate the translation offset
     const offset = -currentIndex * (100 / slidesPerView);
     carousel.style.transform = `translateX(${offset}%)`;
 
-    // Update active dot
+    // Update active dot based on the current page
     dotsContainer.querySelectorAll('.carousel-dot').forEach((dot, index) => {
       dot.classList.toggle('active', index === Math.floor(currentIndex / slidesPerView));
     });
 
-    // Update button states (optional: disable at ends)
+    // Update button states
     prevBtn.disabled = currentIndex === 0;
-    nextBtn.disabled = currentIndex >= totalSlides - slidesPerView;
-     if (totalSlides <= slidesPerView) { // Disable buttons if all slides are visible
-        prevBtn.disabled = true;
-        nextBtn.disabled = true;
+    nextBtn.disabled = currentIndex >= maxIndex;
+
+     // If total slides are less than or equal to slides per view, disable both buttons
+     if (totalSlides <= slidesPerView) {
+         prevBtn.disabled = true;
+         nextBtn.disabled = true;
      }
   };
 
   // Navigation buttons
   prevBtn.addEventListener('click', () => {
+    // Move back by the number of slides per view
     currentIndex -= slidesPerView;
     updateCarousel();
   });
 
   nextBtn.addEventListener('click', () => {
+    // Move forward by the number of slides per view
     currentIndex += slidesPerView;
     updateCarousel();
   });
 
   // Initial setup and update on resize
-  updateSlidesPerView();
+  updateSlidesPerView(); // Set initial slidesPerView and update carousel/dots
   window.addEventListener('resize', updateSlidesPerView);
 
-  // Ensure initial state is correct
-  updateCarousel();
+  // Ensure initial state is correct (redundant after updateSlidesPerView but safe)
+  // updateCarousel();
 }
