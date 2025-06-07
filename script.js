@@ -541,8 +541,11 @@ function initActiveNavLink() {
   const links = document.querySelectorAll(".nav-link");
   const collapse = document.querySelector(".navbar-collapse");
 
-  // Close mobile menu on link click
-  links.forEach((link) => {
+  // Close mobile menu on link click - CORRECTION ICI
+  // Sélectionner TOUS les liens dans la navbar, pas seulement .nav-link
+  const allNavLinks = document.querySelectorAll(".navbar-nav a"); // Sélectionne tous les liens <a> dans .navbar-nav
+  
+  allNavLinks.forEach((link) => {
     link.addEventListener("click", () => {
       if (collapse.classList.contains("show")) {
         new bootstrap.Collapse(collapse).hide();
@@ -550,7 +553,7 @@ function initActiveNavLink() {
     });
   });
 
-  // Highlight on scroll
+  // Highlight on scroll - cette partie reste inchangée
   window.addEventListener("scroll", () => {
     let current = "";
     const offset = 100;
@@ -892,19 +895,4 @@ function initTestimonialsCarousel() {
 
   // Ensure initial state is correct (redundant after updateSlidesPerView but safe)
   // updateCarousel();
-}
-
-// Fonction de débogage - à supprimer après résolution
-function debugScrollArrows() {
-  console.log("=== DEBUG SCROLL ARROWS ===");
-  const arrows = document.querySelectorAll(".scroll-arrow");
-  console.log(`Nombre de flèches trouvées: ${arrows.length}`);
-
-  arrows.forEach((arrow, index) => {
-    console.log(`Flèche ${index + 1}:`, {
-      element: arrow,
-      target: arrow.dataset.target,
-      targetExists: !!document.querySelector(arrow.dataset.target),
-    });
-  });
 }
