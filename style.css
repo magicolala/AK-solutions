@@ -802,6 +802,40 @@ footer {
   object-fit: cover;
 }
 
+/* Optimisations pour éviter les layout shifts */
+.masonry-gallery {
+  /* Réserver l'espace pendant le chargement */
+  min-height: 400px;
+}
+
+.masonry-item {
+  /* Utiliser transform au lieu de changer les dimensions */
+  will-change: transform, opacity;
+  transform: translateZ(0); /* Force hardware acceleration */
+}
+
+.gallery-card {
+  /* Éviter les reflows lors des interactions */
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.gallery-card img {
+  /* Stabiliser les images */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Optimiser les animations */
+.gallery-card:hover {
+  transform: translateY(-10px) translateZ(0);
+}
+
+/* Nettoyer will-change après les animations */
+.gallery-card:not(:hover) {
+  will-change: auto;
+}
+
 @media (min-width: 576px) {
   .masonry-gallery {
     column-count: 2;

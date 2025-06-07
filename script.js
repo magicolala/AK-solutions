@@ -20,38 +20,45 @@
 // ======================================
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Utiliser requestIdleCallback pour les tâches non critiques
+  // Utiliser requestIdleCallback de façon plus intelligente
   if ("requestIdleCallback" in window) {
-    requestIdleCallback(() => {
-      initAOS();
-      initMasonryGallery();
-      initTestimonialsCarousel();
-    });
-
     // Tâches critiques immédiatement
     initNavbarScroll();
     initSmoothScroll();
     initContactForm();
+
+    // Tâches non critiques en idle
+    requestIdleCallback(() => {
+      initAOS();
+      initTestimonialsCarousel();
+    }, { timeout: 2000 });
+
+    // Masonry après que les images soient prêtes
+    requestIdleCallback(() => {
+      initMasonryGallery();
+    }, { timeout: 3000 });
+
   } else {
-    // Fallback pour les navigateurs qui ne supportent pas requestIdleCallback
+    // Fallback optimisé
+    setTimeout(() => {
+      initNavbarScroll();
+      initSmoothScroll();
+      initContactForm();
+    }, 0);
+
     setTimeout(() => {
       initAOS();
       initMasonryGallery();
-      initNavbarScroll();
-      initBackToTop();
-      initCounters();
-      initCardHover();
-      initContactForm();
-      initSmoothScroll();
-      initActiveNavLink();
-      initScrollArrows();
       initTestimonialsCarousel();
     }, 100);
   }
 
-  // Initialiser Granim après le chargement complet
-  window.addEventListener("load", initGranim);
+  // Granim après le chargement complet
+  window.addEventListener("load", () => {
+    requestIdleCallback(initGranim, { timeout: 1000 });
+  });
 });
+
 
 function initGranim() {
   if (
@@ -105,6 +112,7 @@ function initAOS() {
 // 2. Masonry Gallery
 // --------------------------------------
 // Amélioration de la fonction initMasonryGallery
+// Amélioration de la fonction initMasonryGallery
 function initMasonryGallery() {
   const gallery = document.querySelector(".masonry-gallery");
   if (!gallery) return;
@@ -114,88 +122,132 @@ function initMasonryGallery() {
 
   // Attendre que toutes les images soient chargées
   images.forEach((img) => {
-    img.onload = () => {
+    const handleImageLoad = () => {
       loadedCount++;
       if (loadedCount === images.length) {
-        gallery.classList.add("images-loaded");
+        // Utiliser requestAnimationFrame pour éviter les layout shifts
+        requestAnimationFrame(() => {
+          gallery.classList.add("images-loaded");
 
-        // Animation d'entrée séquentielle
-        setTimeout(() => {
-          gallery.querySelectorAll(".masonry-item").forEach((item, index) => {
+          // Animation d'entrée séquentielle optimisée
+          const items = gallery.querySelectorAll(".masonry-item");
+          items.forEach((item, index) => {
+            // Utiliser transform au lieu de changer opacity/transform directement
+            item.style.willChange = 'transform, opacity';
             setTimeout(() => {
               item.style.opacity = "1";
               item.style.transform = "translateY(0)";
+              // Nettoyer will-change après l'animation
+              setTimeout(() => {
+                item.style.willChange = 'auto';
+              }, 300);
             }, index * 100);
           });
-        }, 300);
+        });
       }
     };
-    if (img.complete) img.onload();
+
+    if (img.complete) {
+      handleImageLoad();
+    } else {
+      img.onload = handleImageLoad;
+    }
   });
 
-  // Interaction avancée au survol
+  // Interaction optimisée au survol
   gallery.querySelectorAll(".gallery-card").forEach((card) => {
-    card.addEventListener("mouseenter", function () {
-      // Ajouter une classe active pour des effets supplémentaires
-      this.classList.add("active");
+    let isHovering = false;
 
-      // Effet de profondeur sur les autres cartes
-      gallery.querySelectorAll(".gallery-card").forEach((otherCard) => {
-        if (otherCard !== card) {
-          otherCard.style.opacity = "0.7";
-          otherCard.style.transform = "scale(0.98)";
+    card.addEventListener("mouseenter", function () {
+      if (isHovering) return;
+      isHovering = true;
+
+      // Utiliser requestAnimationFrame pour les changements de style
+      requestAnimationFrame(() => {
+        this.classList.add("active");
+
+        // Optimiser les effets sur les autres cartes
+        const otherCards = gallery.querySelectorAll(".gallery-card");
+        otherCards.forEach((otherCard) => {
+          if (otherCard !== card) {
+            otherCard.style.willChange = 'transform, opacity';
+            otherCard.style.opacity = "0.7";
+            otherCard.style.transform = "scale(0.98)";
+          }
+        });
+      });
+    });
+
+    card.addEventListener("mouseleave", function () {
+      if (!isHovering) return;
+      isHovering = false;
+
+      requestAnimationFrame(() => {
+        this.classList.remove("active");
+
+        // Restaurer l'apparence normale
+        const otherCards = gallery.querySelectorAll(".gallery-card");
+        otherCards.forEach((otherCard) => {
+          otherCard.style.opacity = "";
+          otherCard.style.transform = "";
+          otherCard.style.willChange = 'auto';
+        });
+      });
+    });
+
+    // Effet de parallaxe optimisé
+    let rafId = null;
+    card.addEventListener("mousemove", function (e) {
+      if (rafId) return; // Éviter les appels multiples
+
+      rafId = requestAnimationFrame(() => {
+        const cardRect = this.getBoundingClientRect();
+        const cardCenterX = cardRect.left + cardRect.width / 2;
+        const cardCenterY = cardRect.top + cardRect.height / 2;
+
+        const moveX = (e.clientX - cardCenterX) / 20;
+        const moveY = (e.clientY - cardCenterY) / 20;
+
+        const img = this.querySelector("img");
+        if (img) {
+          img.style.willChange = 'transform';
+          img.style.transform = `scale(1.08) translate(${moveX}px, ${moveY}px)`;
+        }
+        
+        rafId = null;
+      });
+    });
+
+    // Réinitialiser optimisé
+    card.addEventListener("mouseleave", function () {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+
+      requestAnimationFrame(() => {
+        const img = this.querySelector("img");
+        if (img) {
+          img.style.transform = "";
+          img.style.willChange = 'auto';
         }
       });
     });
 
-    card.addEventListener("mouseleave", function () {
-      // Retirer la classe active
-      this.classList.remove("active");
+    // Effet de clic optimisé
+    const overlay = card.querySelector(".card-img-overlay");
+    if (overlay) {
+      overlay.addEventListener("click", function () {
+        requestAnimationFrame(() => {
+          const galleryCard = this.closest(".gallery-card");
+          galleryCard.classList.add("pulse");
 
-      // Restaurer l'apparence normale des autres cartes
-      gallery.querySelectorAll(".gallery-card").forEach((otherCard) => {
-        otherCard.style.opacity = "";
-        otherCard.style.transform = "";
+          setTimeout(() => {
+            galleryCard.classList.remove("pulse");
+          }, 500);
+        });
       });
-    });
-
-    // Effet de parallaxe sur l'image au mouvement de la souris
-    card.addEventListener("mousemove", function (e) {
-      const cardRect = this.getBoundingClientRect();
-      const cardCenterX = cardRect.left + cardRect.width / 2;
-      const cardCenterY = cardRect.top + cardRect.height / 2;
-
-      // Calculer la distance entre le curseur et le centre de la carte
-      const moveX = (e.clientX - cardCenterX) / 20;
-      const moveY = (e.clientY - cardCenterY) / 20;
-
-      // Appliquer un léger effet de parallaxe à l'image
-      const img = this.querySelector("img");
-      img.style.transform = `scale(1.08) translate(${moveX}px, ${moveY}px)`;
-    });
-
-    // Réinitialiser la position de l'image quand la souris quitte la carte
-    card.addEventListener("mouseleave", function () {
-      const img = this.querySelector("img");
-      img.style.transform = "";
-    });
-  });
-
-  // Ajouter un effet de clic pour simuler une ouverture de modal (optionnel)
-  gallery.querySelectorAll(".card-img-overlay").forEach((overlay) => {
-    overlay.addEventListener("click", function () {
-      const img = this.previousElementSibling;
-      const src = img.getAttribute("src");
-      const alt = img.getAttribute("alt");
-
-      // Vous pourriez implémenter ici une lightbox ou un modal
-      // Pour l'instant, juste un effet visuel
-      this.closest(".gallery-card").classList.add("pulse");
-
-      setTimeout(() => {
-        this.closest(".gallery-card").classList.remove("pulse");
-      }, 500);
-    });
+    }
   });
 }
 
