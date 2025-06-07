@@ -21,67 +21,63 @@
   </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPSK308HP7"></script>
   <!-- Définition du type de document et de la langue -->
-  <meta charset="UTF-8">
-  <!-- Viewport pour le responsive design - permet au site de s'adapter à différentes tailles d'écran -->
+    <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AK Solutions - Maintenance Technique &amp; Dépannage en Île-de-France</title>
 
-  <!-- ===== SECTION SEO ===== -->
-  <!-- Balises meta SEO améliorées pour le référencement sur les moteurs de recherche -->
-  <title>AK Solutions - Maintenance Technique & Dépannage en Île-de-France</title>
-  <meta name="description"
-    content="Entreprise de maintenance technique à Saint-Maurice. Plomberie, électricité, chauffage, climatisation. Interventions rapides sur Paris et toute l'Île-de-France.">
-  <meta name="keywords"
-    content="maintenance technique, plomberie, électricité, chauffage, climatisation, dépannage, Île-de-France, Paris, Saint-Maurice">
-  <meta name="author" content="AK Solutions">
-
-  <!-- Open Graph pour les réseaux sociaux - contrôle l'apparence lors du partage sur Facebook, LinkedIn, etc. -->
-  <meta property="og:title" content="AK Solutions - Maintenance Technique & Dépannage en Île-de-France">
-  <meta property="og:description"
-    content="Entreprise de maintenance technique à Saint-Maurice. Plomberie, électricité, chauffage, climatisation. Interventions rapides sur Paris et toute l'Île-de-France.">
-  <meta property="og:image" content="https://www.aksolutions.fr/img/logo.webp">
-  <meta property="og:url" content="https://www.aksolutions.fr">
-  <meta property="og:type" content="website">
-
-  <!-- Twitter Card - similaire à Open Graph mais pour Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="AK Solutions - Maintenance Technique & Dépannage en Île-de-France">
-  <meta name="twitter:description"
-    content="Entreprise de maintenance technique à Saint-Maurice. Plomberie, électricité, chauffage, climatisation. Interventions rapides sur Paris et toute l'Île-de-France.">
-  <meta name="twitter:image" content="https://aksolutions.fr/img/logo.png">
-
-  <!-- ===== FAVICONS ===== -->
-  <!-- Différentes versions d'icônes pour différents appareils et navigateurs -->
-  <link rel="shortcut icon" href="favicon.ico">
-
-  <!-- URL canonique - indique aux moteurs de recherche l'URL principale pour éviter le contenu dupliqué -->
-  <link rel="canonical" href="https://www.aksolutions.fr">
-
-  <!-- Favicon - icône qui apparaît dans l'onglet du navigateur -->
-  <link rel="icon" href="favicon.ico">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-  <!-- ===== RESSOURCES EXTERNES ===== -->
-  <!-- Google Fonts - Nunito - préchargement de la police pour améliorer les performances -->
+  <!-- 1) Preconnect pour réduire le délai DNS/TCP -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
-    rel="stylesheet">
-  <!-- Bootstrap CSS - framework CSS pour le responsive design et les composants UI -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Bootstrap Icons - bibliothèque d'icônes -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  <!-- AOS Animation CSS - bibliothèque pour les animations au défilement -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <!-- Custom CSS - notre propre fichier CSS pour les styles personnalisés -->
-  <link rel="stylesheet" href="style.css?v=1.0.2">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://unpkg.com">
 
-  <!-- ===== SCRIPTS JAVASCRIPT ===== -->
-  <!-- Bootstrap JS Bundle avec Popper - pour les composants interactifs comme le menu hamburger -->
-  <!-- L'attribut defer fait que le script se charge après le HTML pour de meilleures performances -->
+  <!-- 2) Inline du CSS critique (navbar + hero) -->
+  <style>
+    /* Extrait minimal de style.css + Bootstrap nécessaire au header & hero */
+    .navbar { position: sticky; top: 0; background: var(--bs-primary); }
+    .hero { display: flex; align-items:center; justify-content:center; min-height:60vh; }
+    body { font-family: 'Nunito', sans-serif; margin:0; }
+    /* …etc. adapter à votre cas… */
+  </style>
+
+  <!-- 3) Chargement asynchrone du reste des CSS -->
+  <link
+    rel="preload"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <link
+    rel="preload"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <link
+    rel="preload"
+    href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <link
+    rel="preload"
+    href="style.css?v=1.0.2"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+
+  <!-- 4) Fallback si JS désactivé -->
+  <noscript>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="style.css?v=1.0.2" rel="stylesheet">
+  </noscript>
+
+  <!-- 5) Polices Google avec display=swap déjà en place -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'">
+
+  <!-- Vos scripts defer restent inchangés -->
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- AOS Animation JS - pour initialiser les animations au défilement -->
   <script defer src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <!-- Notre script personnalisé -->
   <script defer src="script.js"></script>
 
   <!-- ===== DONNÉES STRUCTURÉES ===== -->
