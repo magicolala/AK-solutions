@@ -49,9 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 100);
   }
 
-  // Charger les widgets tiers de manière différée
-  loadElfsightWidget();
-
   // Initialiser Granim après le chargement complet
   window.addEventListener("load", initGranim);
 });
