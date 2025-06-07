@@ -6,25 +6,25 @@
   <script>
     // Différer gtag jusqu'à l'interaction utilisateur
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    
+    function gtag() { dataLayer.push(arguments); }
+
     // Charger gtag seulement après interaction ou 3 secondes
     let gtagLoaded = false;
     function loadGtag() {
       if (gtagLoaded) return;
       gtagLoaded = true;
-      
+
       const script = document.createElement('script');
       script.async = true;
       script.src = 'https://www.googletagmanager.com/gtag/js?id=G-MPSK308HP7';
       document.head.appendChild(script);
-      
+
       script.onload = () => {
         gtag('js', new Date());
         gtag('config', 'G-MPSK308HP7');
       };
     }
-    
+
     // Charger au premier scroll, clic, ou après 3 secondes
     ['scroll', 'click', 'touchstart'].forEach(event => {
       document.addEventListener(event, loadGtag, { once: true, passive: true });
@@ -178,35 +178,32 @@
   <header class="sticky-top">
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
       <div class="container">
-        <!-- Logo et nom de l'entreprise -->
-        <!-- data-aos="fade-right" crée une animation d'entrée depuis la droite -->
+        <!-- Logo optimisé -->
         <a class="navbar-brand fw-bold" href="#" data-aos="fade-right">
           <div class="d-flex align-items-center">
-            <!-- d-flex aligne les éléments horizontalement, align-items-center les centre verticalement -->
-            <img src="./img/logo.webp" alt="Logo AK Solutions" width="40" height="40" class="me-2">
+            <img src="./img/logo.webp" alt="Logo AK Solutions" width="40" height="40" class="me-2" loading="eager"
+              decoding="async">
             <span>AK Solutions</span>
           </div>
         </a>
 
-        <!-- Numéro de téléphone pour les écrans moyens et grands -->
-        <!-- d-none d-lg-flex cache sur petit écran, affiche en flex sur grand écran -->
+        <!-- Téléphone desktop -->
         <div class="d-none d-lg-flex align-items-center me-auto ms-4">
           <i class="bi bi-telephone-fill me-2"></i>
           <a href="tel:0764352198" class="text-dark text-decoration-none fw-bold">07 64 35 21 98</a>
         </div>
 
-        <!-- Bouton hamburger pour mobile - apparaît uniquement sur petits écrans -->
+        <!-- Bouton hamburger optimisé -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon" fetchpriority="high"></span>
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <!-- Supprimez l'attribut fetchpriority="high" -->
+          <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Menu de navigation qui se replie en hamburger sur mobile -->
+        <!-- Menu de navigation -->
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto align-items-center">
-            <!-- ms-auto pousse les éléments vers la droite -->
             <li class="nav-item" data-aos="fade-down" data-aos-delay="100">
-              <!-- data-aos-delay retarde l'animation pour créer un effet séquentiel -->
               <a class="nav-link" href="#about">Qui sommes-nous ?</a>
             </li>
             <li class="nav-item" data-aos="fade-down" data-aos-delay="200">
@@ -218,13 +215,11 @@
             <li class="nav-item" data-aos="fade-down" data-aos-delay="400">
               <a class="nav-link" href="#testimonials">Témoignages</a>
             </li>
-            <!-- Lien Contact mis en valeur avec un bouton -->
             <li class="nav-item ms-lg-3" data-aos="fade-down" data-aos-delay="500">
               <a class="btn btn-dark rounded-pill px-4 nav-contact-btn" href="#contact">
                 <i class="bi bi-chat-dots me-1"></i> Contact
               </a>
             </li>
-            <!-- Numéro de téléphone pour les petits écrans uniquement -->
             <li class="nav-item d-lg-none mt-3" data-aos="fade-down" data-aos-delay="600">
               <a class="nav-link" href="tel:0764352198">
                 <i class="bi bi-telephone-fill me-2"></i>07 64 35 21 98
@@ -235,6 +230,7 @@
       </div>
     </nav>
   </header>
+
 
   <main>
     <!-- ===== SECTION HERO ===== -->

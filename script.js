@@ -28,16 +28,21 @@ document.addEventListener("DOMContentLoaded", () => {
     initContactForm();
 
     // Tâches non critiques en idle
-    requestIdleCallback(() => {
-      initAOS();
-      initTestimonialsCarousel();
-    }, { timeout: 2000 });
+    requestIdleCallback(
+      () => {
+        initAOS();
+        initTestimonialsCarousel();
+      },
+      { timeout: 2000 }
+    );
 
     // Masonry après que les images soient prêtes
-    requestIdleCallback(() => {
-      initMasonryGallery();
-    }, { timeout: 3000 });
-
+    requestIdleCallback(
+      () => {
+        initMasonryGallery();
+      },
+      { timeout: 3000 }
+    );
   } else {
     // Fallback optimisé
     setTimeout(() => {
@@ -59,34 +64,39 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 function initGranim() {
   if (
     typeof Granim !== "undefined" &&
     document.getElementById("granim-canvas")
   ) {
-    requestAnimationFrame(() => {
-      new Granim({
-        element: "#granim-canvas",
-        direction: "diagonal",
-        isPausedWhenNotInView: true,
-        opacity: [0.9, 1],
-        states: {
-          "default-state": {
-            gradients: [
-              ["#006187", "#82E2FF"],
-              ["#82E2FF", "#7A8EFF"],
-              ["#7A8EFF", "#006187"],
-              ["#006187", "#7A8EFF"],
-              ["#7A8EFF", "#82E2FF"],
-              ["#82E2FF", "#006187"],
-            ],
-            transitionSpeed: 3000,
-            loop: true,
+    // Délai pour ne pas impacter le LCP
+    setTimeout(() => {
+      requestAnimationFrame(() => {
+        const granimInstance = new Granim({
+          element: "#granim-canvas",
+          direction: "diagonal",
+          isPausedWhenNotInView: true,
+          opacity: [0.9, 1],
+          states: {
+            "default-state": {
+              gradients: [
+                ["#006187", "#82E2FF"],
+                ["#82E2FF", "#7A8EFF"],
+                ["#7A8EFF", "#006187"],
+                ["#006187", "#7A8EFF"],
+                ["#7A8EFF", "#82E2FF"],
+                ["#82E2FF", "#006187"],
+              ],
+              transitionSpeed: 3000,
+              loop: true,
+            },
           },
-        },
+        });
+
+        // Marquer comme chargé
+        document.getElementById("granim-canvas").classList.add("loaded");
       });
-    });
+    }, 1000); // Délai de 1 seconde
   }
 }
 
@@ -133,13 +143,13 @@ function initMasonryGallery() {
           const items = gallery.querySelectorAll(".masonry-item");
           items.forEach((item, index) => {
             // Utiliser transform au lieu de changer opacity/transform directement
-            item.style.willChange = 'transform, opacity';
+            item.style.willChange = "transform, opacity";
             setTimeout(() => {
               item.style.opacity = "1";
               item.style.transform = "translateY(0)";
               // Nettoyer will-change après l'animation
               setTimeout(() => {
-                item.style.willChange = 'auto';
+                item.style.willChange = "auto";
               }, 300);
             }, index * 100);
           });
@@ -170,7 +180,7 @@ function initMasonryGallery() {
         const otherCards = gallery.querySelectorAll(".gallery-card");
         otherCards.forEach((otherCard) => {
           if (otherCard !== card) {
-            otherCard.style.willChange = 'transform, opacity';
+            otherCard.style.willChange = "transform, opacity";
             otherCard.style.opacity = "0.7";
             otherCard.style.transform = "scale(0.98)";
           }
@@ -190,7 +200,7 @@ function initMasonryGallery() {
         otherCards.forEach((otherCard) => {
           otherCard.style.opacity = "";
           otherCard.style.transform = "";
-          otherCard.style.willChange = 'auto';
+          otherCard.style.willChange = "auto";
         });
       });
     });
@@ -210,10 +220,10 @@ function initMasonryGallery() {
 
         const img = this.querySelector("img");
         if (img) {
-          img.style.willChange = 'transform';
+          img.style.willChange = "transform";
           img.style.transform = `scale(1.08) translate(${moveX}px, ${moveY}px)`;
         }
-        
+
         rafId = null;
       });
     });
@@ -229,7 +239,7 @@ function initMasonryGallery() {
         const img = this.querySelector("img");
         if (img) {
           img.style.transform = "";
-          img.style.willChange = 'auto';
+          img.style.willChange = "auto";
         }
       });
     });
@@ -258,11 +268,39 @@ function initNavbarScroll() {
   const navbar = document.querySelector(".navbar");
   if (!navbar) return;
 
-  window.addEventListener("scroll", () => {
-    navbar.classList.toggle("scrolled", window.scrollY > 50);
-  });
-}
+  let ticking = false;
+  let lastScrollY = 0;
 
+  function updateNavbar() {
+    const scrollY = window.scrollY;
+
+    // Éviter les calculs inutiles
+    if (Math.abs(scrollY - lastScrollY) < 5) {
+      ticking = false;
+      return;
+    }
+
+    // Ajouter/supprimer la classe scrolled
+    if (scrollY > 50) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+
+    lastScrollY = scrollY;
+    ticking = false;
+  }
+
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(updateNavbar);
+      ticking = true;
+    }
+  }
+
+  // Utiliser passive listener pour de meilleures performances
+  window.addEventListener("scroll", requestTick, { passive: true });
+}
 // --------------------------------------
 // 4. Back-to-top button
 // --------------------------------------
