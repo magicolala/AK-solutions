@@ -20,18 +20,22 @@
 // ======================================
 
 document.addEventListener("DOMContentLoaded", () => {
+  
   // Utiliser requestIdleCallback de façon plus intelligente
   if ("requestIdleCallback" in window) {
     // Tâches critiques immédiatement
     initNavbarScroll();
     initSmoothScroll();
     initContactForm();
+    initScrollArrows(); // Ajouter cette ligne
 
     // Tâches non critiques en idle
     requestIdleCallback(
       () => {
         initAOS();
         initTestimonialsCarousel();
+        initActiveNavLink(); // Ajouter cette ligne aussi
+        initBackToTop(); // Et celle-ci
       },
       { timeout: 2000 }
     );
@@ -49,12 +53,15 @@ document.addEventListener("DOMContentLoaded", () => {
       initNavbarScroll();
       initSmoothScroll();
       initContactForm();
+      initScrollArrows(); // Ajouter cette ligne
     }, 0);
 
     setTimeout(() => {
       initAOS();
       initMasonryGallery();
       initTestimonialsCarousel();
+      initActiveNavLink(); // Ajouter cette ligne
+      initBackToTop(); // Et celle-ci
     }, 100);
   }
 
@@ -62,8 +69,55 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("load", () => {
     requestIdleCallback(initGranim, { timeout: 1000 });
   });
-});
+  document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      if (typeof gtag !== 'undefined') {
+        gtag("event", "phone_call", {
+          event_category: "contact",
+          event_label: "Header Phone Click",
+        });
+      }
+    });
+  });
 
+  // Suivi des clics sur l'email
+  document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+    link.addEventListener("click", () => {
+      if (typeof gtag !== 'undefined') {
+        gtag("event", "email_click", {
+          event_category: "contact",
+          event_label: "Email Click",
+        });
+      }
+    });
+  });
+
+  // Suivi de la soumission du formulaire
+  const contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      if (typeof gtag !== 'undefined') {
+        gtag("event", "form_submit", {
+          event_category: "lead_generation",
+          event_label: "Contact Form",
+        });
+      }
+    });
+  }
+
+  // Suivi du temps passé sur la page
+  let startTime = Date.now();
+  window.addEventListener("beforeunload", () => {
+    if (typeof gtag !== 'undefined') {
+      let timeSpent = Math.round((Date.now() - startTime) / 1000);
+      gtag("event", "time_on_page", {
+        event_category: "engagement",
+        value: timeSpent,
+      });
+    }
+  });
+});
+// ======================================
 function initGranim() {
   if (
     typeof Granim !== "undefined" &&
@@ -494,14 +548,59 @@ function initActiveNavLink() {
 // 10. Scroll arrows behavior
 // --------------------------------------
 function initScrollArrows() {
-  document.querySelectorAll(".scroll-arrow").forEach((arrow) => {
-    arrow.addEventListener("click", () => {
-      const target = document.querySelector(arrow.dataset.target);
+  const arrows = document.querySelectorAll(".scroll-arrow");
+  
+  if (arrows.length === 0) {
+    console.log("Aucune flèche de défilement trouvée");
+    return;
+  }
+
+  arrows.forEach((arrow, index) => {
+    arrow.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const targetSelector = arrow.dataset.target;
+      
+      if (!targetSelector) {
+        console.warn(`Flèche ${index + 1}: Aucun data-target défini`);
+        return;
+      }
+
+      const target = document.querySelector(targetSelector);
+      
       if (target) {
-        window.scrollTo({ top: target.offsetTop, behavior: "smooth" });
+        // Calculer la position avec offset pour la navbar
+        const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 70;
+        const offsetTop = target.offsetTop - navbarHeight;
+        
+        // Animation de scroll fluide
+        window.scrollTo({ 
+          top: Math.max(0, offsetTop), 
+          behavior: "smooth" 
+        });
+        
+        console.log(`Scroll vers: ${targetSelector}`);
+      } else {
+        console.warn(`Flèche ${index + 1}: Cible "${targetSelector}" non trouvée`);
       }
     });
+
+    // Ajouter un effet visuel au clic
+    arrow.addEventListener("mousedown", () => {
+      arrow.style.transform = "scale(0.95)";
+    });
+    
+    arrow.addEventListener("mouseup", () => {
+      arrow.style.transform = "";
+    });
+    
+    arrow.addEventListener("mouseleave", () => {
+      arrow.style.transform = "";
+    });
   });
+
+  console.log(`✅ ${arrows.length} flèche(s) de défilement initialisée(s)`);
 }
 
 // Suivi des clics sur le numéro de téléphone
@@ -524,13 +623,13 @@ document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
   });
 });
 
-// Suivi de la soumission du formulaire
-document.getElementById("contactForm").addEventListener("submit", (e) => {
-  gtag("event", "form_submit", {
-    event_category: "lead_generation",
-    event_label: "Contact Form",
-  });
-});
+// // Suivi de la soumission du formulaire
+// document.getElementById("contactForm").addEventListener("submit", (e) => {
+//   gtag("event", "form_submit", {
+//     event_category: "lead_generation",
+//     event_label: "Contact Form",
+//   });
+// });
 
 // Suivi du temps passé sur la page
 let startTime = Date.now();
@@ -770,4 +869,19 @@ function initTestimonialsCarousel() {
 
   // Ensure initial state is correct (redundant after updateSlidesPerView but safe)
   // updateCarousel();
+}
+
+// Fonction de débogage - à supprimer après résolution
+function debugScrollArrows() {
+  console.log("=== DEBUG SCROLL ARROWS ===");
+  const arrows = document.querySelectorAll(".scroll-arrow");
+  console.log(`Nombre de flèches trouvées: ${arrows.length}`);
+  
+  arrows.forEach((arrow, index) => {
+    console.log(`Flèche ${index + 1}:`, {
+      element: arrow,
+      target: arrow.dataset.target,
+      targetExists: !!document.querySelector(arrow.dataset.target)
+    });
+  });
 }
