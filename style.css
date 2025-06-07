@@ -1408,7 +1408,8 @@ footer hr {
 
 .google-rating-summary .stars-container {
   font-size: 1.5rem;
-  color: #fbbc04; /* Google star color */
+  color: #fbbc04;
+  /* Google star color */
 }
 
 .google-rating-summary .star-icon {
@@ -1420,13 +1421,15 @@ footer hr {
   /* This is a simple representation, a more complex solution might be needed for perfect half stars */
   position: relative;
   display: inline-block;
-  width: 0.9em; /* Adjust based on star font size */
+  width: 0.9em;
+  /* Adjust based on star font size */
   overflow: hidden;
 }
 
 .google-rating-summary .rating-text {
   font-size: 1rem;
-  color: #5f6368; /* Google text color */
+  color: #5f6368;
+  /* Google text color */
 }
 
 .google-rating-summary .google-badge {
@@ -1439,28 +1442,39 @@ footer hr {
 
 .google-rating-summary .google-badge i {
   font-size: 1.1rem;
-  color: #4285f4; /* Google blue */
+  color: #4285f4;
+  /* Google blue */
 }
 
 
 /* Individual Testimonial Card - Google Style */
 .testimonial-card.google-style {
-  background-color: #ffffff; /* White background */
-  border: 1px solid #dadce0; /* Light grey border */
-  border-radius: 8px; /* Rounded corners */
-  padding: 20px; /* Inner padding */
-  margin: 10px; /* Space between cards in carousel */
-  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.3), 0 1px 2px rgba(60, 64, 67, 0.15); /* Subtle Google-like shadow */
+  background-color: #ffffff;
+  /* White background */
+  border: 1px solid #dadce0;
+  /* Light grey border */
+  border-radius: 8px;
+  /* Rounded corners */
+  padding: 20px;
+  /* Inner padding */
+  margin: 10px;
+  /* Space between cards in carousel */
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.3), 0 1px 2px rgba(60, 64, 67, 0.15);
+  /* Subtle Google-like shadow */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  min-height: 200px; /* Ensure cards have a minimum height */
+  min-height: 200px;
+  /* Ensure cards have a minimum height */
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Distribute space */
+  justify-content: space-between;
+  /* Distribute space */
 }
 
 .testimonial-card.google-style:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
-  box-shadow: 0 4px 8px rgba(60, 64, 67, 0.3), 0 1px 3px rgba(60, 64, 67, 0.15); /* Enhanced shadow on hover */
+  transform: translateY(-5px);
+  /* Lift effect on hover */
+  box-shadow: 0 4px 8px rgba(60, 64, 67, 0.3), 0 1px 3px rgba(60, 64, 67, 0.15);
+  /* Enhanced shadow on hover */
 }
 
 .testimonial-header {
@@ -1473,7 +1487,8 @@ footer hr {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #4285f4; /* Google blue */
+  background-color: #4285f4;
+  /* Google blue */
   color: white;
   display: flex;
   align-items: center;
@@ -1481,7 +1496,8 @@ footer hr {
   font-size: 1.2rem;
   font-weight: 600;
   margin-right: 15px;
-  flex-shrink: 0; /* Prevent shrinking */
+  flex-shrink: 0;
+  /* Prevent shrinking */
 }
 
 .user-info {
@@ -1493,38 +1509,47 @@ footer hr {
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 2px;
-  color: #3c4043; /* Google text color */
+  color: #3c4043;
+  /* Google text color */
 }
 
 .user-stars {
   font-size: 0.9rem;
-  color: #fbbc04; /* Google star color */
+  color: #fbbc04;
+  /* Google star color */
   margin-bottom: 2px;
 }
 
 .review-date {
   font-size: 0.8rem;
-  color: #5f6368; /* Google text color */
+  color: #5f6368;
+  /* Google text color */
 }
 
 .testimonial-content p {
   font-size: 0.95rem;
-  color: #3c4043; /* Google text color */
+  color: #3c4043;
+  /* Google text color */
   line-height: 1.5;
   margin-bottom: 15px;
 }
 
 .review-tags {
   display: flex;
-  flex-wrap: wrap; /* Allow tags to wrap */
-  gap: 8px; /* Space between tags */
-  margin-top: auto; /* Push tags to the bottom */
+  flex-wrap: wrap;
+  /* Allow tags to wrap */
+  gap: 8px;
+  /* Space between tags */
+  margin-top: auto;
+  /* Push tags to the bottom */
 }
 
 .review-tags .tag {
   display: inline-block;
-  background-color: #e8f0fe; /* Light blue background */
-  color: #1a73e8; /* Google blue text */
+  background-color: #e8f0fe;
+  /* Light blue background */
+  color: #1a73e8;
+  /* Google blue text */
   font-size: 0.8rem;
   padding: 4px 8px;
   border-radius: 4px;
@@ -1535,30 +1560,38 @@ footer hr {
 .testimonials-carousel-container {
   position: relative;
   width: 100%;
-  overflow: hidden; /* Hide overflow for the carousel */
+  overflow: hidden;
+  /* Hide overflow for the carousel */
 }
 
 .testimonials-carousel {
-  display: flex; /* Use flexbox for the slides */
-  transition: transform 0.5s ease-in-out; /* Smooth transition for sliding */
+  display: flex;
+  /* Use flexbox for the slides */
+  transition: transform 0.5s ease-in-out;
+  /* Smooth transition for sliding */
 }
 
 .testimonial-slide {
-  flex: 0 0 auto; /* Prevent slides from growing/shrinking */
-  width: 100%; /* Default width for mobile */
-  box-sizing: border-box; /* Include padding/border in width */
+  flex: 0 0 auto;
+  /* Prevent slides from growing/shrinking */
+  width: 100%;
+  /* Default width for mobile */
+  box-sizing: border-box;
+  /* Include padding/border in width */
 }
 
 /* Responsive adjustments for carousel slides */
 @media (min-width: 768px) {
   .testimonial-slide {
-    width: 50%; /* Show 2 slides on medium screens */
+    width: 50%;
+    /* Show 2 slides on medium screens */
   }
 }
 
 @media (min-width: 992px) {
   .testimonial-slide {
-    width: 33.33%; /* Show 3 slides on large screens */
+    width: 33.33%;
+    /* Show 3 slides on large screens */
   }
 }
 
@@ -1567,7 +1600,8 @@ footer hr {
   justify-content: center;
   align-items: center;
   margin-top: 20px;
-  gap: 15px; /* Space between controls */
+  gap: 15px;
+  /* Space between controls */
 }
 
 .carousel-btn {
@@ -1609,5 +1643,6 @@ footer hr {
 }
 
 .carousel-dot.active {
-  background-color: #4285f4; /* Google blue */
+  background-color: #4285f4;
+  /* Google blue */
 }
