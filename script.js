@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSmoothScroll();
   initActiveNavLink();
   initScrollArrows();
+  initTestimonialsCarousel();
     // Ajouter les nouvelles fonctions pour cacher Elfsight
   injectHidingCSS();
   hideElfsightBranding();
@@ -526,4 +527,100 @@ function injectHidingCSS() {
     }
   `;
   document.head.appendChild(style);
+}
+
+// --------------------------------------
+// 12. Testimonials Carousel
+// --------------------------------------
+function initTestimonialsCarousel() {
+  const carousel = document.getElementById('testimonialsCarousel');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const dotsContainer = document.getElementById('carouselDots');
+
+  if (!carousel || !prevBtn || !nextBtn || !dotsContainer) return;
+
+  const slides = carousel.querySelectorAll('.testimonial-slide');
+  const totalSlides = slides.length;
+  let currentIndex = 0;
+  let slidesPerView = 1; // Default for mobile
+
+  // Function to update slidesPerView based on screen width
+  const updateSlidesPerView = () => {
+    if (window.innerWidth >= 992) {
+      slidesPerView = 3;
+    } else if (window.innerWidth >= 768) {
+      slidesPerView = 2;
+    } else {
+      slidesPerView = 1;
+    }
+    // Recalculate total pages/dots based on slidesPerView
+    updateDots();
+    updateCarousel();
+  };
+
+  // Create dots
+  const updateDots = () => {
+    dotsContainer.innerHTML = ''; // Clear existing dots
+    const totalDots = Math.ceil(totalSlides / slidesPerView);
+    for (let i = 0; i < totalDots; i++) {
+      const dot = document.createElement('span');
+      dot.classList.add('carousel-dot');
+      if (i === Math.floor(currentIndex / slidesPerView)) {
+        dot.classList.add('active');
+      }
+      dot.addEventListener('click', () => {
+        currentIndex = i * slidesPerView;
+        updateCarousel();
+      });
+      dotsContainer.appendChild(dot);
+    }
+  };
+
+  // Update carousel position and dot active state
+  const updateCarousel = () => {
+    // Ensure currentIndex is within bounds
+    if (currentIndex < 0) {
+        currentIndex = 0;
+    } else if (currentIndex >= totalSlides - (slidesPerView > 1 ? slidesPerView - 1 : 0)) {
+         // Adjust max index based on slides per view
+         currentIndex = totalSlides - (slidesPerView > 1 ? slidesPerView - 1 : 1);
+         if (currentIndex < 0) currentIndex = 0; // Handle case with fewer slides than slidesPerView
+    }
+
+
+    const offset = -currentIndex * (100 / slidesPerView);
+    carousel.style.transform = `translateX(${offset}%)`;
+
+    // Update active dot
+    dotsContainer.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+      dot.classList.toggle('active', index === Math.floor(currentIndex / slidesPerView));
+    });
+
+    // Update button states (optional: disable at ends)
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex >= totalSlides - slidesPerView;
+     if (totalSlides <= slidesPerView) { // Disable buttons if all slides are visible
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+     }
+  };
+
+  // Navigation buttons
+  prevBtn.addEventListener('click', () => {
+    currentIndex -= slidesPerView;
+    updateCarousel();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex += slidesPerView;
+    updateCarousel();
+  });
+
+  // Initial setup and update on resize
+  updateSlidesPerView();
+  window.addEventListener('resize', updateSlidesPerView);
+
+  // Ensure initial state is correct
+  updateCarousel();
 }
