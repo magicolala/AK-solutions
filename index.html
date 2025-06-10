@@ -1088,7 +1088,8 @@
                   <div class="col-md-6 mb-3">
                     <div class="form-floating">
                       <!-- form-floating crée un champ avec étiquette flottante -->
-                      <input type="text" class="form-control" id="name" name="name" placeholder="Votre nom" required>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="Votre nom" required
+                        autocomplete="name">
                       <label for="name">Votre nom</label>
                     </div>
                   </div>
@@ -1096,20 +1097,19 @@
                   <div class="col-md-6 mb-3">
                     <div class="form-floating">
                       <input type="email" class="form-control" id="email" name="email" placeholder="Votre email"
-                        required>
+                        required autocomplete="email">
                       <label for="email">Votre email</label>
                     </div>
                   </div>
                 </div>
-
                 <!-- Champ Téléphone -->
                 <div class="mb-3">
                   <div class="form-floating">
-                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Votre téléphone">
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Votre téléphone"
+                      autocomplete="tel">
                     <label for="phone">Votre téléphone</label>
                   </div>
                 </div>
-
                 <!-- Menu déroulant pour le service -->
                 <div class="mb-3">
                   <div class="form-floating">
@@ -1128,7 +1128,6 @@
                     <!-- <label for="service">Service requis</label> -->
                   </div>
                 </div>
-
                 <!-- Zone de texte pour le message -->
                 <div class="mb-3">
                   <div class="form-floating">
@@ -1137,7 +1136,6 @@
                     <label for="message">Votre message</label>
                   </div>
                 </div>
-
                 <!-- Ajoutez ces champs dans votre formulaire existant -->
                 <div class="mb-3">
                   <div class="form-floating">
@@ -1153,15 +1151,13 @@
                     </select>
                   </div>
                 </div>
-
                 <div class="mb-3">
                   <div class="form-floating">
-                    <input type="text" class="form-control" id="city" name="city" placeholder="Votre ville">
+                    <input type="text" class="form-control" id="city" name="city" placeholder="Votre ville"
+                      autocomplete="address-level2">
                     <label for="city">Votre ville (optionnel)</label>
                   </div>
                 </div>
-
-
                 <!-- Case à cocher pour la politique de confidentialité -->
                 <div class="mb-3 form-check">
                   <input type="checkbox" class="form-check-input" id="privacy" name="privacy" required>
