@@ -2101,3 +2101,37 @@ section[id] {
   --service-construction: #10b981;
   --service-commerce: #8b5cf6;
 }
+/* style.css */
+
+/* Styles pour la barre de recherche FAQ */
+#faqSearchInput {
+  border-radius: 0.25rem; /* Coins légèrement arrondis */
+  border: 1px solid #ced4da; /* Bordure standard Bootstrap */
+  padding: 0.75rem 1rem; /* Espacement interne */
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+#faqSearchInput:focus {
+  border-color: #86b7fe; /* Couleur de bordure au focus (Bootstrap) */
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); /* Ombre au focus (Bootstrap) */
+}
+
+/* Animation de la flèche de l'accordéon FAQ */
+.accordion-button::after {
+  transition: transform 0.2s ease-in-out; /* Transition douce pour la rotation */
+}
+
+.accordion-button:not(.collapsed)::after {
+  transform: rotate(-180deg); /* Rotation de la flèche quand l'accordéon est ouvert */
+}
+
+/* Optionnel: petit délai pour l'ouverture/fermeture de l'accordéon */
+.accordion-collapse {
+  transition: height 0.3s ease-in-out;
+}
+
+/* Style pour les éléments FAQ cachés par la recherche */
+.accordion-item[style*="display: none"] {
+  /* Vous pouvez ajouter des styles spécifiques si nécessaire,
+     mais display: none est généralement suffisant. */
+}

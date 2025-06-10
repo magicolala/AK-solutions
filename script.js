@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
         initTestimonialsCarousel();
         initActiveNavLink(); // Ajouter cette ligne aussi
         initBackToTop(); // Et celle-ci
+        initFaqInteraction(); // Ajouter pour la FAQ interactive
       },
       { timeout: 2000 }
     );
@@ -89,6 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
       initTestimonialsCarousel();
       initActiveNavLink(); // Ajouter cette ligne
       initBackToTop(); // Et celle-ci
+      initFaqInteraction(); // Ajouter pour la FAQ interactive
     }, 100);
   }
 
@@ -146,10 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 // ======================================
 function initGranim() {
-  if (
-    typeof Granim !== "undefined" &&
-    document.getElementById("granim-canvas")
-  ) {
+  if (typeof Granim !== "undefined" && document.getElementById("granim-canvas")) {
     // Délai pour ne pas impacter le LCP
     setTimeout(() => {
       requestAnimationFrame(() => {
@@ -544,7 +543,7 @@ function initActiveNavLink() {
   // Close mobile menu on link click - CORRECTION ICI
   // Sélectionner TOUS les liens dans la navbar, pas seulement .nav-link
   const allNavLinks = document.querySelectorAll(".navbar-nav a"); // Sélectionne tous les liens <a> dans .navbar-nav
-  
+
   allNavLinks.forEach((link) => {
     link.addEventListener("click", () => {
       if (collapse.classList.contains("show")) {
@@ -566,10 +565,7 @@ function initActiveNavLink() {
     });
 
     links.forEach((link) => {
-      link.classList.toggle(
-        "active",
-        link.getAttribute("href") === `#${current}`
-      );
+      link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
     });
   });
 }
@@ -596,8 +592,7 @@ function initScrollArrows() {
 
       if (target) {
         // Calculer la position avec offset pour la navbar
-        const navbarHeight =
-          document.querySelector(".navbar")?.offsetHeight || 70;
+        const navbarHeight = document.querySelector(".navbar")?.offsetHeight || 70;
         const offsetTop = target.offsetTop - navbarHeight;
 
         // Animation de scroll fluide
@@ -608,9 +603,7 @@ function initScrollArrows() {
 
         console.log(`Scroll vers: ${targetSelector}`);
       } else {
-        console.warn(
-          `Flèche ${index + 1}: Cible "${targetSelector}" non trouvée`
-        );
+        console.warn(`Flèche ${index + 1}: Cible "${targetSelector}" non trouvée`);
       }
     });
 
@@ -687,9 +680,7 @@ function hideElfsightBranding() {
     });
 
     // Cacher tous les liens Elfsight génériques
-    const allElfsightLinks = document.querySelectorAll(
-      'a[href*="elfsight.com"]'
-    );
+    const allElfsightLinks = document.querySelectorAll('a[href*="elfsight.com"]');
     allElfsightLinks.forEach((link) => {
       link.style.setProperty("display", "none", "important");
       link.style.setProperty("visibility", "hidden", "important");
@@ -709,16 +700,10 @@ function hideElfsightBranding() {
     });
 
     // Cacher les éléments par classe ou attributs Elfsight
-    const elfsightElements = document.querySelectorAll(
-      '[class*="elfsight"], [id*="elfsight"], [data-elfsight]'
-    );
+    const elfsightElements = document.querySelectorAll('[class*="elfsight"], [id*="elfsight"], [data-elfsight]');
     elfsightElements.forEach((element) => {
       // Ne cacher que les éléments de branding, pas le widget entier
-      if (
-        element.tagName === "A" ||
-        element.textContent.includes("Free") ||
-        element.textContent.includes("Elfsight")
-      ) {
+      if (element.tagName === "A" || element.textContent.includes("Free") || element.textContent.includes("Elfsight")) {
         element.style.setProperty("display", "none", "important");
         element.style.setProperty("visibility", "hidden", "important");
       }
@@ -859,10 +844,7 @@ function initTestimonialsCarousel() {
 
     // Update active dot based on the current page
     dotsContainer.querySelectorAll(".carousel-dot").forEach((dot, index) => {
-      dot.classList.toggle(
-        "active",
-        index === Math.floor(currentIndex / slidesPerView)
-      );
+      dot.classList.toggle("active", index === Math.floor(currentIndex / slidesPerView));
     });
 
     // Update button states
@@ -895,4 +877,56 @@ function initTestimonialsCarousel() {
 
   // Ensure initial state is correct (redundant after updateSlidesPerView but safe)
   // updateCarousel();
+}
+
+// --------------------------------------
+// 13. FAQ Interaction (Search and Accordion Animation)
+// --------------------------------------
+function initFaqInteraction() {
+  const faqAccordion = document.getElementById("faqAccordion");
+  const faqSearchInput = document.getElementById("faqSearchInput");
+
+  if (!faqAccordion) return;
+
+  // Accordion arrow animation
+  const accordionButtons = faqAccordion.querySelectorAll(".accordion-button");
+  accordionButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      // La classe 'collapsed' est gérée par Bootstrap.
+      // L'icône ::after est stylée en CSS pour tourner en fonction de .collapsed
+    });
+  });
+
+  if (!faqSearchInput) return;
+
+  faqSearchInput.addEventListener("input", function () {
+    const searchTerm = this.value.toLowerCase().trim();
+    const faqItems = faqAccordion.querySelectorAll(".accordion-item");
+
+    faqItems.forEach((item) => {
+      const questionButton = item.querySelector(".accordion-button");
+      const answerBody = item.querySelector(".accordion-body");
+
+      if (!questionButton || !answerBody) return;
+
+      const questionText = questionButton.textContent.toLowerCase();
+      const answerText = answerBody.textContent.toLowerCase();
+
+      const isMatch = questionText.includes(searchTerm) || answerText.includes(searchTerm);
+
+      if (isMatch) {
+        item.style.display = ""; // Afficher l'élément
+      } else {
+        item.style.display = "none"; // Cacher l'élément
+        // S'assurer que l'accordéon est fermé s'il est caché
+        const collapseElement = item.querySelector(".accordion-collapse");
+        if (collapseElement && collapseElement.classList.contains("show")) {
+          const bsCollapse =
+            bootstrap.Collapse.getInstance(collapseElement) ||
+            new bootstrap.Collapse(collapseElement, { toggle: false });
+          bsCollapse.hide();
+        }
+      }
+    });
+  });
 }
