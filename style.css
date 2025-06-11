@@ -1005,7 +1005,7 @@ footer {
 
 @media (min-width: 992px) {
   .masonry-gallery {
-    column-count: 3;
+    column-count: 4;
   }
 }
 
