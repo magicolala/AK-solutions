@@ -889,8 +889,8 @@ function downloadPDF() {
   try {
     // Créer un lien temporaire pour le téléchargement
     const link = document.createElement("a");
-    link.href = "docs/chartre-graphique-ak-solutions.pdf";
-    link.download = "chartre-graphique-ak-solutions.pdf";
+    link.href = "docs/charte-graphique-ak-solutions.pdf";
+    link.download = "charte-graphique-ak-solutions.pdf";
     link.target = "_blank";
 
     // Déclencher le téléchargement
