@@ -97,6 +97,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // Granim après le chargement complet
   window.addEventListener("load", () => {
     requestIdleCallback(initGranim, { timeout: 1000 });
+        // Cacher le loader de page
+    const loader = document.getElementById('page-loader');
+    if (loader) {
+      // Léger délai pour s'assurer que tout est bien rendu et éviter un flash
+      setTimeout(() => {
+        loader.classList.add('loaded');
+      }, 500); // Ajustez ce délai si nécessaire
+    }
   });
   document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
     link.addEventListener("click", () => {
