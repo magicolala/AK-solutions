@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guide Développeur AK-Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Assurez-vous que le chemin vers charte_graph.css est correct -->
+  <link rel="stylesheet" href="css/charte_graph.css">
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      padding-top: 70px;
+      /* Ajustement pour la navbar fixe */
+    }
+
+    .hero-section-dev {
+      background: linear-gradient(135deg, var(--primary-blue, #007FFF) 0%, var(--primary-blue-dark, #0059B2) 100%);
+      color: white;
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .hero-section-dev h1 {
+      font-weight: 800;
+    }
+
+    .section {
+      padding: 60px 0;
+    }
+
+    .component-preview {
+      border: 1px solid #eee;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      background-color: #f8f9fa;
+      /* Fond clair pour mieux voir les composants */
+    }
+
+    .code-snippet {
+      position: relative;
+      background-color: #282c34;
+      /* Fond sombre pour le code */
+      color: #abb2bf;
+      /* Couleur de texte claire pour le code */
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+      font-size: 0.875em;
+      overflow-x: auto;
+    }
+
+    .code-snippet pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .btn-copy-code {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #6c757d;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      font-size: 0.8em;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-copy-code:hover {
+      background-color: #5a6268;
+    }
+
+    .navbar-custom .nav-link,
+    .navbar-custom .navbar-brand {
+      color: #fff;
+      /* Assurez-vous que les liens de la navbar sont visibles sur fond sombre */
+    }
+
+    .navbar-custom .nav-link:hover {
+      color: #ffc107;
+      /* Couleur de survol pour les liens */
+    }
+
+    /* Styles pour les composants copiés de charte_graphique.html pour l'aperçu */
+    .nav-example-demo {
+      background-color: var(--primary-blue, #007FFF);
+    }
+
+    .nav-link-custom {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      position: relative;
+    }
+
+    .nav-link-custom::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 50%;
+      background-color: var(--secondary-orange, #FF8C00);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-link-custom:hover::after {
+      width: 80%;
+    }
+
+    .btn-contact-demo {
+      background-color: var(--secondary-orange, #FF8C00);
+      color: white;
+      border-radius: 48px;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">
+        <i class="bi bi-code-slash me-2"></i>AK-Solutions Dev Guide
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#devNavbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="devNavbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="#introduction">Introduction</a></li>
+          <li class="nav-item"><a class="nav-link" href="#installation">Installation</a></li>
+          <li class="nav-item"><a class="nav-link" href="#principes">Principes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#composants">Composants</a></li>
+          <li class="nav-item"><a class="nav-link" href="#modele-page">Modèle Page</a></li>
+          <li class="nav-item"><a class="nav-link" href="#page-plaquette">Page Plaquette (Maija)</a></li>
+
+        </ul>
+        <a href="charte_graphique.html" class="btn btn-outline-light btn-sm">
+          <i class="bi bi-palette me-2"></i>Voir Charte Graphique
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section-dev">
+    <div class="container">
+      <h1 class="display-4 mb-3">GUIDE DÉVELOPPEUR</h1>
+      <p class="lead mb-4">AK-SOLUTIONS</p>
+      <p>Intégrez facilement des composants et respectez l'identité visuelle.</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- Section Introduction -->
+    <section id="introduction" class="section">
+      <div class="container">
+        <h2 class="text-center mb-5">Introduction</h2>
+        <p class="lead text-center">Bienvenue sur le guide du développeur pour AK-Solutions. Ce document a pour but de
+          vous aider à démarrer rapidement, à comprendre la structure du projet et à utiliser efficacement les
+          composants de notre charte graphique.</p>
+        <p class="text-center">Nous utilisons Bootstrap 5, la police Nunito, et un ensemble de styles personnalisés
+          définis dans <code>css/charte_graph.css</code>.</p>
+      </div>
+    </section>
+
+    <!-- Section Installation -->
+    <section id="installation" class="section bg-light">
+      <div class="container">
+        <h2 class="text-center mb-5">Installation & Configuration</h2>
+        <h4>Structure HTML de base</h4>
+        <p>Voici la structure minimale pour une nouvelle page :</p>
+        <div class="code-snippet">
+          <button class="btn-copy-code" onclick="copyCode(this.nextElementSibling.id, this)">Copier</button>
+          <pre id="codeHtmlBase"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Titre de la Page - AK-Solutions&lt;/title&gt;
+  &lt;link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"&gt;
+  &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+  &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"&gt;
+  &lt;link rel="stylesheet" href="css/charte_graph.css"&gt; &lt;!-- Styles personnalisés --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- Navbar (voir composant) --&gt;
+
+  &lt;main class="container py-5"&gt;
+    &lt;!-- Contenu de la page --&gt;
+    &lt;h1&gt;Titre de la Page&lt;/h1&gt;
+  &lt;/main&gt;
+
+  &lt;!-- Footer (voir composant ou créer) --&gt;
+
+  &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+  &lt;!-- script src="js/script-charte-graphique.js"&gt;&lt;/script&gt; &lt;!-- Scripts personnalisés si besoin --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+
+        <h4>Variables CSS Clés</h4>
+        <p>Utilisez ces variables CSS (définies dans <code>css/charte_graph.css</code>) pour une cohérence globale :</p>
+        <ul>
+          <li><code>var(--primary-blue)</code>: #007FFF</li>
+          <li><code>var(--primary-blue-dark)</code>: #0059B2 (Exemple, à vérifier dans le CSS)</li>
+          <li><code>var(--secondary-orange)</code>: #FF8C00</li>
+          <li><code>var(--font-family)</code>: 'Nunito', sans-serif</li>
+          <li>Et les variables d'espacement/rayons (<code>--space-s</code>, <code>--radius-m</code>, etc.)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section Principes -->
+    <section id="principes" class="section">
+      <div class="container">
+        <h2 class="text-center mb-5">Principes de Base (Rappel)</h2>
+        <p class="text-center">Pour une compréhension détaillée de notre identité visuelle, veuillez consulter la <a
+            href="charte_graphique.html" target="_blank">Charte Graphique complète</a>. Voici des liens rapides vers les
+          sections clés :</p>
+        <div class="row text-center">
+          <div class="col-md-3 mb-3">
+            <a href="charte_graphique.html#couleurs" target="_blank" class="btn btn-lg btn-outline-primary w-100">
+              <i class="bi bi-palette me-2"></i>Couleurs
+            </a>
+          </div>
+          <div class="col-md-3 mb-3">
+            <a href="charte_graphique.html#typographie" target="_blank" class="btn btn-lg btn-outline-primary w-100">
+              <i class="bi bi-fonts me-2"></i>Typographie
+            </a>
+          </div>
+          <div class="col-md-3 mb-3">
+            <a href="charte_graphique.html#espacement" target="_blank" class="btn btn-lg btn-outline-primary w-100">
+              <i class="bi bi-rulers me-2"></i>Espacement & Rayons
+            </a>
+          </div>
+          <div class="col-md-3 mb-3">
+            <a href="charte_graphique.html#responsive" target="_blank" class="btn btn-lg btn-outline-primary w-100">
+              <i class="bi bi-aspect-ratio me-2"></i>Responsive
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Composants -->
+    <section id="composants" class="section bg-light">
+      <div class="container">
+        <h2 class="text-center mb-5">Bibliothèque de Composants</h2>
+
+        <!-- Boutons -->
+        <h3 class="mb-3">Boutons</h3>
+        <p>Utilisez ces classes pour les boutons personnalisés AK-Solutions.</p>
+        <div class="component-preview">
+          <button class="btn btn-primary-custom me-2"><i class="bi bi-check me-2"></i>Bouton Principal</button>
+          <button class="btn btn-outline-custom"><i class="bi bi-arrow-right me-2"></i>Bouton Outline</button>
+        </div>
+        <div class="code-snippet">
+          <button class="btn-copy-code" onclick="copyCode(this.nextElementSibling.id, this)">Copier</button>
+          <pre id="codeBoutons"><code>&lt;!-- Bouton Principal (Orange) --&gt;
+&lt;button class="btn btn-primary-custom"&gt;
+  &lt;i class="bi bi-check me-2"&gt;&lt;/i&gt;Bouton Principal
+&lt;/button&gt;
+
+&lt;!-- Bouton Outline (Bleu) --&gt;
+&lt;button class="btn btn-outline-custom"&gt;
+  &lt;i class="bi bi-arrow-right me-2"&gt;&lt;/i&gt;Bouton Outline
+&lt;/button&gt;</code></pre>
+        </div>
+
+        <!-- Cartes de Service -->
+        <h3 class="mb-3 mt-5">Cartes de Service</h3>
+        <p>Structure pour les cartes de présentation de services.</p>
+        <div class="component-preview">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="service-card">
+                <div class="service-icon"><i class="bi bi-gear"></i></div>
+                <h5>Titre Service</h5>
+                <p>Description courte du service proposé.</p>
+                <div class="mt-auto">
+                  <a href="#" class="btn btn-sm btn-outline-primary">En savoir plus</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="code-snippet">
+          <button class="btn-copy-code" onclick="copyCode(this.nextElementSibling.id, this)">Copier</button>
+          <pre id="codeServiceCard"><code>&lt;div class="service-card"&gt;
+  &lt;div class="service-icon"&gt;
+    &lt;i class="bi bi-gear"&gt;&lt;/i&gt; &lt;!-- Changer l'icône --&gt;
+  &lt;/div&gt;
+  &lt;h5&gt;Titre Service&lt;/h5&gt;
+  &lt;p&gt;Description courte du service proposé.&lt;/p&gt;
+  &lt;div class="mt-auto"&gt;
+    &lt;a href="#" class="btn btn-sm btn-outline-primary"&gt;En savoir plus&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- Navigation (Header) -->
+        <h3 class="mb-3 mt-5">Navigation (Header)</h3>
+        <p>Exemple de structure pour la barre de navigation principale. Adaptez les liens selon les besoins.</p>
+        <div class="component-preview">
+          <nav class="nav-example-demo p-3 rounded">
+            <div class="d-flex align-items-center justify-content-between flex-wrap">
+              <div class="d-flex align-items-center gap-4">
+                <a href="#" class="nav-link-custom">Accueil</a>
+                <a href="#" class="nav-link-custom">Services</a>
+                <a href="#" class="nav-link-custom">À propos</a>
+              </div>
+              <button class="btn btn-contact-demo">
+                <i class="bi bi-envelope me-2"></i>Contact
+              </button>
+            </div>
+          </nav>
+        </div>
+        <div class="code-snippet">
+          <button class="btn-copy-code" onclick="copyCode(this.nextElementSibling.id, this)">Copier</button>
+          <pre id="codeNav"><code>&lt;!-- La classe navbar-custom est définie dans charte_graph.css pour la navbar principale du site --&gt;
+&lt;nav class="navbar navbar-expand-lg navbar-custom fixed-top"&gt;
+  &lt;div class="container"&gt;
+    &lt;a class="navbar-brand fw-bold" href="index.html"&gt;
+      &lt;!-- Remplacer par le logo SVG ou Image si disponible --&gt;
+      &lt;i class="bi bi-gem me-2"&gt;&lt;/i&gt;AK-Solutions 
+    &lt;/a&gt;
+    &lt;button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"&gt;
+      &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+    &lt;/button&gt;
+    &lt;div class="collapse navbar-collapse" id="mainNavbar"&gt;
+      &lt;ul class="navbar-nav ms-auto mb-2 mb-lg-0"&gt; &lt;!-- ms-auto pour aligner à droite --&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link nav-link-custom" href="index.html"&gt;Accueil&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link nav-link-custom" href="services.html"&gt;Services&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link nav-link-custom" href="a-propos.html"&gt;À Propos&lt;/a&gt;&lt;/li&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link nav-link-custom" href="portfolio.html"&gt;Portfolio&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;button class="btn btn-contact btn-contact-demo ms-lg-3"&gt; &lt;!-- Utiliser btn-contact-demo ou btn-primary-custom --&gt;
+        &lt;i class="bi bi-envelope me-2"&gt;&lt;/i&gt;Contact
+      &lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+        </div>
+
+        <!-- Cartes de Témoignage -->
+        <h3 class="mb-3 mt-5">Cartes de Témoignage (Style Google)</h3>
+        <p>Pour afficher les avis clients.</p>
+        <div class="component-preview">
+          <div class="testimonial-card-google">
+            <div class="d-flex align-items-center mb-3">
+              <div class="testimonial-avatar me-3"
+                style="background-image: url('https://via.placeholder.com/40/4285F4/FFFFFF?Text=A');"></div>
+              <div>
+                <h6 class="mb-1">Nom du Client</h6>
+                <div class="testimonial-stars">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                    class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                </div>
+              </div>
+            </div>
+            <p class="mb-0">"Citation du témoignage client ici..."</p>
+          </div>
+        </div>
+        <div class="code-snippet">
+          <button class="btn-copy-code" onclick="copyCode(this.nextElementSibling.id, this)">Copier</button>
+          <pre id="codeTestimonial"><code>&lt;div class="testimonial-card-google"&gt;
+  &lt;div class="d-flex align-items-center mb-3"&gt;
+    &lt;div class="testimonial-avatar me-3"&gt;&lt;/div&gt; &lt;!-- Stylez .testimonial-avatar avec une image ou initiales --&gt;
+    &lt;div&gt;
+      &lt;h6 class="mb-1"&gt;Nom du Client&lt;/h6&gt;
+      &lt;div class="testimonial-stars"&gt;
+        &lt;i class="bi bi-star-fill"&gt;&lt;/i&gt;
+        &lt;i class="bi bi-star-fill"&gt;&lt;/i&gt;
+        &lt;i class="bi bi-star-fill"&gt;&lt;/i&gt;
+        &lt;i class="bi bi-star-fill"&gt;&lt;/i&gt;
+        &lt;i class="bi bi-star-half"&gt;&lt;/i&gt; &lt;!-- ou bi-star pour vide --&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p class="mb-0"&gt;"Citation du témoignage client ici..."&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- Icônes -->
+        <h3 class="mb-3 mt-5">Icônes Bootstrap</h3>
+        <p>Nous utilisons <a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap Icons</a>. Intégrez-les
+          facilement avec la balise <code>&lt;i&gt;</code>.</p>
+        <div class="component-preview">
+          <i class="bi bi-gear fs-2 text-primary me-3"></i>
+          <i class="bi bi-phone fs-2 text-primary me-3"></i>
+          <i class="bi bi-cloud fs-2 text-primary me-3"></i>
+          <i class="bi bi-shield-check fs-2 text-primary"></i>
+        </div>
+        <div class="code-snippet">
+          <button class="btn-copy-code" onclick="copyCode(this.nextElementSibling.id, this)">Copier</button>
+          <pre id="codeIcones"><code>&lt;!-- Exemple d'icône --&gt;
+&lt;i class="bi bi-gear"&gt;&lt;/i&gt;
+
+&lt;!-- Avec taille et couleur --&gt;
+&lt;i class="bi bi-phone fs-2 text-primary"&gt;&lt;/i&gt;</code></pre>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section Modèle de Page -->
+    <section id="modele-page" class="section">
+      <div class="container">
+        <h2 class="text-center mb-5">Modèle de Page Vierge</h2>
+        <p>Utilisez ce modèle comme point de départ pour toute nouvelle page sur le site AK-Solutions. Il inclut les
+          en-têtes, la structure de base, et les scripts nécessaires.</p>
+        <div class="code-snippet">
+          <button class="btn-copy-code" onclick="copyCode(this.nextElementSibling.id, this)">Copier</button>
+          <pre id="codePageTemplate"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;[Titre de la Page] - AK-Solutions&lt;/title&gt;
+
+  &lt;!-- Polices et CSS Bootstrap --&gt;
+  &lt;link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"&gt;
+  &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+  &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"&gt;
+
+  &lt;!-- CSS Personnalisé AK-Solutions --&gt;
+  &lt;link rel="stylesheet" href="css/charte_graph.css"&gt; &lt;!-- Ajustez le chemin si nécessaire --&gt;
+
+  &lt;!-- Favicon (exemple, à remplacer) --&gt;
+  &lt;!-- link rel="icon" href="favicon.ico" type="image/x-icon" --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;!-- Barre de Navigation (copier/coller depuis la section Composants ou adapter) --&gt;
+  &lt;nav class="navbar navbar-expand-lg navbar-custom fixed-top"&gt;
+    &lt;div class="container"&gt;
+      &lt;a class="navbar-brand fw-bold" href="index.html"&gt;AK-Solutions&lt;/a&gt;
+      &lt;button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbarPage"&gt;
+        &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+      &lt;/button&gt;
+      &lt;div class="collapse navbar-collapse" id="mainNavbarPage"&gt;
+        &lt;ul class="navbar-nav ms-auto mb-2 mb-lg-0"&gt;
+          &lt;li class="nav-item"&gt;&lt;a class="nav-link nav-link-custom" href="index.html"&gt;Accueil&lt;/a&gt;&lt;/li&gt;
+          &lt;!-- Autres liens --&gt;
+        &lt;/ul&gt;
+        &lt;button class="btn btn-contact-demo ms-lg-3"&gt;Contact&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+
+  &lt;!-- Contenu Principal de la Page --&gt;
+  &lt;main&gt;
+    &lt;!-- Hero Section (Optionnel, exemple de la charte graphique) --&gt;
+    &lt;header class="hero-section" style="padding-top: 120px; padding-bottom: 60px;"&gt; &lt;!-- Ajuster padding si navbar fixe --&gt;
+      &lt;div class="container text-center"&gt;
+        &lt;h1 class="display-5 mb-3"&gt;[Titre Principal de la Page]&lt;/h1&gt;
+        &lt;p class="lead mb-4"&gt;[Sous-titre ou description courte]&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;!-- Section de contenu --&gt;
+    &lt;section class="section"&gt;
+      &lt;div class="container"&gt;
+        &lt;div class="row"&gt;
+          &lt;div class="col-12"&gt;
+            &lt;h2&gt;[Titre de Section]&lt;/h2&gt;
+            &lt;p&gt;Contenu de la section...&lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+    
+    &lt;!-- Autres sections si nécessaire --&gt;
+
+  &lt;/main&gt;
+
+  &lt;!-- Footer (copier/coller depuis la charte graphique ou adapter) --&gt;
+  &lt;footer class="bg-dark text-white py-4 mt-auto"&gt;
+    &lt;div class="container text-center"&gt;
+      &lt;p class="mb-0"&gt;&copy; &lt;script&gt;document.write(new Date().getFullYear())&lt;/script&gt; AK-Solutions. Tous droits réservés.&lt;/p&gt;
+      &lt;p class="mb-0 small"&gt;Site web réalisé par &lt;a href="https://github.com/magicolala" target="_blank" rel="noopener noreferrer" class="footer-link"&gt;Cédric Oloa&lt;/a&gt;&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/footer&gt;
+
+  &lt;!-- Scripts JS Bootstrap --&gt;
+  &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+  
+  &lt;!-- Scripts personnalisés AK-Solutions (si besoin) --&gt;
+  &lt;!-- script src="js/script-charte-graphique.js"&gt;&lt;/script&gt; --&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+      </div>
+    </section>
+    <!-- Section Page Plaquette pour Maija -->
+    <section id="page-plaquette" class="section">
+      <div class="container">
+        <h2 class="text-center mb-5">Créer une Page Plaquette (pour Maija)</h2>
+        <div class="alert alert-info">
+          <p class="mb-0"><strong>Salut Maija !</strong> Cédric m'a dit que tu allais créer une page "plaquette" pour
+            l'entreprise de Karim, accessible via un QR code. Cette section est pour toi !
+            L'idée est de te fournir une base simple pour que tu puisses te concentrer sur la rédaction et la mise en
+            page du contenu.
+            Je m'occupe de la structure et des liens principaux. Tu te charges du reste ! 😉</p>
+        </div>
+
+        <h4 class="mt-4">Objectif de la page plaquette</h4>
+        <p>Cette page sera une sorte de "carte de visite numérique" ou de "mini-menu" des services. Elle doit être :</p>
+        <ul>
+          <li><strong>Simple et directe :</strong> Les informations clés doivent être faciles à trouver.</li>
+          <li><strong>Statique :</strong> Pas de fonctionnalités complexes, juste du contenu informatif.</li>
+          <li><strong>Adaptée aux mobiles :</strong> Beaucoup de gens scanneront le QR code avec leur téléphone.</li>
+          <li><strong>Cohérente avec l'image d'AK-Solutions :</strong> Utiliser les polices et couleurs de la charte.
+          </li>
+        </ul>
+
+        <h4>Modèle de base pour ta page</h4>
+        <p>Voici un modèle HTML que tu peux utiliser. Enregistre-le sous un nom de fichier comme
+          <code>plaquette-karim.html</code> à la racine du projet (au même niveau que <code>index.html</code>).
+        </p>
+        <div class="code-snippet">
+          <button class="btn-copy-code" onclick="copyCode(this.nextElementSibling.id, this)">Copier</button>
+          <pre id="codePagePlaquette"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="fr"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;AK-Solutions - [Titre de la Plaquette]&lt;/title&gt;
+  &lt;link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"&gt;
+  &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"&gt;
+  &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet"&gt;
+  &lt;link rel="stylesheet" href="css/charte_graph.css"&gt; &lt;!-- Styles AK-Solutions --&gt;
+  &lt;style&gt;
+    body { font-family: 'Nunito', sans-serif; background-color: #f8f9fa; margin: 0; padding: 0; }
+    .plaquette-header { background-color: var(--primary-blue, #007FFF); color: white; padding: 20px; text-align: center; }
+    .plaquette-header img { max-height: 50px; margin-bottom: 10px; }
+    .plaquette-content { padding: 20px; background-color: white; margin: 20px auto; border-radius: var(--radius-m, 12px); box-shadow: var(--shadow-100, 0px 0px 8px 2px rgba(0,0,0,.1)); max-width: 800px; }
+    .plaquette-footer { text-align: center; padding: 20px; font-size: 0.9em; color: #6c757d; }
+    .plaquette-actions { margin-top: 30px; text-align: center; }
+    .plaquette-actions .btn { margin: 5px; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header class="plaquette-header"&gt;
+    &lt;!-- Optionnel: Logo AK-Solutions. S'il est utilisé, s'assurer que le chemin est correct, ex: "img/logo-ak-solutions-blanc.png" --&gt;
+    &lt;!-- &lt;img src="img/logo.webp" alt="Logo AK-Solutions" style="filter: brightness(0) invert(1);"&gt; --&gt;
+    &lt;h1&gt;AK-Solutions&lt;/h1&gt;
+  &lt;/header&gt;
+
+  &lt;main class="plaquette-content"&gt;
+    &lt;h2&gt;[Titre Principal de la Plaquette par Maija]&lt;/h2&gt;
+    &lt;p&gt;
+      [Ici, Maija, tu peux mettre le contenu principal de la page.
+      Tu peux utiliser des titres (h2, h3), des paragraphes (p),
+      des listes (ul, li), etc. pour présenter les services de conseil en communication, secrétariat, comptabilité, conseil en image et rédaction.]
+    &lt;/p&gt;
+    &lt;p&gt;
+      Par exemple, pour les services de Karim :
+    &lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Plomberie Générale&lt;/li&gt;
+      &lt;li&gt;Électricité HT &amp; BT&lt;/li&gt;
+      &lt;li&gt;Climatisation &amp; Froid&lt;/li&gt;
+      &lt;li&gt;Travaux de Second Œuvre&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div class="plaquette-actions"&gt;
+      &lt;a href="index.html#contact" class="btn btn-primary-custom me-2"&gt;
+        &lt;i class="bi bi-envelope me-2"&gt;&lt;/i&gt;Demander un devis
+      &lt;/a&gt;
+      &lt;a href="tel:+33764352198" class="btn btn-outline-custom"&gt;
+        &lt;i class="bi bi-telephone me-2"&gt;&lt;/i&gt;Nous appeler (07 64 35 21 98)
+      &lt;/a&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer class="plaquette-footer"&gt;
+    &lt;p&gt;&copy; &lt;script&gt;document.write(new Date().getFullYear())&lt;/script&gt; AK-Solutions. Tous droits réservés.&lt;/p&gt;
+    &lt;p&gt;&lt;a href="index.html"&gt;Retour au site principal AK-Solutions&lt;/a&gt;&lt;/p&gt;
+  &lt;/footer&gt;
+
+  &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        </div>
+
+        <h4 class="mt-4">Comment l'utiliser ?</h4>
+        <ol>
+          <li><strong>Copie le code ci-dessus</strong> et enregistre-le dans un nouveau fichier (ex:
+            <code>plaquette-karim.html</code>) à la racine du projet.
+          </li>
+          <li><strong>Modifie le titre de la page :</strong> Dans la balise <code>&lt;title&gt;</code>, remplace
+            <code>[Titre de la Plaquette]</code>.
+          </li>
+          <li><strong>Personnalise le contenu :</strong>
+            <ul>
+              <li>Dans la section <code>&lt;main class="plaquette-content"&gt;</code>, remplace
+                <code>[Titre Principal de la Plaquette par Maija]</code> et le texte d'exemple par ton propre contenu.
+              </li>
+              <li>Tu peux utiliser des balises HTML classiques : <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code> pour
+                les titres, <code>&lt;p&gt;</code> pour les paragraphes,
+                <code>&lt;ul&gt;&lt;li&gt;...&lt;/li&gt;&lt;/ul&gt;</code> pour les listes.
+              </li>
+              <li>Les styles de base (polices, couleurs principales) sont déjà appliqués grâce à
+                <code>css/charte_graph.css</code> et quelques styles spécifiques dans la balise
+                <code>&lt;style&gt;</code> du modèle.
+              </li>
+            </ul>
+          </li>
+          <li><strong>Liens importants :</strong>
+            <ul>
+              <li>Le bouton "Demander un devis" pointe déjà vers la section contact de la page d'accueil
+                (<code>index.html#contact</code>).</li>
+              <li>Le bouton "Nous appeler" initie un appel vers le numéro d'AK-Solutions.</li>
+              <li>Si tu as besoin d'autres liens, tu peux les ajouter en utilisant la balise
+                <code>&lt;a href="URL_DE_DESTINATION"&gt;Texte du lien&lt;/a&gt;</code>. Pour un style de bouton, tu
+                peux utiliser les classes <code>btn btn-primary-custom</code> ou <code>btn btn-outline-custom</code>
+                (définies dans <code>css/charte_graph.css</code>).
+              </li>
+            </ul>
+          </li>
+          <li><strong>Optionnel : Logo</strong>
+            <ul>
+              <li>Si tu souhaites ajouter le logo d'AK-Solutions en haut, tu peux décommenter la ligne commençant par
+                <code>&lt;!-- &lt;img src="img/logo.webp" ...</code>. Assure-toi que le chemin vers l'image
+                (<code>img/logo.webp</code>) est correct et que le logo est visible sur le fond bleu (le style
+                <code>filter: brightness(0) invert(1);</code> essaie de le rendre blanc). Sinon, le nom "AK-Solutions"
+                s'affichera.
+              </li>
+            </ul>
+          </li>
+        </ol>
+
+        <h4 class="mt-4">Comment télécharger et démarrer le projet (sans Git)</h4>
+        <p>Comme tu n'es pas familière avec GitHub, voici la méthode la plus simple pour récupérer les fichiers du site
+          et commencer à travailler sur ta page :</p>
+        <ol>
+          <li>
+            <strong>Télécharger le projet en ZIP :</strong>
+            <ul>
+              <li>Rends-toi sur la page du projet : <a href="https://github.com/magicolala/AK-solutions"
+                  target="_blank">https://github.com/magicolala/AK-solutions</a>.</li>
+              <li>Sur la page, cherche un bouton vert "<i class="bi bi-code"></i> Code". Clique dessus.</li>
+              <li>Dans le menu qui apparaît, clique sur "Download ZIP".</li>
+              <li>Cela va télécharger un fichier nommé `AK-solutions-main.zip` (ou similaire) sur ton ordinateur.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Décompresser le fichier :</strong>
+            <ul>
+              <li>Retrouve le fichier `AK-solutions-main.zip` dans tes téléchargements.</li>
+              <li>Fais un clic droit dessus et choisis "Extraire tout..." ou "Décompresser ici" (le nom exact peut
+                varier selon ton système d'exploitation).</li>
+              <li>Cela va créer un dossier nommé `AK-solutions-main` contenant tous les fichiers du site.</li>
+            </ul>
+          </li>
+          <li><strong>Commencer à travailler :</strong>
+            <ul>
+              <li>Dans ce dossier `AK-solutions-main`, tu trouveras le fichier `index.html`, le dossier `css/`, `img/`,
+                etc. C'est ici que tu créeras ton fichier `plaquette-karim.html` en suivant le modèle ci-dessus.</li>
+              <li>Tu peux ouvrir les fichiers `.html` directement avec ton navigateur pour voir le résultat, et les
+                modifier avec un éditeur de texte simple (comme le Bloc-notes, TextEdit, ou mieux, un éditeur gratuit
+                comme <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> si tu veux plus de
+                confort).</li>
+            </ul>
+          </li>
+          <li><strong>Transmettre les fichiers :</strong>
+            <ul>
+              <li>Une fois que tu as terminé ta page `plaquette-karim.html` (et éventuellement modifié d'autres fichiers
+                si besoin), tu pourras simplement donner ces fichiers à Cédric. Il se chargera de les intégrer et de les
+                mettre en ligne.</li>
+            </ul>
+          </li>
+        </ol>
+        <p>Cette méthode te permet de travailler tranquillement sur ton ordinateur sans te soucier des commandes Git
+          complexes.</p>
+
+        <h4 class="mt-4">Quelques conseils</h4>
+        <ul>
+          <li><strong>Reste simple :</strong> L'objectif est d'informer rapidement.</li>
+          <li><strong>Relis-toi bien :</strong> Vérifie l'orthographe et la grammaire.</li>
+          <li><strong>Teste sur mobile :</strong> Ouvre le fichier HTML sur ton téléphone pour voir comment il
+            s'affiche. Le modèle est déjà responsive.</li>
+        </ul>
+        <p>Si tu as des questions techniques pendant que tu crées le contenu, n'hésite pas à demander à Cédric !</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <p class="mb-0">
+            <strong>©
+              <script>document.write(new Date().getFullYear())</script> AK-Solutions
+            </strong> - Guide Développeur
+          </p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <a href="charte_graphique.html" class="btn btn-sm btn-outline-light">
+            <i class="bi bi-palette"></i> Charte Graphique
+          </a>
+        </div>
+      </div>
+      <div class="text-center mt-3">
+        <p class="mb-0 small">
+          Guide réalisé par <a href="https://github.com/magicolala" target="_blank" rel="noopener noreferrer"
+            class="footer-link">Cédric Oloa</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast pour les notifications de copie -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="copyNotificationToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <i class="bi bi-check-circle-fill text-success me-2"></i>
+        <strong class="me-auto">Succès</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Code copié dans le presse-papiers !
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Fonction pour copier le contenu d'un élément <pre>
+    function copyCode(elementId, button) {
+      const preElement = document.getElementById(elementId);
+      if (preElement) {
+        const codeToCopy = preElement.textContent || preElement.innerText;
+        navigator.clipboard.writeText(codeToCopy).then(() => {
+          // Afficher le toast de notification
+          const toastEl = document.getElementById('copyNotificationToast');
+          if (toastEl) {
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+          }
+          // Changer temporairement le texte du bouton
+          const originalButtonText = button.innerHTML;
+          button.innerHTML = '<i class="bi bi-check-lg"></i> Copié !';
+          setTimeout(() => {
+            button.innerHTML = originalButtonText;
+          }, 2000);
+        }).catch(err => {
+          console.error('Erreur lors de la copie du code: ', err);
+          alert('Erreur lors de la copie.');
+        });
+      }
+    }
+
+    // Activer les tooltips Bootstrap (si vous en ajoutez)
+    // var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    // var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    //   return new bootstrap.Tooltip(tooltipTriggerEl)
+    // })
+  </script>
+  <!-- Assurez-vous que le chemin vers script-charte-graphique.js est correct si vous l'utilisez -->
+  <!-- <script src="js/script-charte-graphique.js"></script> -->
+</body>
+
+</html>
