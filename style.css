@@ -2117,7 +2117,7 @@ section[id] {
   transition: all 0.4s ease;
   box-shadow: 0 4px 16px rgba(var(--electric-blue-rgb), 0.3);
   color: white;
-  font-size: 2vw;
+  font-size: 30px;
 }
 
 .service-card-v2:hover .service-card-icon-v2 {
