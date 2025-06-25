@@ -362,12 +362,16 @@ function initMasonryGallery() {
 // --------------------------------------
 function initNavbarScroll() {
   const navbar = document.querySelector(".navbar");
-  if (!navbar) return;
+  const backToTopBtn = document.getElementById("back-to-top");
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  if (!navbar && !backToTopBtn && sections.length === 0) return;
 
   let ticking = false;
   let lastScrollY = 0;
 
-  function updateNavbar() {
+  function updateOnScroll() {
     const scrollY = window.scrollY;
 
     // Éviter les calculs inutiles
@@ -376,11 +380,38 @@ function initNavbarScroll() {
       return;
     }
 
-    // Ajouter/supprimer la classe scrolled
-    if (scrollY > 50) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
+    // --- Navbar scroll behavior ---
+    if (navbar) {
+      if (scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    }
+
+    // --- Back-to-top button visibility ---
+    if (backToTopBtn) {
+      backToTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+    }
+
+    // --- Active link highlighting ---
+    if (sections.length > 0 && navLinks.length > 0) {
+      let current = "";
+      const offset = 100;
+
+      sections.forEach((sec) => {
+        const top = sec.offsetTop - offset;
+        if (scrollY >= top && scrollY < top + sec.offsetHeight) {
+          current = sec.id;
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.classList.toggle(
+          "active",
+          link.getAttribute("href") === `#${current}`
+        );
+      });
     }
 
     lastScrollY = scrollY;
@@ -389,7 +420,7 @@ function initNavbarScroll() {
 
   function requestTick() {
     if (!ticking) {
-      requestAnimationFrame(updateNavbar);
+      requestAnimationFrame(updateOnScroll);
       ticking = true;
     }
   }
@@ -404,9 +435,7 @@ function initBackToTop() {
   const btn = document.getElementById("back-to-top");
   if (!btn) return;
 
-  window.addEventListener("scroll", () => {
-    btn.style.display = window.scrollY > 300 ? "block" : "none";
-  });
+  // Scroll behavior is now handled by initNavbarScroll for performance.
 
   btn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -552,8 +581,6 @@ function initSmoothScroll() {
 // 9. Active link highlighting on scroll
 // --------------------------------------
 function initActiveNavLink() {
-  const sections = document.querySelectorAll("section[id]");
-  const links = document.querySelectorAll(".nav-link");
   const collapse = document.querySelector(".navbar-collapse");
 
   // Close mobile menu on link click - CORRECTION ICI
@@ -562,29 +589,9 @@ function initActiveNavLink() {
 
   allNavLinks.forEach((link) => {
     link.addEventListener("click", () => {
-      if (collapse.classList.contains("show")) {
+      if (collapse && collapse.classList.contains("show")) {
         new bootstrap.Collapse(collapse).hide();
       }
-    });
-  });
-
-  // Highlight on scroll - cette partie reste inchangée
-  window.addEventListener("scroll", () => {
-    let current = "";
-    const offset = 100;
-
-    sections.forEach((sec) => {
-      const top = sec.offsetTop - offset;
-      if (window.scrollY >= top && window.scrollY < top + sec.offsetHeight) {
-        current = sec.id;
-      }
-    });
-
-    links.forEach((link) => {
-      link.classList.toggle(
-        "active",
-        link.getAttribute("href") === `#${current}`
-      );
     });
   });
 }
