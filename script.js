@@ -48,6 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
 🌐 URL: ${window.location.href}
 `);
 
+  const yearElement = document.getElementById("current-year");
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
+
   // Utiliser requestIdleCallback de façon plus intelligente
   if ("requestIdleCallback" in window) {
     // Tâches critiques immédiatement
@@ -97,12 +102,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Granim après le chargement complet
   window.addEventListener("load", () => {
     requestIdleCallback(initGranim, { timeout: 1000 });
-        // Cacher le loader de page
-    const loader = document.getElementById('page-loader');
+    // Cacher le loader de page
+    const loader = document.getElementById("page-loader");
     if (loader) {
       // Léger délai pour s'assurer que tout est bien rendu et éviter un flash
       setTimeout(() => {
-        loader.classList.add('loaded');
+        loader.classList.add("loaded");
       }, 500); // Ajustez ce délai si nécessaire
     }
   });
@@ -156,7 +161,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 // ======================================
 function initGranim() {
-  if (typeof Granim !== "undefined" && document.getElementById("granim-canvas")) {
+  if (
+    typeof Granim !== "undefined" &&
+    document.getElementById("granim-canvas")
+  ) {
     // Délai pour ne pas impacter le LCP
     setTimeout(() => {
       requestAnimationFrame(() => {
@@ -573,7 +581,10 @@ function initActiveNavLink() {
     });
 
     links.forEach((link) => {
-      link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
+      link.classList.toggle(
+        "active",
+        link.getAttribute("href") === `#${current}`
+      );
     });
   });
 }
@@ -600,7 +611,8 @@ function initScrollArrows() {
 
       if (target) {
         // Calculer la position avec offset pour la navbar
-        const navbarHeight = document.querySelector(".navbar")?.offsetHeight || 70;
+        const navbarHeight =
+          document.querySelector(".navbar")?.offsetHeight || 70;
         const offsetTop = target.offsetTop - navbarHeight;
 
         // Animation de scroll fluide
@@ -611,7 +623,9 @@ function initScrollArrows() {
 
         console.log(`Scroll vers: ${targetSelector}`);
       } else {
-        console.warn(`Flèche ${index + 1}: Cible "${targetSelector}" non trouvée`);
+        console.warn(
+          `Flèche ${index + 1}: Cible "${targetSelector}" non trouvée`
+        );
       }
     });
 
@@ -688,7 +702,9 @@ function hideElfsightBranding() {
     });
 
     // Cacher tous les liens Elfsight génériques
-    const allElfsightLinks = document.querySelectorAll('a[href*="elfsight.com"]');
+    const allElfsightLinks = document.querySelectorAll(
+      'a[href*="elfsight.com"]'
+    );
     allElfsightLinks.forEach((link) => {
       link.style.setProperty("display", "none", "important");
       link.style.setProperty("visibility", "hidden", "important");
@@ -708,10 +724,16 @@ function hideElfsightBranding() {
     });
 
     // Cacher les éléments par classe ou attributs Elfsight
-    const elfsightElements = document.querySelectorAll('[class*="elfsight"], [id*="elfsight"], [data-elfsight]');
+    const elfsightElements = document.querySelectorAll(
+      '[class*="elfsight"], [id*="elfsight"], [data-elfsight]'
+    );
     elfsightElements.forEach((element) => {
       // Ne cacher que les éléments de branding, pas le widget entier
-      if (element.tagName === "A" || element.textContent.includes("Free") || element.textContent.includes("Elfsight")) {
+      if (
+        element.tagName === "A" ||
+        element.textContent.includes("Free") ||
+        element.textContent.includes("Elfsight")
+      ) {
         element.style.setProperty("display", "none", "important");
         element.style.setProperty("visibility", "hidden", "important");
       }
@@ -852,7 +874,10 @@ function initTestimonialsCarousel() {
 
     // Update active dot based on the current page
     dotsContainer.querySelectorAll(".carousel-dot").forEach((dot, index) => {
-      dot.classList.toggle("active", index === Math.floor(currentIndex / slidesPerView));
+      dot.classList.toggle(
+        "active",
+        index === Math.floor(currentIndex / slidesPerView)
+      );
     });
 
     // Update button states
@@ -920,7 +945,8 @@ function initFaqInteraction() {
       const questionText = questionButton.textContent.toLowerCase();
       const answerText = answerBody.textContent.toLowerCase();
 
-      const isMatch = questionText.includes(searchTerm) || answerText.includes(searchTerm);
+      const isMatch =
+        questionText.includes(searchTerm) || answerText.includes(searchTerm);
 
       if (isMatch) {
         item.style.display = ""; // Afficher l'élément
