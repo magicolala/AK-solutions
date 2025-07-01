@@ -48,6 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
 🌐 URL: ${window.location.href}
 `);
 
+  const yearElement = document.getElementById("current-year");
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
+
   // Utiliser requestIdleCallback de façon plus intelligente
   if ("requestIdleCallback" in window) {
     // Tâches critiques immédiatement
@@ -97,12 +102,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Granim après le chargement complet
   window.addEventListener("load", () => {
     requestIdleCallback(initGranim, { timeout: 1000 });
-        // Cacher le loader de page
-    const loader = document.getElementById('page-loader');
+    // Cacher le loader de page
+    const loader = document.getElementById("page-loader");
     if (loader) {
       // Léger délai pour s'assurer que tout est bien rendu et éviter un flash
       setTimeout(() => {
-        loader.classList.add('loaded');
+        loader.classList.add("loaded");
       }, 500); // Ajustez ce délai si nécessaire
     }
   });
@@ -156,7 +161,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 // ======================================
 function initGranim() {
-  if (typeof Granim !== "undefined" && document.getElementById("granim-canvas")) {
+  if (
+    typeof Granim !== "undefined" &&
+    document.getElementById("granim-canvas")
+  ) {
     // Délai pour ne pas impacter le LCP
     setTimeout(() => {
       requestAnimationFrame(() => {
@@ -354,12 +362,16 @@ function initMasonryGallery() {
 // --------------------------------------
 function initNavbarScroll() {
   const navbar = document.querySelector(".navbar");
-  if (!navbar) return;
+  const backToTopBtn = document.getElementById("back-to-top");
+  const sections = document.querySelectorAll("section[id]");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  if (!navbar && !backToTopBtn && sections.length === 0) return;
 
   let ticking = false;
   let lastScrollY = 0;
 
-  function updateNavbar() {
+  function updateOnScroll() {
     const scrollY = window.scrollY;
 
     // Éviter les calculs inutiles
@@ -368,11 +380,38 @@ function initNavbarScroll() {
       return;
     }
 
-    // Ajouter/supprimer la classe scrolled
-    if (scrollY > 50) {
-      navbar.classList.add("scrolled");
-    } else {
-      navbar.classList.remove("scrolled");
+    // --- Navbar scroll behavior ---
+    if (navbar) {
+      if (scrollY > 50) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    }
+
+    // --- Back-to-top button visibility ---
+    if (backToTopBtn) {
+      backToTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+    }
+
+    // --- Active link highlighting ---
+    if (sections.length > 0 && navLinks.length > 0) {
+      let current = "";
+      const offset = 100;
+
+      sections.forEach((sec) => {
+        const top = sec.offsetTop - offset;
+        if (scrollY >= top && scrollY < top + sec.offsetHeight) {
+          current = sec.id;
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.classList.toggle(
+          "active",
+          link.getAttribute("href") === `#${current}`
+        );
+      });
     }
 
     lastScrollY = scrollY;
@@ -381,7 +420,7 @@ function initNavbarScroll() {
 
   function requestTick() {
     if (!ticking) {
-      requestAnimationFrame(updateNavbar);
+      requestAnimationFrame(updateOnScroll);
       ticking = true;
     }
   }
@@ -396,9 +435,7 @@ function initBackToTop() {
   const btn = document.getElementById("back-to-top");
   if (!btn) return;
 
-  window.addEventListener("scroll", () => {
-    btn.style.display = window.scrollY > 300 ? "block" : "none";
-  });
+  // Scroll behavior is now handled by initNavbarScroll for performance.
 
   btn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -544,8 +581,6 @@ function initSmoothScroll() {
 // 9. Active link highlighting on scroll
 // --------------------------------------
 function initActiveNavLink() {
-  const sections = document.querySelectorAll("section[id]");
-  const links = document.querySelectorAll(".nav-link");
   const collapse = document.querySelector(".navbar-collapse");
 
   // Close mobile menu on link click - CORRECTION ICI
@@ -554,26 +589,9 @@ function initActiveNavLink() {
 
   allNavLinks.forEach((link) => {
     link.addEventListener("click", () => {
-      if (collapse.classList.contains("show")) {
+      if (collapse && collapse.classList.contains("show")) {
         new bootstrap.Collapse(collapse).hide();
       }
-    });
-  });
-
-  // Highlight on scroll - cette partie reste inchangée
-  window.addEventListener("scroll", () => {
-    let current = "";
-    const offset = 100;
-
-    sections.forEach((sec) => {
-      const top = sec.offsetTop - offset;
-      if (window.scrollY >= top && window.scrollY < top + sec.offsetHeight) {
-        current = sec.id;
-      }
-    });
-
-    links.forEach((link) => {
-      link.classList.toggle("active", link.getAttribute("href") === `#${current}`);
     });
   });
 }
@@ -600,7 +618,8 @@ function initScrollArrows() {
 
       if (target) {
         // Calculer la position avec offset pour la navbar
-        const navbarHeight = document.querySelector(".navbar")?.offsetHeight || 70;
+        const navbarHeight =
+          document.querySelector(".navbar")?.offsetHeight || 70;
         const offsetTop = target.offsetTop - navbarHeight;
 
         // Animation de scroll fluide
@@ -611,7 +630,9 @@ function initScrollArrows() {
 
         console.log(`Scroll vers: ${targetSelector}`);
       } else {
-        console.warn(`Flèche ${index + 1}: Cible "${targetSelector}" non trouvée`);
+        console.warn(
+          `Flèche ${index + 1}: Cible "${targetSelector}" non trouvée`
+        );
       }
     });
 
@@ -688,7 +709,9 @@ function hideElfsightBranding() {
     });
 
     // Cacher tous les liens Elfsight génériques
-    const allElfsightLinks = document.querySelectorAll('a[href*="elfsight.com"]');
+    const allElfsightLinks = document.querySelectorAll(
+      'a[href*="elfsight.com"]'
+    );
     allElfsightLinks.forEach((link) => {
       link.style.setProperty("display", "none", "important");
       link.style.setProperty("visibility", "hidden", "important");
@@ -708,10 +731,16 @@ function hideElfsightBranding() {
     });
 
     // Cacher les éléments par classe ou attributs Elfsight
-    const elfsightElements = document.querySelectorAll('[class*="elfsight"], [id*="elfsight"], [data-elfsight]');
+    const elfsightElements = document.querySelectorAll(
+      '[class*="elfsight"], [id*="elfsight"], [data-elfsight]'
+    );
     elfsightElements.forEach((element) => {
       // Ne cacher que les éléments de branding, pas le widget entier
-      if (element.tagName === "A" || element.textContent.includes("Free") || element.textContent.includes("Elfsight")) {
+      if (
+        element.tagName === "A" ||
+        element.textContent.includes("Free") ||
+        element.textContent.includes("Elfsight")
+      ) {
         element.style.setProperty("display", "none", "important");
         element.style.setProperty("visibility", "hidden", "important");
       }
@@ -852,7 +881,10 @@ function initTestimonialsCarousel() {
 
     // Update active dot based on the current page
     dotsContainer.querySelectorAll(".carousel-dot").forEach((dot, index) => {
-      dot.classList.toggle("active", index === Math.floor(currentIndex / slidesPerView));
+      dot.classList.toggle(
+        "active",
+        index === Math.floor(currentIndex / slidesPerView)
+      );
     });
 
     // Update button states
@@ -920,7 +952,8 @@ function initFaqInteraction() {
       const questionText = questionButton.textContent.toLowerCase();
       const answerText = answerBody.textContent.toLowerCase();
 
-      const isMatch = questionText.includes(searchTerm) || answerText.includes(searchTerm);
+      const isMatch =
+        questionText.includes(searchTerm) || answerText.includes(searchTerm);
 
       if (isMatch) {
         item.style.display = ""; // Afficher l'élément
