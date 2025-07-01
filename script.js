@@ -495,7 +495,7 @@ function initDynamicTestimonials() {
   const reviewCountElement = document.getElementById("review-count-text");
   if (reviewCountElement) {
     // Date de "lancement" passée pour un calcul correct
-    const startDate = new Date("2025-03-01");
+    const startDate = new Date("2025-04-01");
     const now = new Date();
     // Le nombre d'avis de base correspond maintenant au total dans le HTML
     const baseReviewCount = 9; 
