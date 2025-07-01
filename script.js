@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         initActiveNavLink(); // Ajouter cette ligne aussi
         initBackToTop(); // Et celle-ci
         initFaqInteraction(); // Ajouter pour la FAQ interactive
+        initDynamicTestimonials(); // Pour les avis dynamiques
       },
       { timeout: 2000 }
     );
@@ -96,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
       initActiveNavLink(); // Ajouter cette ligne
       initBackToTop(); // Et celle-ci
       initFaqInteraction(); // Ajouter pour la FAQ interactive
+      initDynamicTestimonials(); // Pour les avis dynamiques
     }, 100);
   }
 
@@ -479,6 +481,82 @@ function initCardHover() {
       card.style.boxShadow = "";
     });
   });
+}
+
+// --------------------------------------
+// 14. Dynamic Testimonials Content
+// --------------------------------------
+/**
+ * Met à jour dynamiquement le nombre d'avis et les dates de publication
+ * pour donner une impression de contenu récent et évolutif.
+ */
+function initDynamicTestimonials() {
+  // --- 1. Mise à jour du nombre d'avis ---
+  const reviewCountElement = document.getElementById("review-count-text");
+  if (reviewCountElement) {
+    const startDate = new Date("2025-04-01"); // Date de "lancement" fictive du site
+    const now = new Date();
+    const baseReviewCount = 7; // Le nombre d'avis de départ
+
+    // Calcul du nombre de semaines écoulées
+    const timeDiff = now.getTime() - startDate.getTime();
+    const weeksPassed = Math.floor(timeDiff / (1000 * 3600 * 24 * 7));
+
+    // Ajoute 1 avis toutes les 2 semaines (valeur ajustable)
+    const newReviews = Math.floor(weeksPassed / 2);
+    const totalReviews = baseReviewCount + newReviews;
+
+    reviewCountElement.textContent = `Basé sur ${totalReviews} avis clients`;
+  }
+
+  // --- 2. Mise à jour des dates des avis ---
+  const reviewDateElements = document.querySelectorAll(
+    ".testimonial-slide .review-date"
+  );
+  if (reviewDateElements.length > 0) {
+    // Dates de publication "originales" pour chaque témoignage.
+    // Assurez-vous que l'ordre correspond à celui des témoignages dans le HTML.
+    const baseReviewDates = [
+      new Date("2025-06-10T10:00:00"), // Sophie Martin
+      new Date("2025-04-25T14:30:00"), // Mickaël Dubois
+      new Date("2025-05-02T09:00:00"), // Nadia Benali
+      new Date("2025-06-17T18:00:00"), // Pierre Leroy
+      new Date("2025-03-20T11:00:00"), // Catherine Moreau
+      new Date("2025-04-15T20:00:00"), // Ahmed Khelifi
+    ];
+
+    /**
+     * Formate une date en une chaîne de caractères relative (ex: "Il y a 2 semaines").
+     * @param {Date} date - La date à formater.
+     * @returns {string} La chaîne de caractères formatée.
+     */
+    function formatTimeAgo(date) {
+      const now = new Date();
+      const seconds = Math.floor((now - date) / 1000);
+
+      let interval = seconds / 31536000; // années
+      if (interval > 1) {
+        const years = Math.floor(interval);
+        return `Il y a ${years} an${years > 1 ? "s" : ""}`;
+      }
+      interval = seconds / 2592000; // mois
+      if (interval > 1) {
+        return `Il y a ${Math.floor(interval)} mois`;
+      }
+      interval = seconds / 604800; // semaines
+      if (interval >= 1) {
+        const weeks = Math.floor(interval);
+        return `Il y a ${weeks} semaine${weeks > 1 ? "s" : ""}`;
+      }
+      return "Récemment";
+    }
+
+    reviewDateElements.forEach((element, index) => {
+      if (baseReviewDates[index]) {
+        element.textContent = formatTimeAgo(baseReviewDates[index]);
+      }
+    });
+  }
 }
 
 // --------------------------------------
