@@ -1672,6 +1672,12 @@ footer hr {
      13. SECTION TÉMOIGNAGES - GOOGLE STYLE
      ====================================== */
 
+/* Appliquer la police Roboto à la section des avis */
+#testimonials .google-rating-summary,
+#testimonials .testimonial-card.google-style {
+  font-family: 'Roboto', sans-serif;
+}
+
 /* Overall rating summary block */
 .google-rating-summary {
   display: flex;
