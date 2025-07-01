@@ -152,6 +152,9 @@ body {
 body {
   font-family: 'Nunito', sans-serif;
   overflow-x: hidden;
+  /* Ajout pour une meilleure lisibilité sur mobile */
+  font-size: 1rem; /* Base de 16px, assure une taille de base cohérente */
+  line-height: 1.6; /* Hauteur de ligne améliorée pour les paragraphes */
 }
 
 ul {
@@ -167,7 +170,18 @@ h5,
 h6 {
   color: var(--primary-900);
   font-weight: 700;
+  /* Ajout pour une meilleure lisibilité */
+  line-height: 1.3;
 }
+
+/* Tailles de police responsives (fluides) pour une meilleure accessibilité */
+/* clamp(MIN, PREFERRED, MAX) */
+h1 { font-size: clamp(2.2rem, 1.5rem + 3.5vw, 3.5rem); }
+h2 { font-size: clamp(1.8rem, 1.2rem + 3vw, 3rem); }
+h3 { font-size: clamp(1.5rem, 1rem + 2.5vw, 2.5rem); }
+h4 { font-size: clamp(1.2rem, 1rem + 1vw, 1.75rem); }
+h5 { font-size: clamp(1.1rem, 1rem + 0.5vw, 1.25rem); }
+h6 { font-size: 1rem; }
 
 .display-4 {
   font-weight: 800;
@@ -175,6 +189,8 @@ h6 {
 
 .lead {
   font-weight: 400;
+  /* Taille de police légèrement plus grande pour une meilleure lisibilité */
+  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.25rem);
 }
 
 /* Sections */
