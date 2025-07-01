@@ -494,13 +494,16 @@ function initDynamicTestimonials() {
   // --- 1. Mise à jour du nombre d'avis ---
   const reviewCountElement = document.getElementById("review-count-text");
   if (reviewCountElement) {
-    const startDate = new Date("2025-04-01"); // Date de "lancement" fictive du site
+    // Date de "lancement" passée pour un calcul correct
+    const startDate = new Date("2025-03-01");
     const now = new Date();
-    const baseReviewCount = 7; // Le nombre d'avis de départ
+    // Le nombre d'avis de base correspond maintenant au total dans le HTML
+    const baseReviewCount = 9; 
 
     // Calcul du nombre de semaines écoulées
     const timeDiff = now.getTime() - startDate.getTime();
-    const weeksPassed = Math.floor(timeDiff / (1000 * 3600 * 24 * 7));
+    // S'assurer que le temps écoulé n'est pas négatif
+    const weeksPassed = Math.max(0, Math.floor(timeDiff / (1000 * 3600 * 24 * 7)));
 
     // Ajoute 1 avis toutes les 2 semaines (valeur ajustable)
     const newReviews = Math.floor(weeksPassed / 2);
@@ -515,14 +518,17 @@ function initDynamicTestimonials() {
   );
   if (reviewDateElements.length > 0) {
     // Dates de publication "originales" pour chaque témoignage.
-    // Assurez-vous que l'ordre correspond à celui des témoignages dans le HTML.
+    // L'ordre correspond à celui des témoignages dans le HTML. Année mise à 2024.
     const baseReviewDates = [
-      new Date("2025-06-10T10:00:00"), // Sophie Martin
-      new Date("2025-04-25T14:30:00"), // Mickaël Dubois
-      new Date("2025-05-02T09:00:00"), // Nadia Benali
-      new Date("2025-06-17T18:00:00"), // Pierre Leroy
-      new Date("2025-03-20T11:00:00"), // Catherine Moreau
-      new Date("2025-04-15T20:00:00"), // Ahmed Khelifi
+      new Date("2025-06-20T10:00:00"), // 1. Sophie Martin
+      new Date("2025-06-12T14:30:00"), // 2. Mickaël Dubois
+      new Date("2025-05-30T09:00:00"), // 3. Nadia Benali
+      new Date("2025-05-26T18:00:00"), // 4. Pierre Leroy
+      new Date("2025-05-20T11:00:00"), // 5. Catherine Moreau
+      new Date("2025-05-01T20:00:00"), // 6. Ahmed Khelifi
+      new Date("2025-04-15T16:00:00"), // 7. Julien Petit
+      new Date("2025-04-10T11:30:00"), // 8. David Garcia
+      new Date("2025-04-25T09:45:00"), // 9. Laura Bernard
     ];
 
     /**
