@@ -1283,6 +1283,9 @@ footer {
   z-index: 10;
   min-height: auto !important;
   display: block !important;
+  /* Ajout pour l'accessibilité de la typographie */
+  font-size: 0.95rem; /* Taille de base pour le texte du footer (environ 15px) */
+  line-height: 1.6; /* Améliore la lisibilité */
 }
 
 footer .row {
@@ -1294,7 +1297,8 @@ footer h5 {
   color: var(--text-on-electric-blue) !important;
   /* Assuming footer is on dark bg */
   font-weight: 700 !important;
-  font-size: 1.2rem !important;
+  /* Typo fluide pour une meilleure accessibilité sur mobile */
+  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.25rem) !important;
   position: relative;
   padding-left: 15px;
   /* Espace pour l'indicateur */
@@ -1361,6 +1365,11 @@ footer hr {
   background-color: var(--electric-blue-light);
   color: var(--electric-blue-dark);
   transform: translateY(-3px);
+}
+
+/* Ligne du bas avec copyright et liens légaux */
+footer .small {
+  font-size: 0.9rem; /* Augmente légèrement la taille pour la lisibilité sur mobile (environ 14.4px) */
 }
 
 .list-inline-item:not(:last-child) {
