@@ -4,13 +4,21 @@
 <head>
   <!-- Google Tag Manager -->
   <script>
+    // Initialize dataLayer
+    window.dataLayer = window.dataLayer || [];
+    
     // Chargement différé du GTM après interaction utilisateur
     let gtmLoaded = false;
     function loadGTM() {
       if (gtmLoaded) return;
       gtmLoaded = true;
       
-      try {
+      // Test connectivity first
+      fetch('https://www.googletagmanager.com/gtm.js?id=GTM-NZFXBGPQ', {
+        method: 'HEAD',
+        mode: 'no-cors'
+      }).then(() => {
+        // If successful, load GTM
         (function(w,d,s,l,i){
           w[l]=w[l]||[];
           w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
@@ -18,11 +26,14 @@
           var j=d.createElement(s);
           j.async=true;
           j.src='https://www.googletagmanager.com/gtm.js?id='+i;
+          j.onerror = function() {
+            console.warn('GTM script failed to load');
+          };
           f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-NZFXBGPQ');
-      } catch (e) {
-        console.warn('GTM loading failed:', e);
-      }
+      }).catch(() => {
+        console.warn('GTM connectivity test failed, skipping GTM load');
+      });
     }
 
     // Charger au premier scroll, clic, ou après 3 secondes
