@@ -23,7 +23,12 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   
-  // Cache les ressources statiques
+  // Ne pas intercepter les requêtes vers des domaines tiers
+  if (url.hostname !== location.hostname) {
+    return;
+  }
+  
+  // Cache les ressources statiques locales uniquement
   if (url.pathname.match(/\.(css|js|woff2|webp|png|jpg|jpeg)$/)) {
     event.respondWith(
       caches.match(event.request)
