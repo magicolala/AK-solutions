@@ -4,11 +4,24 @@
 <head>
   <!-- Google Tag Manager -->
   <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NZFXBGPQ');
+    // Chargement différé du GTM après interaction utilisateur
+    let gtmLoaded = false;
+    function loadGTM() {
+      if (gtmLoaded) return;
+      gtmLoaded = true;
+      
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-NZFXBGPQ');
+    }
+
+    // Charger au premier scroll, clic, ou après 3 secondes
+    ['scroll', 'click', 'touchstart'].forEach(event => {
+      document.addEventListener(event, loadGTM, { once: true, passive: true });
+    });
+    setTimeout(loadGTM, 3000);
   </script>
   <!-- Définition du type de document et de la langue -->
   <meta charset="UTF-8">
