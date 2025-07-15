@@ -11,10 +11,14 @@
       gtmLoaded = true;
       
       try {
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        (function(w,d,s,l,i){
+          w[l]=w[l]||[];
+          w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+          var f=d.getElementsByTagName(s)[0];
+          var j=d.createElement(s);
+          j.async=true;
+          j.src='https://www.googletagmanager.com/gtm.js?id='+i;
+          f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-NZFXBGPQ');
       } catch (e) {
         console.warn('GTM loading failed:', e);
@@ -1512,8 +1516,19 @@
   <!-- Granim.js pour les animations de dégradé -->
   <script defer src="https://cdn.jsdelivr.net/npm/granim@2.0.0/dist/granim.min.js"></script>
   <div class="elfsight-app-968c307b-94f2-49a3-b8b0-adb8b5e6bb98" data-elfsight-app-lazy></div>
-  <!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
-  <script src="https://static.elfsight.com/platform/platform.js" async></script>
+<!-- Elfsight WhatsApp Chat | Untitled WhatsApp Chat -->
+<script>
+  // Load Elfsight with error handling
+  (function() {
+    var script = document.createElement('script');
+    script.src = 'https://static.elfsight.com/platform/platform.js';
+    script.async = true;
+    script.onerror = function() {
+      console.warn('Elfsight widget failed to load');
+    };
+    document.head.appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
